@@ -15,3 +15,8 @@ BUILD_DIR="C:\Multi-Runner\mfobuild"
 # git pull git@10.10.202.196:mfo/mfodg.git master
 # cd $BUILD_DIR
 # git pull git@10.10.202.196:mfo/mfobuild.git master
+
+
+sh $BUILD_DIR/01_build_mfodg/A_dgbuild.sh
+sh $BUILD_DIR/02_build_mfonp/npbuild.sh
+sh $BUILD_DIR/05_build_mfoset/Innosetup.sh
