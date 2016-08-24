@@ -71,12 +71,10 @@ FILE_DIR_ATTACH_ROUTINE()
 	cd $CURR_DIR
 		BASENAME_DIR=`basename $CURR_DIR`
 	echo " ATTACHING ISS SCRIPT LINES for $BASENAME_DIR"
-		unset DIRS
-		DIRS="$DIR_ATTACHMENT$BASENAME_DIR$DIRS"
-		echo -e "$DIRS" | awk '{gsub(/\//,"\\"); print}' >> $ISS_FILE_DIR
-	
-	for DIRS in `find -type d | tr -d '.'`
+
+	for DIRS in `find -type d | awk '{gsub(/\.\//,"/"); print}'`
 		do
+		if [ "$DIRS" = "." ]; then DIRS=""; fi
 		DIRS="$DIR_ATTACHMENT$BASENAME_DIR$DIRS"
 		echo -e "$DIRS" | awk '{gsub(/\//,"\\"); print}' >> $ISS_FILE_DIR
 	done
@@ -84,6 +82,7 @@ FILE_DIR_ATTACH_ROUTINE()
 	for FILES in `find -type f | awk '{gsub(/\.\//,""); print}'`
 		do 
 		FILES_DIR=`dirname $FILES | awk '{gsub(/\.\//,"/"); print}'`
+		if [ "$FILES_DIR" = "." ]; then FILES_DIR=""; fi
 		FILES="$FILES_ATTACHMENT1$CURR_DIR\\$FILES$FILES_ATTACHMENT2$BASENAME_DIR\\$FILES_DIR"
 		echo "$FILES"| awk '{gsub(/\//,"\\"); print}' >> $ISS_FILE_DIR2
 	done
@@ -95,7 +94,7 @@ MAKE_UP_FOR_NEXT_SETUP()
 	cat $ISS_FILE_DIR2 >> $ISS_FILE_DIR
 	rm $ISS_FILE_DIR2
 	ISCC $ISS_FILE_DIR
-	#rm $ISS_FILE_DIR
+	rm $ISS_FILE_DIR
 }
 
 ISS_FILE_TOP_PART_160520()
