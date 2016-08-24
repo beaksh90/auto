@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false" scan="true" scanPeriod="1 minutes">
+	<property name="PRODUCT" 		value="MFJ" 	scope="context"/>	
+	<property name="MAX_HISTORY" 	value="90" />
+	<property name="MAX_FILESIZE" 	value="50MB" />	
+	<timestamp key="DAY" 			datePattern="yyyy-MM-dd" />
+	<timestamp key="HOUR" 			datePattern="HHmmss" />
+	
+	<!--property name="user.log.path" value="./log/" /-->
+	<property name="log.pattern" value='%n[%d{HH:mm:ss.SSS}] %msg%n[%d{HH:mm:ss.SSS}] %replaceAndParse(%xException){"(\r?\n)", "$1[%d{HH:mm:ss.SSS}]"}%nopex'/>
+	<property name="log.maxhistory" value="21" />
+	<property name="log.maxfilesize" value="30MB" />
+	<timestamp key="log.day" datePattern="yyyyMMdd" />
+	<timestamp key="log.hour" datePattern="yyyyMMdd_HHmmss" />
+ 
+
+	<conversionRule conversionWord="replaceAndParse" converterClass="exem.log.XMReplacingAndParsingCompositeConverter" />	
+
+	<!-- CONSOLE -->	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="exem.log.StdOutFilter" />
+
+		<encoder>
+		    <pattern>%msg</pattern> 
+		</encoder>
+    </appender>
+    
+	<!-- 
+		기본 로그파일 ** 전체 로깅
+		- FixedWindowRollingPolicy 사용 시 안에서는 %를 쓰면 안됨. 필요한것은 $로 property 로 처리
+		- TimeBasedRollingPolicy 사용 시 %d 를 사용하여 일자 계산. <file> 태그 불필요
+		- fileNamePattern 에서 다른 압축 형식 필요시 마지막 확장자만 변경하면 됨.
+	-->
+     <appender name="FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">    	
+
+		<filter class="exem.log.DetailOutFilter" />
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		  	<!-- daily rollover -->
+			<fileNamePattern>${user.log.path}/%d{YYYY-MM-dd}/%d{YYYY-MM-dd}-${PRODUCT}_%i.log.zip</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">			    
+			  	<maxFileSize>${MAX_FILESIZE}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			
+		  	<maxHistory>${MAX_HISTORY}</maxHistory>		  	
+		  	<cleanHistoryOnStart>false</cleanHistoryOnStart>
+		</rollingPolicy>
+
+		<encoder>
+				<pattern>%msg</pattern> 
+		</encoder>
+ 	</appender>
+
+
+    <root level="TRACE">
+    	<appender-ref ref="FILEOUT" hint="Warn,Error"/>
+		<appender-ref ref="STDOUT"  hint="console"/>
+    </root>
+
+
+</configuration>

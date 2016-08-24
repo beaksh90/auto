@@ -1,0 +1,5 @@
+﻿REM c_GUID=에러코드
+REM m_GUID=에러메시지
+
+c_d982c77c-1e40-4c53-b1f9-3a1bff0b84a6=5012
+m_d982c77c-1e40-4c53-b1f9-3a1bff0b84a6=broadcast using websocket failed

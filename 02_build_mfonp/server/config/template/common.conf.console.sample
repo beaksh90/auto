@@ -1,0 +1,7 @@
+obs1=1
+obs1_cmd=__platformjs.start.bat__
+obs1_keyword=DPJS__port__
+obs1_keyword2=start.jar
+obs1_cpu_limit=80
+obs1_mem_limit=2000000
+obs1_init_wait=40

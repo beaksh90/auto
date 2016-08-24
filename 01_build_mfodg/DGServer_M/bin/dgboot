@@ -1,0 +1,2 @@
+cd $DG_M_HOME/bin
+java -$DG_M_NAME -Xms1024m -Xmx1024m -jar DGServer.jar 1>/dev/null 2>&1 &

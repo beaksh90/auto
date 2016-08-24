@@ -1,0 +1,6 @@
+for i in `ps -ef |grep DGO  | grep $DG_S1_NAME | grep -v grep | awk '{print $2}'`;do kill -9 $i; done;
+
+for i in `ps -ef |grep DGServer.jar | grep $DG_S1_NAME | grep -v grep | awk '{print $2}'`;do kill -9 $i; done;
+
+echo $DG_S1_NAME Stopped.
+

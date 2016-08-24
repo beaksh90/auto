@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<DataGather>
+    <DefaultOptions>
+        <master>true</master>
+        <gather_port>7000</gather_port>
+        <slave_gather_list>127.0.0.1:7001</slave_gather_list>
+        <ClientPool>
+            <client_pool_init_size>10</client_pool_init_size>
+            <client_pool_max_size>30</client_pool_max_size>
+        </ClientPool>
+        <DBPool>
+            <encrypt>false</encrypt>
+            <database_type>postgres</database_type>
+            <database_ip>127.0.0.1</database_ip>
+            <database_port>5432</database_port>
+            <database_sid>MFO</database_sid>
+            <database_user>postgres</database_user>
+            <database_password>postgres</database_password>            
+        </DBPool>
+        <DatabaseType_Postgres>
+		    <pool_commit>true</pool_commit>
+			<gather_vacuum>true</gather_vacuum><!--파티션 드랍 후, 인스턴스별 전일 파티션 테이블 수동으로 VACUUM 호출-->
+			<vacuum_max_pool>3</vacuum_max_pool>
+		</DatabaseType_Postgres>
+        <DatabaseType_Oracle>
+            <tablespace>tablespace_name</tablespace>
+            <index_tablespace>tablespace_name</index_tablespace>
+            <partition>true</partition>
+            <compress_partition>true</compress_partition>
+			<domain_index>false</domain_index>
+        </DatabaseType_Oracle>
+    </DefaultOptions>
+    <AdditionalOptions>
+        <debug>false</debug>
+        <socket_timeout>60</socket_timeout>
+        <query_timeout>0</query_timeout>
+        <log_retention_days>10</log_retention_days>        
+    </AdditionalOptions>
+</DataGather>

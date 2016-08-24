@@ -1,0 +1,41 @@
+
+{
+  "service_port": 8080,
+  "database_default": "default",
+  "datagather_default": "default",
+  "database_pool_max": 300,
+  "database_pool_min": 30,
+  "database_maxrows": 2000000,
+  "second_charset": "CP949",
+  "pjs_loadbalancer_master": false,
+  "maxgauge_option": {
+    "refresh_time": 3,
+    "execute_exa": false,
+    "version": "5.3.1"
+  },
+  "datagathers": [
+    {
+      "datagather_name": "default",
+      "datagather_ip": "127.0.0.1",
+      "datagather_port": 7000,
+      "desc": ""
+    }
+  ],
+  "databases": [
+    {
+      "database_name": "default",
+      "database_type": "Postgresql",
+      "database_server": "127.0.0.1",
+      "database_port": 5432,
+      "database_database": "MFO",
+      "database_user": "_7sZLvjeUJozWkhVIEHOzQPa4HaCBjjpu86kYJqeP5CcRDpPWExDc",
+      "database_password": "_60P2mlsOoyVEasXMWQ0BNFwoOT0u0crz/sxfqIb68wBovd9NtMFu",
+      "sql_directory": "/../sql/MFO_PostgreSQL",
+      "database_description": ""
+    }
+  ],
+  "log_level": "info",
+  "log_max_history": 90,
+  "log_max_file_size": "30MB",
+  "log_directory": "./log"
+}

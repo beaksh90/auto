@@ -1,0 +1,9 @@
+--module=ssl
+--module=https
+https.port=443
+jetty.secure.port=443
+jetty.keystore=etc/keystore
+jetty.truststore=etc/keystore
+jetty.keystore.password=OBF:1inm1i271lmp1ym91t331ym51lj11hzj1iks
+jetty.keymanager.password=OBF:1iur1i271lmp1ym91t331ym51lj11hzj1irv
+jetty.truststore.password=OBF:1inm1i271lmp1ym91t331ym51lj11hzj1iks

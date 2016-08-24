@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+
+<!-- ============================================================= -->
+<!-- Configure the Jetty Server instance with an ID "Server"       -->
+<!-- by adding a HTTP connector.                                   -->
+<!-- This configuration must be used in conjunction with jetty.xml -->
+<!-- ============================================================= -->
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+<!--Thread Pool-->
+   <Get name="ThreadPool">
+      <Set name="minThreads">1</Set>
+      <Set name="idleTimeout">60000</Set>
+      <Set name="detailedDump">false</Set>
+   </Get>
+   <!--HTTP Config-->
+   <New class="org.eclipse.jetty.server.HttpConfiguration" id="httpConfig">
+      <Set name="secureScheme">https</Set>
+      <Set name="outputBufferSize">32768</Set>
+      <Set name="requestHeaderSize">8192</Set>
+      <Set name="responseHeaderSize">8192</Set>
+      <Set name="sendServerVersion">true</Set>
+      <Set name="sendDateHeader">false</Set>
+      <Set name="headerCacheSize">512</Set>
+   </New>
+  <!-- =========================================================== -->
+  <!-- Add a HTTP Connector.                                       -->
+  <!-- Configure an o.e.j.server.ServerConnector with a single     -->
+  <!-- HttpConnectionFactory instance using the common httpConfig  -->
+  <!-- instance defined in jetty.xml                               -->
+  <!--                                                             -->
+  <!-- Consult the javadoc of o.e.j.server.ServerConnector and     -->
+  <!-- o.e.j.server.HttpConnectionFactory for all configuration    -->
+  <!-- that may be set here.                                       -->
+  <!-- =========================================================== -->
+  <Call name="addConnector">
+    <Arg>
+      <New class="org.eclipse.jetty.server.ServerConnector">
+        <Arg name="server"><Ref refid="Server" /></Arg>
+        <Arg name="acceptors" type="int"><Property name="http.acceptors" default="-1"/></Arg>
+        <Arg name="selectors" type="int"><Property name="http.selectors" default="-1"/></Arg>
+        <Arg name="factories">
+          <Array type="org.eclipse.jetty.server.ConnectionFactory">
+            <Item>
+              <New class="org.eclipse.jetty.server.HttpConnectionFactory">
+                <Arg name="config"><Ref refid="httpConfig" /></Arg>
+              </New>
+            </Item>
+          </Array>
+        </Arg>
+        <Set name="host"><Property name="jetty.host" /></Set>
+        <Set name="port"><SystemProperty name="jetty.port" default="8080" /></Set>
+        <Set name="idleTimeout"><Property name="http.timeout" default="30000"/></Set>
+        <Set name="soLingerTime"><Property name="http.soLingerTime" default="-1"/></Set>
+        <Set name="acceptorPriorityDelta"><Property name="http.acceptorPriorityDelta" default="0"/></Set>
+        <Set name="selectorPriorityDelta"><Property name="http.selectorPriorityDelta" default="0"/></Set>
+        <Set name="acceptQueueSize"><Property name="http.acceptQueueSize" default="0"/></Set>
+      </New>
+    </Arg>
+  </Call>
+
+   <Set name="handler">
+      <New class="org.eclipse.jetty.webapp.WebAppContext">
+         <Arg type="java.lang.String">www</Arg>
+         <Arg type="java.lang.String">/</Arg>
+<Set name="Descriptor">www/WEB-INF/web.xml</Set>
+<Set name="extraClasspath">www/WEB-INF/lib/exem_platjormjs.jar</Set>
+<Set name="extraClasspath">www/WEB-INF/lib</Set>
+<Set name="extraClasspath">../bin/jdk/win/jdk1.7.0_25/jre/lib</Set>
+<Set name="extraClasspath">../bin/jetty/lib</Set>
+<Set name="extraClasspath">../bin/jetty/lib/websocket</Set>
+<Set name="extraClasspath">../bin/jetty/lib/annotations</Set>
+
+<!--          <Arg type="java.lang.String">www2</Arg>
+         <Arg type="java.lang.String">/</Arg>
+         <Set name="defaultsDescriptor">../config/eclipseJettyPlugin.webDefaults.platformjs.xml</Set>
+         <Set name="Descriptor">./www/WEB-INF/web.xml</Set>
+         <Set name="extraClasspath">./www/WEB-INF/lib/exem_platjormjs.jar</Set>
+         <Set name="extraClasspath">./www/WEB-INF/lib</Set>
+         <Set name="extraClasspath">../bin/jdk/win/jdk1.7.0_25/jre/lib</Set>
+         <Set name="extraClasspath">../bin/jetty/lib</Set>
+         <Set name="extraClasspath">../bin/jetty/lib/websocket</Set>
+         
+         <Set name="extraClasspath">../bin/jetty/lib/annotations</Set> -->
+<!-- <Set name="extraClasspath">../bin/classes</Set> -->
+
+		 <!-- <Set name="extraClasspath">./www/WEB-INF/lib/HikariCP-2.4.3.jar;./www/WEB-INF/lib/chardet.jar;./www/WEB-INF/lib/com.mysql.jdbc_5.1.5.jar;./www/WEB-INF/lib/commons-codec-1.10-javadoc.jar;./www/WEB-INF/lib/commons-codec-1.10-sources.jar;./www/WEB-INF/lib/commons-codec-1.10.jar;./www/WEB-INF/lib/commons-lang3-3.4-javadoc.jar;./www/WEB-INF/lib/commons-lang3-3.4.jar;./www/WEB-INF/lib/commons-pool2-2.4.2.jar;./www/WEB-INF/lib/hibernate-core-4.3.10.Final.jar;./www/WEB-INF/lib/java-getopt-1.0.14.jar;./www/WEB-INF/lib/javassist-3.9.0.GA.jar;./www/WEB-INF/lib/javax-websocket-client-impl-9.2.11.v20150529.jar;./www/WEB-INF/lib/javax-websocket-server-impl-9.2.11.v20150529.jar;./www/WEB-INF/lib/javax.persistence_2.0.0.jar;./www/WEB-INF/lib/javax.websocket-api-1.0.jar;./www/WEB-INF/lib/json_simple-1.1.jar;./www/WEB-INF/lib/junit-4.3.jar;./www/WEB-INF/lib/juniversalchardet-1.0.3.jar;./www/WEB-INF/lib/logback-classic-1.1.3.jar;./www/WEB-INF/lib/logback-core-1.1.3.jar;./www/WEB-INF/lib/metrics-core-3.0.0.jar;./www/WEB-INF/lib/metrics-healthchecks-3.0.1.jar;./www/WEB-INF/lib/mysql-connector-java-5.1.34-bin.jar;./www/WEB-INF/lib/ojdbc5.jar;./www/WEB-INF/lib/ojdbc7-12.1.0.1.jar;./www/WEB-INF/lib/pax-exam-junit4-3.2.0.jar;./www/WEB-INF/lib/postgresql-9.2-1002.jdbc4.jar;./www/WEB-INF/lib/slf4j-api-1.7.12.jar;./www/WEB-INF/lib/sqljdbc4.jar;./www/WEB-INF/lib/tibero5-jdbc-14.jar;./www/WEB-INF/lib/websocket-api-9.2.11.v20150529.jar;./www/WEB-INF/lib/websocket-client-9.2.11.v20150529.jar;./www/WEB-INF/lib/websocket-common-9.2.11.v20150529.jar;./www/WEB-INF/lib/websocket-server-9.2.11.v20150529.jar;./www/WEB-INF/lib/websocket-servlet-9.2.11.v20150529.jar;./www/WEB-INF/lib/z-order-mariadb-java-client-1.1.8.jar;./www/WEB-INF/lib//jetty-io-9.2.11.v20150529.jar;./www/WEB-INF/lib//jetty-util-9.2.11.v20150529.jar;./www/WEB-INF/lib//servlet-api-3.1.jar</Set> -->
+	</New>
+</Set>
+
+  <Call name="setAttribute">
+    <Arg>org.eclipse.jetty.websocket.jsr356</Arg>
+    <Arg type="Boolean">true</Arg>
+  </Call>
+
+   <!--Annotations-->
+
+<!-- <Call class="org.eclipse.jetty.webapp.Configuration$ClassList" name="setServerDefault">
+      <Arg>
+         <Ref refid="Server" />
+      </Arg>
+      <Call name="addBefore">
+         <Arg name="addBefore" type="java.lang.String">org.eclipse.jetty.webapp.JettyWebXmlConfiguration</Arg>
+         <Arg>
+            <Array type="java.lang.String">
+               <Item>org.eclipse.jetty.annotations.AnnotationConfiguration</Item>
+            </Array>
+         </Arg>
+      </Call>
+   </Call>  -->
+   <!--Extra Options-->
+   <Set name="stopAtShutdown">true</Set>
+   <Set name="stopTimeout">1000</Set>
+   <Set name="dumpAfterStart">false</Set>
+   <Set name="dumpBeforeStop">false</Set>
+</Configure>

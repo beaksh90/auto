@@ -1,0 +1,32 @@
+{	
+    "database_default": "databases_default",
+    "datagather_default" : "datagathers_default",
+    "service_port": 8081,
+    "database_pool_max": 300,
+    "database_pool_min": 30,
+    "database_maxrows": 2000000,
+    "pjs_loadbalancer_master": false,
+    "pjs_version": "20160426",
+    "second_charset":"CP949",
+    "datagathers": [
+	{      
+		"datagather_name": "datagathers_default",
+		"datagather_ip": "192.168.122.116",
+		"datagather_port": 1313,
+		"desc":""
+	 }
+    ],
+    "databases": [              
+              {
+            "database_name": "databases_default",
+            "database_type": "postgresql",
+            "database_server": "192.168.120.93",
+            "database_port": 5432, 	
+            "database_database": "intermax",
+            "database_user": "_lZyqmdpELenlgSx55NvWn1cPhPJI5JyJdIJRwq4pvGQK4SwiVO1l",
+            "database_password": "_7zZrjBdje2BrWHahtG6Y8GSq8wWq1kmmOFBR129xyLifVRELMB1w",
+            "sql_directory": "/../sql/IMX_PostgreSQL",
+            "database_description": ""
+        }
+    ]
+}

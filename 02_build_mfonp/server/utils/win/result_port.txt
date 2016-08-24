@@ -1,0 +1,1485 @@
+Port	PID	CMD
+135	936	svchost.exe
+445	4	System
+902	3304	vmware-authd.exe
+912	3304	vmware-authd.exe
+2324	2848	vmnat.exe
+2575	2924	PoAgent.exe
+2861	4	System
+3389	1264	svchost.exe
+4406	2848	vmnat.exe
+4489	2848	vmnat.exe
+6004	6024	NateOnMain.exe
+7070	2848	vmnat.exe
+8080	12032	javaw.exe
+9089	3084	vmware-converter-a.exe
+12345	2828	NSpeedMeter.exe
+14430	4108	nosstarter.npe
+14440	4108	nosstarter.npe
+26143	4	System
+49152	620	wininit.exe
+49153	376	svchost.exe
+49154	612	svchost.exe
+49158	676	services.exe
+49160	692	lsass.exe
+54321	3180	vmware-converter.exe
+55920	5164	StSess.exe
+56789	3180	vmware-converter.exe
+59870	5308	eclipse.exe
+----------------------
+pid
+thread count
+WorkingSetSize (KB)
+filename
+full filename
+----------------------
+344
+2
+SYSTEM
+NT AUTHORITY
+656
+smss.exe
+\SystemRoot\System32\smss.exe
+----------------------
+536
+10
+SYSTEM
+NT AUTHORITY
+3108
+csrss.exe
+%SystemRoot%\system32\csrss.exe ObjectDirectory=\Windows SharedSection=1024,20480,768 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitialization,3 ServerDll=winsrv:ConServerDllInitialization,2 ServerDll=sxssrv,4 ProfileControl=Off MaxRequestThreads=16
+----------------------
+620
+3
+SYSTEM
+NT AUTHORITY
+1280
+wininit.exe
+wininit.exe
+----------------------
+628
+15
+SYSTEM
+NT AUTHORITY
+66584
+csrss.exe
+%SystemRoot%\system32\csrss.exe ObjectDirectory=\Windows SharedSection=1024,20480,768 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitialization,3 ServerDll=winsrv:ConServerDllInitialization,2 ServerDll=sxssrv,4 ProfileControl=Off MaxRequestThreads=16
+----------------------
+676
+14
+SYSTEM
+NT AUTHORITY
+7824
+services.exe
+C:\windows\system32\services.exe
+----------------------
+692
+8
+SYSTEM
+NT AUTHORITY
+10880
+lsass.exe
+C:\windows\system32\lsass.exe
+----------------------
+700
+11
+SYSTEM
+NT AUTHORITY
+3780
+lsm.exe
+C:\windows\system32\lsm.exe
+----------------------
+800
+3
+SYSTEM
+NT AUTHORITY
+2912
+winlogon.exe
+winlogon.exe
+----------------------
+860
+11
+SYSTEM
+NT AUTHORITY
+6708
+svchost.exe
+C:\windows\system32\svchost.exe -k DcomLaunch
+----------------------
+936
+9
+NETWORK SERVICE
+NT AUTHORITY
+7764
+svchost.exe
+C:\windows\system32\svchost.exe -k RPCSS
+----------------------
+1004
+6
+SYSTEM
+NT AUTHORITY
+1472
+atiesrxx.exe
+C:\windows\system32\atiesrxx.exe
+----------------------
+376
+20
+LOCAL SERVICE
+NT AUTHORITY
+13960
+svchost.exe
+C:\windows\System32\svchost.exe -k LocalServiceNetworkRestricted
+----------------------
+560
+21
+SYSTEM
+NT AUTHORITY
+8500
+svchost.exe
+C:\windows\System32\svchost.exe -k LocalSystemNetworkRestricted
+----------------------
+424
+18
+LOCAL SERVICE
+NT AUTHORITY
+15996
+svchost.exe
+C:\windows\system32\svchost.exe -k LocalService
+----------------------
+612
+49
+SYSTEM
+NT AUTHORITY
+44324
+svchost.exe
+C:\windows\system32\svchost.exe -k netsvcs
+----------------------
+1128
+5
+SYSTEM
+NT AUTHORITY
+4124
+svchost.exe
+C:\Windows\system32\svchost.exe -k GPSvcGroup
+----------------------
+1264
+37
+NETWORK SERVICE
+NT AUTHORITY
+14180
+svchost.exe
+C:\windows\system32\svchost.exe -k NetworkService
+----------------------
+1460
+10
+SYSTEM
+NT AUTHORITY
+3448
+atieclxx.exe
+atieclxx
+----------------------
+1560
+19
+SYSTEM
+NT AUTHORITY
+4900
+spoolsv.exe
+C:\windows\System32\spoolsv.exe
+----------------------
+1604
+18
+LOCAL SERVICE
+NT AUTHORITY
+17884
+svchost.exe
+C:\windows\system32\svchost.exe -k LocalServiceNoNetwork
+----------------------
+1696
+4
+SYSTEM
+NT AUTHORITY
+624
+armsvc.exe
+"C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\armsvc.exe"
+----------------------
+1720
+35
+SYSTEM
+NT AUTHORITY
+9492
+AnySign4PCLauncher.exe
+"C:\Program Files (x86)\SoftForum\XecureWeb\AnySign\dll\AnySign4PCLauncher.exe"
+----------------------
+1884
+11
+SYSTEM
+NT AUTHORITY
+2484
+AppleMobileDeviceService.exe
+"C:\Program Files (x86)\Common Files\Apple\Mobile Device Support\AppleMobileDeviceService.exe"
+----------------------
+1908
+4
+SYSTEM
+NT AUTHORITY
+1468
+mDNSResponder.exe
+"C:\Program Files\Bonjour\mDNSResponder.exe"
+----------------------
+1944
+8
+SYSTEM
+NT AUTHORITY
+3772
+HD-LogRotatorService.exe
+"C:\Program Files (x86)\BlueStacks\HD-LogRotatorService.exe"
+----------------------
+2004
+7
+SYSTEM
+NT AUTHORITY
+4992
+SkypeC2CAutoUpdateSvc.exe
+"C:\Program Files (x86)\Skype\Toolbars\AutoUpdate\SkypeC2CAutoUpdateSvc.exe" /service
+----------------------
+1256
+12
+NETWORK SERVICE
+NT AUTHORITY
+812
+SkypeC2CPNRSvc.exe
+"C:\Program Files (x86)\Skype\Toolbars\PNRSvc\SkypeC2CPNRSvc.exe" /service
+----------------------
+776
+11
+SYSTEM
+NT AUTHORITY
+8528
+svchost.exe
+C:\windows\System32\svchost.exe -k utcsvc
+----------------------
+2060
+5
+SYSTEM
+NT AUTHORITY
+556
+fs_drmmgr.exe
+"C:\Program Files (x86)\Fasoo.com\Fasoo Live Update 2.0\bin\fs_drmmgr.exe" -k updt
+----------------------
+2112
+8
+SYSTEM
+NT AUTHORITY
+1788
+f_LPS.exe
+"C:\Program Files\Fasoo DRM\f_LPS.exe"
+----------------------
+2156
+7
+SYSTEM
+NT AUTHORITY
+1512
+ImageSAFERSvc.exe
+C:\Windows\ImageSAFERSvc.exe
+----------------------
+2192
+4
+SYSTEM
+NT AUTHORITY
+692
+IMEDICTUPDATE.EXE
+"C:\Program Files\Common Files\Microsoft Shared\IME14\SHARED\IMEDICTUPDATE.EXE"
+----------------------
+2224
+6
+SYSTEM
+NT AUTHORITY
+2112
+innosvc.exe
+C:\Windows\SysWOW64\innosvc.exe
+----------------------
+2260
+8
+SYSTEM
+NT AUTHORITY
+3456
+schedul2.exe
+"C:\Program Files (x86)\Common Files\Intel\Schedule2\schedul2.exe"
+----------------------
+2332
+65
+MSSQLSERVER
+NT SERVICE
+18700
+sqlservr.exe
+"C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\Binn\sqlservr.exe" -sMSSQLSERVER
+----------------------
+2368
+34
+SYSTEM
+NT AUTHORITY
+1084
+
+
+----------------------
+2800
+5
+SYSTEM
+NT AUTHORITY
+860
+nPStarterSVC.exe
+C:\windows\SysWOW64\nPStarterSVC.exe
+----------------------
+2828
+5
+SYSTEM
+NT AUTHORITY
+864
+NSpeedMeter.exe
+"C:\NIA\NSpeedMeter.exe"
+----------------------
+2888
+4
+SYSTEM
+NT AUTHORITY
+1396
+PoSrv.exe
+"C:\Program Files (x86)\ePlayWorks\AVStreamer\PoSrv.exe"
+----------------------
+2916
+49
+SYSTEM
+NT AUTHORITY
+7096
+ASDSvc.exe
+"C:\Program Files\AhnLab\Safe Transaction\ASDSvc.exe"
+----------------------
+2924
+16
+SYSTEM
+NT AUTHORITY
+5840
+PoAgent.exe
+"C:\Program Files (x86)\ePlayWorks\AVStreamer\PoAgent.exe"
+----------------------
+2968
+4
+SYSTEM
+NT AUTHORITY
+1340
+sqlwriter.exe
+"C:\Program Files\Microsoft SQL Server\90\Shared\sqlwriter.exe"
+----------------------
+3012
+6
+SYSTEM
+NT AUTHORITY
+932
+ss_conn_service.exe
+"C:\Program Files\SAMSUNG\USB Drivers\25_escape\conn\ss_conn_service.exe"
+----------------------
+3048
+6
+LOCAL SERVICE
+NT AUTHORITY
+724
+svchost.exe
+C:\windows\system32\svchost.exe -k imgsvc
+----------------------
+1044
+7
+SYSTEM
+NT AUTHORITY
+3524
+TeamViewer_Service.exe
+"C:\Program Files (x86)\TeamViewer\Version8\TeamViewer_Service.exe"
+----------------------
+2848
+6
+SYSTEM
+NT AUTHORITY
+4196
+VMNAT.EXE
+C:\WINDOWS\SYSWOW64\VMNAT.EXE
+----------------------
+3084
+8
+SYSTEM
+NT AUTHORITY
+2028
+vmware-converter-a.exe
+"C:\Program Files (x86)\VMware\VMware vCenter Converter Standalone\vmware-converter-a.exe" -s "C:\ProgramData\VMware\VMware vCenter Converter Standalone\converter-agent.xml"
+----------------------
+3180
+14
+SYSTEM
+NT AUTHORITY
+4140
+vmware-converter.exe
+"C:\Program Files (x86)\VMware\VMware vCenter Converter Standalone\vmware-converter.exe" -s "C:\ProgramData\VMware\VMware vCenter Converter Standalone\converter-server.xml"
+----------------------
+3212
+8
+SYSTEM
+NT AUTHORITY
+2096
+vmware-converter.exe
+"C:\Program Files (x86)\VMware\VMware vCenter Converter Standalone\vmware-converter.exe" -s "C:\ProgramData\VMware\VMware vCenter Converter Standalone\converter-worker.xml"
+----------------------
+3252
+7
+SYSTEM
+NT AUTHORITY
+7272
+HD-Service.exe
+"C:\Program Files (x86)\BlueStacks\HD-Service.exe" BstHdAndroidSvc Android
+----------------------
+3304
+6
+SYSTEM
+NT AUTHORITY
+5252
+vmware-authd.exe
+"C:\Program Files (x86)\VMware\VMware Workstation\vmware-authd.exe"
+----------------------
+3624
+8
+SYSTEM
+NT AUTHORITY
+7724
+HD-Network.exe
+"C:\Program Files (x86)\BlueStacks\HD-Network.exe"
+----------------------
+3644
+3
+SYSTEM
+NT AUTHORITY
+840
+conhost.exe
+\??\C:\windows\system32\conhost.exe "1690148379-1233954683385959927-20173728214232268304053142097602954241497367101
+----------------------
+3708
+4
+SYSTEM
+NT AUTHORITY
+1972
+VMNETDHCP.EXE
+C:\WINDOWS\SYSWOW64\VMNETDHCP.EXE
+----------------------
+3728
+5
+SYSTEM
+NT AUTHORITY
+2592
+vmware-usbarbitrator64.exe
+"C:\Program Files (x86)\Common Files\VMware\USB\vmware-usbarbitrator64.exe"
+----------------------
+3756
+3
+SYSTEM
+NT AUTHORITY
+6344
+HD-BlockDevice.exe
+"C:\Program Files (x86)\BlueStacks\HD-BlockDevice.exe"
+----------------------
+3764
+2
+SYSTEM
+NT AUTHORITY
+976
+conhost.exe
+\??\C:\windows\system32\conhost.exe "2107977376-838611017-69910094795493312-838639344-205615557619484170771578026491
+----------------------
+3808
+4
+SYSTEM
+NT AUTHORITY
+4992
+HD-SharedFolder.exe
+"C:\Program Files (x86)\BlueStacks\HD-SharedFolder.exe"
+----------------------
+3816
+2
+SYSTEM
+NT AUTHORITY
+976
+conhost.exe
+\??\C:\windows\system32\conhost.exe "-6946603131145709230-798063193-28149582-1098628194-152156158221331431201618727347
+----------------------
+4460
+5
+NETWORK SERVICE
+NT AUTHORITY
+3104
+svchost.exe
+C:\windows\system32\svchost.exe -k NetworkServiceNetworkRestricted
+----------------------
+5064
+11
+uizuKim
+uizuKim-PC
+12212
+taskhost.exe
+"taskhost.exe"
+----------------------
+5080
+33
+uizuKim
+uizuKim-PC
+8956
+AnySign4PC.exe
+"C:\Program Files (x86)\SoftForum\XecureWeb\AnySign\dll\\AnySign4PC.exe" port=10530;port_s=10531;no_shut=1;
+----------------------
+4352
+5
+SYSTEM
+NT AUTHORITY
+1284
+ImageSAFERStart_X86.exe
+"ImageSAFERStart_X86.exe"
+----------------------
+4376
+6
+SYSTEM
+NT AUTHORITY
+1548
+ImageSAFERStart_X64.exe
+"ImageSAFERStart_X64.exe"
+----------------------
+4884
+5
+uizuKim
+uizuKim-PC
+87480
+Dwm.exe
+"C:\windows\system32\Dwm.exe"
+----------------------
+4928
+38
+uizuKim
+uizuKim-PC
+90308
+Explorer.EXE
+C:\windows\Explorer.EXE
+----------------------
+5024
+8
+uizuKim
+uizuKim-PC
+2596
+RtDCpl64.exe
+"C:\Program Files\Realtek\Audio\HDA\RtDCpl64.exe" 
+----------------------
+4852
+2
+uizuKim
+uizuKim-PC
+1932
+schedhlp.exe
+"C:\Program Files (x86)\Common Files\Intel\Schedule2\schedhlp.exe" 
+----------------------
+4108
+172
+SYSTEM
+NT AUTHORITY
+6328
+
+
+----------------------
+4332
+25
+uizuKim
+uizuKim-PC
+19780
+SetPoint.exe
+"C:\Program Files\Logitech\SetPointP\SetPoint.exe" /launchGaming
+----------------------
+5164
+20
+uizuKim
+uizuKim-PC
+7872
+StSess.exe
+"C:\Program Files\AhnLab\Safe Transaction\StSess.exe" /tray
+----------------------
+5204
+2
+uizuKim
+uizuKim-PC
+1980
+netsession_win.exe
+"C:\Users\uizuKim\AppData\Local\Akamai\netsession_win.exe" 
+----------------------
+5284
+12
+uizuKim
+uizuKim-PC
+6640
+MSOSYNC.EXE
+"C:\Program Files\Microsoft Office\Office14\MSOSYNC.EXE" 
+----------------------
+5316
+10
+uizuKim
+uizuKim-PC
+8296
+netsession_win.exe
+"C:/Users/uizuKim/AppData/Local/Akamai/netsession_win.exe" --client
+----------------------
+5364
+31
+uizuKim
+uizuKim-PC
+5464
+KHALMNPR.EXE
+KHALMNPR.EXE /API
+----------------------
+5516
+22
+uizuKim
+uizuKim-PC
+69028
+jandi.exe
+"C:\Program Files (x86)\JANDI\jandi.exe" 
+----------------------
+5708
+2
+uizuKim
+uizuKim-PC
+1024
+ONENOTEM.EXE
+"C:\Program Files\Microsoft Office\Office14\ONENOTEM.EXE" /tsr
+----------------------
+5968
+5
+uizuKim
+uizuKim-PC
+3088
+iusb3mon.exe
+"C:\Program Files (x86)\Intel\Intel(R) USB 3.0 eXtensible Host Controller Driver\Application\iusb3mon.exe" 
+----------------------
+6024
+27
+uizuKim
+uizuKim-PC
+52264
+NATEONMain.exe
+"C:\Program Files (x86)\SK Communications\NATEON\BIN\NATEONMain.exe" -as -run_1a1cc33aa3368b4ee2c17a8a1d2fedb1
+----------------------
+6092
+4
+uizuKim
+uizuKim-PC
+1176
+GoogleCrashHandler.exe
+"C:\Users\uizuKim\AppData\Local\Google\Update\1.3.29.5\GoogleCrashHandler.exe"
+----------------------
+6100
+9
+uizuKim
+uizuKim-PC
+81056
+jandi.exe
+"C:\Program Files (x86)\JANDI\jandi.exe" --type=gpu-process --channel="5516.0.315901804\1159079664" --no-sandbox --lang=en-US --supports-dual-gpus=false --gpu-driver-bug-workarounds=1,17,38 --disable-accelerated-video-decode --gpu-vendor-id=0x1002 --gpu-device-id=0x6778 --gpu-driver-vendor="Advanced Micro Devices, Inc." --gpu-driver-version=8.922.0.0 --lang=en-US /prefetch:822062411
+----------------------
+6128
+4
+uizuKim
+uizuKim-PC
+2104
+vmware-tray.exe
+"C:\Program Files (x86)\VMware\VMware Workstation\vmware-tray.exe" 
+----------------------
+5176
+16
+uizuKim
+uizuKim-PC
+12368
+MOM.exe
+"C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static\MOM"
+----------------------
+5716
+14
+uizuKim
+uizuKim-PC
+540220
+jandi.exe
+"C:\Program Files (x86)\JANDI\jandi.exe" --type=renderer --no-sandbox --enable-deferred-image-decoding --lang=en-US --lang=en-US --device-scale-factor=1 --enable-delegated-renderer --enable-impl-side-painting --num-raster-threads=1 --disable-accelerated-video-decode --channel="5516.1.712723550\945951078" /prefetch:673131151
+----------------------
+6220
+22
+uizuKim
+uizuKim-PC
+19000
+HD-Agent.exe
+"C:\Program Files (x86)\BlueStacks\HD-Agent.exe" 
+----------------------
+6296
+9
+uizuKim
+uizuKim-PC
+3460
+iTunesHelper.exe
+"C:\Program Files (x86)\iTunes\iTunesHelper.exe" 
+----------------------
+6380
+13
+uizuKim
+uizuKim-PC
+3916
+DataMigrationSoftwareMonitor.exe
+"C:\Program Files (x86)\Intel\DataMigrationSoftware\DataMigrationSoftwareMonitor.exe" 
+----------------------
+6396
+7
+uizuKim
+uizuKim-PC
+1684
+rundll32.exe
+"C:\windows\SysWOW64\rundll32.exe" "C:\Program Files (x86)\Fasoo DRM\f_protry.dll", SWMStart 
+----------------------
+6404
+3
+uizuKim
+uizuKim-PC
+1320
+rundll32.exe
+"C:\windows\system32\rundll32.exe" "C:\Program Files\Fasoo DRM\f_protry.dll", SWMStart 
+----------------------
+6420
+5
+uizuKim
+uizuKim-PC
+11448
+jusched.exe
+"C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe" 
+----------------------
+6516
+4
+uizuKim
+uizuKim-PC
+892
+GoogleCrashHandler64.exe
+"C:\Users\uizuKim\AppData\Local\Google\Update\1.3.29.5\GoogleCrashHandler64.exe"
+----------------------
+6524
+4
+uizuKim
+uizuKim-PC
+5204
+StSess32.exe
+"C:\Program Files\AhnLab\Safe Transaction\Nz32\StSess32.exe" 
+----------------------
+7128
+26
+uizuKim
+uizuKim-PC
+32016
+CCC.exe
+"C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static\CCC.exe" 0
+----------------------
+5240
+17
+SYSTEM
+NT AUTHORITY
+2604
+fph.exe
+"C:\Program Files (x86)\Fasoo DRM\fph.exe"
+----------------------
+6480
+12
+SYSTEM
+NT AUTHORITY
+2616
+iPodService.exe
+"C:\Program Files\iPod\bin\iPodService.exe"
+----------------------
+7564
+14
+SYSTEM
+NT AUTHORITY
+1388
+fph.exe
+"C:\Program Files\Fasoo DRM\fph.exe"
+----------------------
+8536
+6
+uizuKim
+uizuKim-PC
+3444
+taskeng.exe
+taskeng.exe {27D1DE51-A458-48F2-8FEC-3B0A1C63C3B8}
+----------------------
+8604
+7
+uizuKim
+uizuKim-PC
+2664
+itype.exe
+"C:\Program Files\Microsoft Mouse and Keyboard Center\itype.exe" 
+----------------------
+8612
+10
+uizuKim
+uizuKim-PC
+6472
+ipoint.exe
+"C:\Program Files\Microsoft Mouse and Keyboard Center\ipoint.exe" 
+----------------------
+8676
+17
+SYSTEM
+NT AUTHORITY
+115264
+SearchIndexer.exe
+C:\windows\system32\SearchIndexer.exe /Embedding
+----------------------
+8788
+11
+NETWORK SERVICE
+NT AUTHORITY
+14656
+wmpnetwk.exe
+"C:\Program Files\Windows Media Player\wmpnetwk.exe"
+----------------------
+9108
+10
+LOCAL SERVICE
+NT AUTHORITY
+4232
+svchost.exe
+C:\windows\system32\svchost.exe -k LocalServiceAndNoImpersonation
+----------------------
+7328
+6
+LOCAL SERVICE
+NT AUTHORITY
+3084
+PresentationFontCache.exe
+C:\windows\Microsoft.Net\Framework64\v3.0\WPF\PresentationFontCache.exe
+----------------------
+8112
+18
+uizuKim
+uizuKim-PC
+64364
+explorer.exe
+C:\windows\explorer.exe /factory,{75dff2b7-6936-4c06-a8bb-676a7b00b24b} -Embedding
+----------------------
+1620
+30
+uizuKim
+uizuKim-PC
+16256
+TGitCache.exe
+"C:\Program Files\TortoiseGit\bin\TGitCache.exe"
+----------------------
+8708
+15
+SYSTEM
+NT AUTHORITY
+75896
+svchost.exe
+C:\windows\System32\svchost.exe -k secsvcs
+----------------------
+4160
+6
+uizuKim
+uizuKim-PC
+1996
+jucheck.exe
+"C:\Program Files (x86)\Common Files\Java\Java Update\jucheck.exe" -auto -critical
+----------------------
+8500
+3
+NETWORK SERVICE
+NT AUTHORITY
+8208
+OSPPSVC.EXE
+"C:\Program Files\Common Files\Microsoft Shared\OfficeSoftwareProtectionPlatform\OSPPSVC.EXE"
+----------------------
+5556
+18
+uizuKim
+uizuKim-PC
+61868
+explorer.exe
+C:\windows\explorer.exe /factory,{75dff2b7-6936-4c06-a8bb-676a7b00b24b} -Embedding
+----------------------
+1356
+4
+uizuKim
+uizuKim-PC
+21156
+editplus.exe
+"C:\Program Files (x86)\EditPlus 3\editplus.exe" 
+----------------------
+7432
+3
+uizuKim
+uizuKim-PC
+6924
+pgadmin3.exe
+"C:\Program Files (x86)\pgAdmin III\1.18\pgadmin3.exe" 
+----------------------
+10008
+4
+uizuKim
+uizuKim-PC
+6540
+dzEditorLineEndsFix.exe
+"D:\CodeGear2007\dzEditorLineEndsFix.exe" 
+----------------------
+4920
+2
+uizuKim
+uizuKim-PC
+1372
+pageant.exe
+"C:\Program Files\TortoiseGit\bin\pageant.exe" "D:\°³¹ßÆÀ¾÷¹«\workspace\devgit.ppk" -c "C:\Program Files\TortoiseGit\bin\tgittouch.exe" "H:\INTERN~1\TortoiseGit\PatE563.tmp"
+----------------------
+4260
+2
+uizuKim
+uizuKim-PC
+1408
+notepad.exe
+"C:\Windows\system32\notepad.exe" 
+----------------------
+6168
+23
+uizuKim
+uizuKim-PC
+115912
+OUTLOOK.EXE
+"C:\Program Files\Microsoft Office\Office14\OUTLOOK.EXE" 
+----------------------
+2948
+14
+uizuKim
+uizuKim-PC
+25292
+explorer.exe
+C:\windows\explorer.exe /factory,{75dff2b7-6936-4c06-a8bb-676a7b00b24b} -Embedding
+----------------------
+9656
+9
+uizuKim
+uizuKim-PC
+57460
+explorer.exe
+C:\windows\explorer.exe /factory,{75dff2b7-6936-4c06-a8bb-676a7b00b24b} -Embedding
+----------------------
+1568
+2
+uizuKim
+uizuKim-PC
+14184
+NOTEPAD.EXE
+"C:\windows\System32\NOTEPAD.EXE" D:\¼³Ä¡º»\run.bat
+----------------------
+10480
+9
+uizuKim
+uizuKim-PC
+23432
+taskmgr.exe
+"C:\windows\system32\taskmgr.exe" /4
+----------------------
+10264
+1
+uizuKim
+uizuKim-PC
+8232
+procexp.exe
+"W:\°ø¿ë\ProcessExplorer\procexp.exe" 
+----------------------
+8436
+4
+uizuKim
+uizuKim-PC
+67348
+procexp64.exe
+"W:\°ø¿ë\ProcessExplorer\procexp.exe" 
+----------------------
+3524
+65
+uizuKim
+uizuKim-PC
+410060
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" 
+----------------------
+432
+10
+uizuKim
+uizuKim-PC
+205848
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=gpu-process --channel="3524.0.1556379011\1307421451" --supports-dual-gpus=false --gpu-driver-bug-workarounds=2,24,52 --disable-accelerated-video-decode --gpu-vendor-id=0x1002 --gpu-device-id=0x6778 --gpu-driver-vendor="Advanced Micro Devices, Inc." --gpu-driver-version=8.922.0.0 --ignored=" --type=renderer " /prefetch:822062411
+----------------------
+9304
+13
+uizuKim
+uizuKim-PC
+122140
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.10.142961292\638616438" --font-cache-shared-handle=5176 /prefetch:673131151
+----------------------
+10820
+2
+uizuKim
+uizuKim-PC
+13752
+notepad.exe
+"C:\Windows\system32\notepad.exe" 
+----------------------
+9640
+2
+uizuKim
+uizuKim-PC
+13820
+notepad.exe
+"C:\Windows\system32\notepad.exe" 
+----------------------
+4968
+2
+uizuKim
+uizuKim-PC
+14564
+notepad.exe
+"C:\Windows\system32\notepad.exe" 
+----------------------
+6260
+12
+uizuKim
+uizuKim-PC
+102800
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.14.694970244\498516479" --font-cache-shared-handle=2000 /prefetch:673131151
+----------------------
+4984
+12
+uizuKim
+uizuKim-PC
+118624
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.19.774891501\1491870684" --font-cache-shared-handle=5740 /prefetch:673131151
+----------------------
+10724
+12
+uizuKim
+uizuKim-PC
+112304
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.20.2136908285\2145129669" --font-cache-shared-handle=2712 /prefetch:673131151
+----------------------
+9400
+20
+uizuKim
+uizuKim-PC
+346504
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.21.1702050468\1912758355" --font-cache-shared-handle=5124 /prefetch:673131151
+----------------------
+6556
+12
+uizuKim
+uizuKim-PC
+105144
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.36.1401479339\1679474409" --font-cache-shared-handle=3436 /prefetch:673131151
+----------------------
+1092
+12
+uizuKim
+uizuKim-PC
+81068
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.39.1560709423\1768561098" --font-cache-shared-handle=7020 /prefetch:673131151
+----------------------
+8924
+21
+uizuKim
+uizuKim-PC
+106192
+EXCEL.EXE
+"C:\Program Files\Microsoft Office\Office14\EXCEL.EXE" /dde
+----------------------
+1104
+12
+uizuKim
+uizuKim-PC
+96748
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.40.508640702\664343590" --font-cache-shared-handle=9236 /prefetch:673131151
+----------------------
+4428
+12
+uizuKim
+uizuKim-PC
+108960
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.43.1305603402\1661756966" --font-cache-shared-handle=3120 /prefetch:673131151
+----------------------
+856
+12
+uizuKim
+uizuKim-PC
+87268
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.44.1887687802\427454595" --font-cache-shared-handle=7700 /prefetch:673131151
+----------------------
+5308
+76
+uizuKim
+uizuKim-PC
+1532656
+eclipse.exe
+"D:\°³¹ßÆÀ¾÷¹«\eclipse_64\eclipse.exe" 
+----------------------
+10172
+12
+uizuKim
+uizuKim-PC
+123740
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.50.1868533517\1241093857" --font-cache-shared-handle=9104 /prefetch:673131151
+----------------------
+4820
+12
+uizuKim
+uizuKim-PC
+83304
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.64.836231714\339428912" --font-cache-shared-handle=10644 /prefetch:673131151
+----------------------
+11084
+12
+uizuKim
+uizuKim-PC
+64416
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.67.443398768\1480590547" --font-cache-shared-handle=8960 /prefetch:673131151
+----------------------
+10252
+4
+uizuKim
+uizuKim-PC
+34180
+prevhost.exe
+C:\windows\system32\prevhost.exe {914FEED8-267A-4BAA-B8AA-21E233792679} -Embedding
+----------------------
+4420
+2
+uizuKim
+uizuKim-PC
+13692
+notepad.exe
+"C:\Windows\system32\notepad.exe" 
+----------------------
+1068
+5
+uizuKim
+uizuKim-PC
+21180
+calc.exe
+"C:\windows\system32\calc.exe" 
+----------------------
+7868
+12
+uizuKim
+uizuKim-PC
+100864
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.115.936774293\1489848981" --font-cache-shared-handle=3808 /prefetch:673131151
+----------------------
+3300
+59
+uizuKim
+uizuKim-PC
+116116
+KakaoTalk.exe
+"C:\Program Files (x86)\Kakao\KakaoTalk\KakaoTalk.exe" "KakaoTalkUpdate" "SUCCESS" "BYUPDATE"
+----------------------
+2712
+15
+uizuKim
+uizuKim-PC
+173696
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.120.1880865653\796069524" --font-cache-shared-handle=7732 /prefetch:673131151
+----------------------
+5584
+17
+uizuKim
+uizuKim-PC
+79836
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=ppapi --channel="3524.121.468738362\247034543" --ppapi-flash-args --lang=ko --device-scale-factor=1 --font-cache-shared-handle=9040 --ignored=" --type=renderer " /prefetch:-632637702
+----------------------
+1120
+12
+uizuKim
+uizuKim-PC
+100748
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.159.1514183067\727036926" --font-cache-shared-handle=8156 /prefetch:673131151
+----------------------
+3548
+15
+uizuKim
+uizuKim-PC
+87736
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --extension-process --enable-webrtc-hw-h264-encoding --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.188.152661397\1107929894" --font-cache-shared-handle=10708 /prefetch:673131151
+----------------------
+9584
+12
+uizuKim
+uizuKim-PC
+94016
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.191.717309293\496919296" --font-cache-shared-handle=11568 /prefetch:673131151
+----------------------
+7156
+12
+uizuKim
+uizuKim-PC
+96920
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.196.1299226602\2107260366" --font-cache-shared-handle=12636 /prefetch:673131151
+----------------------
+9920
+12
+uizuKim
+uizuKim-PC
+97164
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.199.1120320888\252513902" --font-cache-shared-handle=11860 /prefetch:673131151
+----------------------
+10248
+12
+uizuKim
+uizuKim-PC
+111368
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.201.1373705316\1985560264" --font-cache-shared-handle=11848 /prefetch:673131151
+----------------------
+10368
+12
+uizuKim
+uizuKim-PC
+95616
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.204.115745949\1433212830" --font-cache-shared-handle=13132 /prefetch:673131151
+----------------------
+6460
+12
+uizuKim
+uizuKim-PC
+108416
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.206.1773480495\911381559" --font-cache-shared-handle=12672 /prefetch:673131151
+----------------------
+3124
+11
+uizuKim
+uizuKim-PC
+58356
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.207.1880894668\1009701541" --font-cache-shared-handle=10432 /prefetch:673131151
+----------------------
+11852
+1
+uizuKim
+uizuKim-PC
+4648
+cmd.exe
+"C:\windows\system32\cmd.exe" 
+----------------------
+11860
+3
+uizuKim
+uizuKim-PC
+17512
+conhost.exe
+\??\C:\windows\system32\conhost.exe "-85492350251270330926543164424479942060269977-702399181-908992124-1031197497
+----------------------
+2256
+12
+uizuKim
+uizuKim-PC
+101792
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.228.1249812733\1808347220" --font-cache-shared-handle=13656 /prefetch:673131151
+----------------------
+12176
+11
+uizuKim
+uizuKim-PC
+102044
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.229.985254615\1721855688" --font-cache-shared-handle=14820 /prefetch:673131151
+----------------------
+11400
+12
+uizuKim
+uizuKim-PC
+87588
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.232.164093191\709166276" --font-cache-shared-handle=13652 /prefetch:673131151
+----------------------
+3660
+12
+uizuKim
+uizuKim-PC
+80416
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.233.511769371\177043429" --font-cache-shared-handle=14660 /prefetch:673131151
+----------------------
+10940
+12
+uizuKim
+uizuKim-PC
+96428
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.239.544153738\1275131085" --font-cache-shared-handle=13760 /prefetch:673131151
+----------------------
+12084
+15
+uizuKim
+uizuKim-PC
+201016
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.240.1406511370\885194838" --font-cache-shared-handle=13952 /prefetch:673131151
+----------------------
+7200
+20
+uizuKim
+uizuKim-PC
+211204
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.243.766404837\1356971109" --font-cache-shared-handle=16268 /prefetch:673131151
+----------------------
+12292
+12
+uizuKim
+uizuKim-PC
+91656
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.246.1440041946\2097013828" --font-cache-shared-handle=14932 /prefetch:673131151
+----------------------
+11608
+6
+uizuKim
+uizuKim-PC
+15768
+taskhost.exe
+"taskhost.exe"
+----------------------
+11316
+3
+uizuKim
+uizuKim-PC
+26132
+editplus.exe
+"C:\Program Files (x86)\EditPlus 3\editplus.exe" 
+----------------------
+11940
+8
+SYSTEM
+NT AUTHORITY
+11956
+SearchProtocolHost.exe
+"C:\windows\system32\SearchProtocolHost.exe" Global\UsGthrFltPipeMssGthrPipe318_ Global\UsGthrCtrlFltPipeMssGthrPipe318 1 -2147483646 "Software\Microsoft\Windows Search" "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT; MS Search 4.0 Robot)" "C:\ProgramData\Microsoft\Search\Data\Temp\usgthrsvc" "DownLevelDaemon" 
+----------------------
+11664
+13
+uizuKim
+uizuKim-PC
+81496
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --instant-process --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.257.1925193704\1319671557" --font-cache-shared-handle=16144 /prefetch:673131151
+----------------------
+11384
+12
+uizuKim
+uizuKim-PC
+81740
+chrome.exe
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --lang=ko --force-fieldtrials=*AffiliationBasedMatching/EnabledThroughFieldTrial/AppBannerTriggering/Aggressive/AsyncSetAsDefault/Disabled/AutofillProfileOrderByFrecency/Enabled/*AutomaticTabDiscarding/Enabled_Once_5/CaptivePortalInterstitial/Enabled/*ChildAccountDetection/Disabled/*ChromeSuggestions/Default/*ClientSideDetectionModel/Model0/*CrossDevicePromo/7DaySingleProfile/*ExtensionActionRedesign/Default/ExtensionDeveloperModeWarning/Enabled/*ExtensionInstallVerification/Enforce/*GFE/Default/InstanceID/Enabled/*IntelligentSessionRestore/Enabled2/*NetworkQualityEstimator/Enabled/*OmniboxBundledExperimentV1/NewSuggestType_A5_Stable_R2/PasswordBranding/Disabled/*PasswordGeneration/Disabled/*PasswordManagerSettingsMigration/Disable/*QUIC/EnabledInitialReceiveWindow32KB/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Disabled/SHA1IdentityUIWarning/Enabled/SHA1ToolbarUIJanuary2016/Warning/SHA1ToolbarUIJanuary2017/Error/*SRTPromptFieldTrial/On/*SafeBrowsingIncidentReportingService/Default/SafeBrowsingUnverifiedDownloads/DisableByParameterMostSbTypes2/*SafeBrowsingUpdateFrequency/Default/SlimmingPaint/EnableSlimmingPaint/*SpdyEnableDependencies/Control/*TriggeredResetFieldTrial/On/*UMA-Dynamic-Uniformity-Trial/Group3/*UMA-Population-Restrict/normal/*UMA-Uniformity-Trial-100-Percent/group_01/*UMA-Uniformity-Trial-20-Percent/group_04/*UMA-Uniformity-Trial-50-Percent/group_01/*UseDelayAgnosticAEC/DefaultEnabled/*VarationsServiceControl/Interval_30min/WebRTC-LocalIPPermissionCheck/Default/WebRTC-PeerConnectionDTLS1.2/Enabled/ --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=4 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553 --disable-accelerated-video-decode --channel="3524.258.328520077\712768934" --font-cache-shared-handle=17328 /prefetch:673131151
+----------------------
+9392
+6
+SYSTEM
+NT AUTHORITY
+14400
+SearchFilterHost.exe
+"C:\windows\system32\SearchFilterHost.exe" 0 532 536 544 65536 540 
+----------------------
+12032
+59
+uizuKim
+uizuKim-PC
+1108896
+javaw.exe
+"C:\Program Files\Java\jdk1.8.0_71\bin\javaw.exe" -Duser.region=US -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8 "-Djetty.launcher.configuration=H:\INTERN~1\eclipseJettyPlugin.config.platformjs.xml" -classpath D:/°³¹ßÆÀ¾÷¹«/eclipse_64/configuration/org.eclipse.osgi/922/0/.cp/lib/eclipse-jetty-starters-common.jar;D:/°³¹ßÆÀ¾÷¹«/eclipse_64/configuration/org.eclipse.osgi/922/0/.cp/lib/eclipse-jetty-starters-util.jar;D:/°³¹ßÆÀ¾÷¹«/eclipse_64/configuration/org.eclipse.osgi/922/0/.cp/lib/eclipse-jetty-starters-console.jar;D:/°³¹ßÆÀ¾÷¹«/eclipse_64/configuration/org.eclipse.osgi/922/0/.cp/lib/eclipse-jetty-starters-jetty9.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/annotations/asm-5.0.1.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/annotations/asm-commons-5.0.1.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/annotations/javax.annotation-api-1.2.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-alpn-client-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-alpn-server-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-annotations-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-cdi-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-client-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-continuation-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-deploy-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-http-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-io-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-jaas-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-jaspi-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-jmx-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-jndi-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-plus-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-proxy-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-quickstart-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-rewrite-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-schemas-3.1.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-security-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-server-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-servlet-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-servlets-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-util-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-webapp-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jetty-xml-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jsp/javax.el-3.0.0.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jsp/javax.servlet.jsp-2.3.2.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jsp/javax.servlet.jsp-api-2.3.1.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jsp/javax.servlet.jsp.jstl-1.2.2.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jsp/jetty-jsp-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jsp/jetty-jsp-jdt-2.3.3.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jsp/org.eclipse.jdt.core-3.8.2.v20130121.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/jsp/org.eclipse.jetty.orbit.javax.servlet.jsp.jstl-1.2.0.v201105211821.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/servlet-api-3.1.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/websocket/javax-websocket-client-impl-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/websocket/javax-websocket-server-impl-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/websocket/javax.websocket-api-1.0.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/websocket/websocket-api-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/websocket/websocket-client-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/websocket/websocket-common-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/websocket/websocket-server-9.2.11.v20150529.jar;D:/°³¹ßÆÀ¾÷¹«/server/jetty9/jetty-distribution-9.2.11.v20150529/lib/websocket/websocket-servlet-9.2.11.v20150529.jar net.sourceforge.eclipsejetty.starter.jetty9.Jetty9LauncherMain PRODUCT=PJS
+----------------------
+12976
+1
+uizuKim
+uizuKim-PC
+7176
+procexp.exe
+"W:\°ø¿ë\ProcessExplorer\procexp.exe" 
+----------------------
+12588
+6
+uizuKim
+uizuKim-PC
+62420
+procexp64.exe
+"W:\°ø¿ë\ProcessExplorer\procexp.exe" 
+----------------------
+12376
+6
+uizuKim
+uizuKim-PC
+10764
+DllHost.exe
+C:\windows\system32\DllHost.exe /Processid:{AB8902B4-09CA-4BB6-B78D-A8F59079A8D5}
+----------------------
+5196
+1
+uizuKim
+uizuKim-PC
+4024
+cmd.exe
+C:\windows\system32\cmd.exe /c ""D:\¹èÆ÷¹öÁ¯\2016-02-24\utils\win\port.bat" "
+----------------------
+12468
+3
+uizuKim
+uizuKim-PC
+14256
+conhost.exe
+\??\C:\windows\system32\conhost.exe "222421902-435146417-1398731360764112399-58488809646004634-19899896832097407733
+----------------------
+12764
+8
+NETWORK SERVICE
+NT AUTHORITY
+9244
+wmiprvse.exe
+C:\windows\system32\wbem\wmiprvse.exe
+----------------------
+3528
+2
+uizuKim
+uizuKim-PC
+6752
+exem_tasklist.exe
+exem_tasklist.exe  
+----------------------
+
+Press ENTER to continue...

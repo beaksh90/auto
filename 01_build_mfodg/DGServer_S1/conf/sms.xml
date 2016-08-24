@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<XmSMS>
+	<SMS_DB encrypt="false" log_file_limit="3">
+		<sms_database_type>oracle</sms_database_type>
+		<sms_database_ip>192.168.123.242</sms_database_ip>
+		<sms_database_port>1521</sms_database_port>
+		<sms_database_sid>orcl</sms_database_sid>
+		<sms_database_user>maxgauge</sms_database_user>
+		<sms_database_password>maxgauge</sms_database_password>
+		<bind_max_length>80</bind_max_length>
+	</SMS_DB>
+	
+	<DEFAULT level="N">
+		<SMS_INSERT_QUERY>
+			INSERT INTO download_sms_msg ( sms_time, sms_date, sms_user, sms_phone_number, sms_message, sms_desc )
+			VALUES ( sysdate, ? , ? , ? , 'From Maxgauge' );
+		</SMS_INSERT_QUERY>
+		
+		<SMS_SET_BIND_VALUE>
+			<b1>p$sms_user_name$</b1>
+			<b2>p$phone_number$</b2>
+			<b3>[MXG SMS] (p$string_level$:p$value$) p$tnsname$ </b3>
+		</SMS_SET_BIND_VALUE>
+	</DEFAULT>
+</XmSMS>
+
+<!--
+	DataGather Alarm Parameter Name List
+	p$sms_user_name$
+	p$phone_number$
+	
+	p$tnsname$
+	p$sid$
+	p$alert_type$
+	p$resource_name$
+	p$value$
+	p$level$
+	p$string_level$
+	p$description$ 
+	
+	p$server_time$
+	p$current_time$
+	
+
+INSERT INTO download_sms_msg ( sms_time, sms_user, sms_phone_number, sms_message, sms_desc )
+		VALUES ( sysdate, ? , ? , ? , 'From Maxgauge' );
+		
+b1 ORATESTS
+b2 01012345678
+b3 [MXG SMS] (CRITICAL:90) MXG52 
+
+-->

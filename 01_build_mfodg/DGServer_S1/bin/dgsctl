@@ -1,0 +1,353 @@
+#!/bin/sh
+#
+# Utility to manage MaxGauge processes.
+# Written by EXEM Co., Ltd.
+# Last modified Jul 2003.
+#
+
+# Check the environments MXG_HOME and PATH.
+if [ "$MXG_HOME" = "" ];
+then
+   echo ERROR :: MXG_HOME variable is not defined.
+   exit 1;
+fi;
+
+
+GET_TARGET_CONF_LIST () 
+{
+   TARGET_CONF_LIST=""
+   if [ "$1" = "" ];
+   then 
+      TARGET_CONF_LIST=`ls -1 ${MXG_HOME}/conf | grep -v sample | grep -v DGServer.xml`;
+      if [ "$TARGET_CONF_LIST" = "" ];
+      then
+         echo Configuration does not exist;
+      fi;
+   else 
+      for name in `ls -1 ${MXG_HOME}/conf | grep -v sample`
+      do
+         if [ "$name" = "$1" ];
+         then
+            TARGET_CONF_LIST=$1;
+            break;
+         fi;
+      done
+      if [ "$TARGET_CONF_LIST" = "" ];
+      then
+         echo Configuration $1 does not exist;
+      fi;
+   fi;
+}
+
+GET_START_TARGET_PROC_LIST ()
+{
+   TARGET_PROC_LIST=""
+   if [ "$1" = "" ];
+   then 
+      TARGET_PROC_LIST="DGS OBSD";
+   elif [ "$1" = "DGS" -o "$1" = "OBSD" ];
+   then 
+      TARGET_PROC_LIST=$1;
+   else 
+      echo $1 is not valid daemon type.
+      TARGET_PROC_LIST="";
+   fi;
+}
+
+GET_TARGET_PROC_LIST ()
+{
+   TARGET_PROC_LIST=""
+   if [ "$1" = "" ];
+   then 
+      TARGET_PROC_LIST="DGS OBSD";
+   elif [ "$1" = "RTAD" -o "$1" = "LOGD" -o "$1" = "OBSD" -o "$1" = "DGS" ];
+   then 
+      TARGET_PROC_LIST=$1;
+   else 
+      echo $1 is not valid daemon type.
+      TARGET_PROC_LIST="";
+   fi;
+}
+
+
+#  Start MaxGauge daemon process.
+START_A_PROC () 
+{
+   config_name=$1;
+   daemon_type=$2;
+   if [ "$config_name" != ""  -a "$daemon_type" != "" ];
+   then
+      if [ "$daemon_type" = "DGS" ];
+      then proc_name="DGServer";
+      elif [ "$daemon_type" = "OBSD" ];
+      then proc_name="mxg_obsd";
+      fi;
+      PID=`ps -ef | grep ${proc_name} | grep ${config_name} | grep -v grep | awk '{print $2}'`;
+      if [ "$PID" != "" ];
+      then echo WARNING :: ${daemon_type} process for ${config_name} already exists.
+      else 
+         if [ "$daemon_type" = "DGS" ];
+         then 
+            nohup java -${config_name} -Xms16m -Xmx1024m -jar DGServer.jar 1>/dev/null 2>&1 &
+         elif [ "$daemon_type" = "OBSD" ];
+         then
+            mxg_obsd -c ${config_name} -OTHERD -i 10 -D
+         fi;
+         echo ${daemon_type} process for ${config_name} is started.
+      fi;
+   fi;
+}
+
+
+#  Stop MaxGauge daemon process.
+STOP_A_PROC () 
+{
+   config_name=$1;
+   daemon_type=$2;
+   if [ "$config_name" != ""  -a "$daemon_type" != "" ];
+   then
+      if [ "$daemon_type" = "DGS" ];
+      then proc_name="DGServer";
+      elif [ "$daemon_type" = "OBSD" ];
+      then proc_name="mxg_obsd";
+      fi;
+      PID=`ps -ef | grep ${proc_name} | grep ${config_name} | grep -v grep | awk '{print $2}'`;
+      if [ "$PID" = "" ];
+      then echo No ${daemon_type} process for ${config_name} does not exist.;
+      else kill ${PID};
+           if [ $? = 0 ];
+           then echo ${daemon_type} process ${PID} for ${config_name} is shutdown.;
+           else echo WARNING :: ${daemon_type} process ${PID} is not shutdown.;
+           fi;
+      fi;
+   fi;
+}
+
+#  Print status of MaxGauge daemon process.
+STATUS_A_PROC () 
+{
+   config_name=$1;
+   daemon_type=$2;
+   if [ "$config_name" != ""  -a "$daemon_type" != "" ];
+   then
+      if [ "$daemon_type" = "DGS" ];
+      then proc_name="DGServer";
+           status_file="dg.status";
+      elif [ "$daemon_type" = "OBSD" ];
+      then proc_name="mxg_obsd";
+           status_file="";
+      fi;
+      PID=`ps -ef | grep ${proc_name} | grep ${config_name} | grep -v grep | awk '{print $2}'`;
+      if [ "$status_file" != "" ];
+      then
+        PSTATUS=`cat ${MXG_HOME}/conf/${config_name}/${status_file}`;
+      else
+        PSTATUS="";
+      fi;
+      if [ "$PID" = "" ];
+      then echo ${daemon_type} for ${config_name} does not exist.
+      else echo ${daemon_type} for ${config_name} : name = ${proc_name} : pid = ${PID} : ${PSTATUS}
+      fi;
+   fi;
+}
+
+START_MXG_PROC ()
+{
+   GET_TARGET_CONF_LIST $1
+   GET_START_TARGET_PROC_LIST $2
+   for conf in ${TARGET_CONF_LIST}
+   do
+      for proc in ${TARGET_PROC_LIST}
+      do
+         START_A_PROC $conf $proc
+      done
+   done
+}
+
+STOP_MXG_PROC ()
+{
+   GET_TARGET_CONF_LIST $1
+   GET_TARGET_PROC_LIST $2
+   for conf in ${TARGET_CONF_LIST}
+   do
+      for proc in ${TARGET_PROC_LIST}
+      do
+         STOP_A_PROC $conf $proc
+      done
+   done
+}
+
+RESTART_MXG_PROC ()
+{
+   GET_TARGET_CONF_LIST $1
+   GET_TARGET_PROC_LIST $2
+   for conf in ${TARGET_CONF_LIST}
+   do
+      for proc in ${TARGET_PROC_LIST}
+      do
+         STOP_A_PROC $conf $proc
+      done
+   done
+   for conf in ${TARGET_CONF_LIST}
+   do
+      for proc in ${TARGET_PROC_LIST}
+      do
+         START_A_PROC $conf $proc
+      done
+   done
+}
+
+STATUS_MXG_PROC ()
+{
+   GET_TARGET_CONF_LIST $1
+   GET_TARGET_PROC_LIST $2
+   for conf in ${TARGET_CONF_LIST}
+   do
+      for proc in ${TARGET_PROC_LIST}
+      do
+         STATUS_A_PROC $conf $proc
+      done
+   done
+}
+
+
+
+
+HELP_STATUS="stat(us) [config_name [DGS/OBSD]] : to check the status of Maxgauge DGServer process."
+HELP_START="start [config_name [DGS/OBSD]] : to start Maxgauge DGServer process."
+HELP_STOP="stop [config_name [DGS/OBSD]] : to stop Maxgauge DGServer process."
+HELP_RESTART="restart [config_name [DGS/OBSD]] : to restart Maxgauge DGServer process."
+HELP_VERSION="ver(sion) : to get the version of Maxgauge DGServer Daemon."
+HELP_INSTALL="install : to run install mode Maxgauge DGServer."
+HELP_EXIT="quit|q|exit|e : to exit rtsctl program. (interactive mode only)"
+PRINT_HELP ()
+{
+   echo $HELP_START 
+   echo $HELP_STOP 
+   echo $HELP_STATUS 
+   echo $HELP_RESTART 
+   echo $HELP_VERSION
+   echo $HELP_INSTALL
+   echo $HELP_EXIT
+}
+
+# if non-interactive mode
+if [ $# -gt 0 ];
+then 
+   cmd=$1;
+   arg1=$2;
+   arg2=$3;
+   unnecessary=$4;
+   case "$cmd" in 
+        start) 
+               if [ "$unnecessary" != "" ];
+               then echo Usage : ${HELP_START};
+               exit 1
+               fi;
+               START_MXG_PROC $arg1 $arg2
+        ;;
+        stop) 
+               if [ "$unnecessary" != "" ];
+               then echo Usage : ${HELP_STOP};
+               exit 1
+               fi;
+               STOP_MXG_PROC $arg1 $arg2
+        ;;
+        restart) 
+               if [ "$unnecessary" != "" ];
+               then echo Usage : ${HELP_RESTART};
+               exit 1
+               fi;
+               RESTART_MXG_PROC $arg1 $arg2
+        ;;
+        status|stat) 
+               if [ "$unnecessary" != "" ];
+               then echo Usage : ${HELP_STATUS};
+               exit 1
+               fi;
+               STATUS_MXG_PROC $arg1 $arg2
+        ;;
+        version|ver) 
+               java -jar ${MXG_HOME}/bin/DGServer.jar -v;
+               exit 0
+        ;;
+	install) 
+               java -jar ${MXG_HOME}/bin/DGServer.jar install;
+               exit 0
+        ;;
+        *)
+               PRINT_HELP
+               exit 1;
+        ;;
+   esac
+   exit 0;
+fi;
+
+echo
+echo "Welcome to DGSCTL, type \"help\" for information."
+echo MaxGauge home directory is ${MXG_HOME}
+echo
+while true
+do
+   printf "%s " "DGSCTL>"
+   read cmd arg1 arg2 unnecessary;
+   case "$cmd" in 
+        quit|exit|q|e) 
+                break 
+        ;;
+        help|h) 
+                PRINT_HELP
+                continue 
+        ;;
+        start) 
+               if [ "$unnecessary" != "" ];
+               then echo Usage : ${HELP_START};
+                    continue;
+               fi;
+               START_MXG_PROC $arg1 $arg2
+               continue 
+        ;;
+        stop) 
+               if [ "$unnecessary" != "" ];
+               then echo Usage : ${HELP_STOP};
+                    continue;
+               fi;
+               STOP_MXG_PROC $arg1 $arg2
+               continue
+        ;;
+        restart) 
+               if [ "$unnecessary" != "" ];
+               then echo Usage : ${HELP_RESTART};
+                    continue;
+               fi;
+               RESTART_MXG_PROC $arg1 $arg2
+               continue
+        ;;
+        status|stat) 
+               if [ "$unnecessary" != "" ];
+               then echo Usage : ${HELP_STATUS};
+                    continue;
+               fi;
+               STATUS_MXG_PROC $arg1 $arg2
+               continue
+        ;;
+        version|ver) 
+               java -jar ${MXG_HOME}/bin/DGServer.jar -v;
+               continue
+        ;;
+	install) 
+               java -jar ${MXG_HOME}/bin/DGServer.jar install;
+               continue
+        ;;
+        *)
+               if [ "$cmd" = "" ];
+               then continue;
+               fi;
+               echo $cmd is invalid command.
+               PRINT_HELP
+               continue 
+        ;;
+   esac
+done
+
+

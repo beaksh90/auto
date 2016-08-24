@@ -1,0 +1,36 @@
+/***************
+* Details Document.
+* URL :  http://exemwiki.com/exemcode/platform-js-document-config-json/
+***************/
+{	
+    "database_default": "databases_default",
+    "datagather_default" : "datagathers_default",
+    "service_port": <service_port>,
+    "database_pool_max": 300,
+    "database_pool_min": 30,
+    "database_maxrows": 2000000,
+    "pjs_loadbalancer_master": false,
+    "pjs_version": "20160426",
+    "second_charset":"CP949",
+    "datagathers": [
+	{      
+		"datagather_name": "datagathers_default",
+		"datagather_ip": "<datagather_ip>",
+		"datagather_port": <datagather_port>,
+		"desc":""
+	 }
+    ],
+    "databases": [              
+              {
+            "database_name": "databases_default",
+            "database_type": "<database_type>",
+            "database_server": "<database_server>",
+            "database_port": <database_port>, 	
+            "database_database": "<database_database>",
+            "database_user": "<database_user>",
+            "database_password": "<database_password>",
+            "sql_directory": "<sql_directory>",
+            "database_description": ""
+        }
+    ]
+}

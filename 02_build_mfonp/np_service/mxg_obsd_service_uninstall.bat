@@ -1,0 +1,1 @@
+sc delete "PlatformJS_OBS(8080)"

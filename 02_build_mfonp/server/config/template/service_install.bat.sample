@@ -1,0 +1,86 @@
+@echo off
+set HOME_DIR=__HOME_DIR__
+set JAVA_HOME=__JAVA_HOME__
+set JETTY_PORT=__JETTY_PORT__
+
+
+set SERVICE_NAME=PlatformJS(%JETTY_PORT%)
+set JETTY_HOME=%HOME_DIR%\bin\jetty
+set JETTY_BASE=%HOME_DIR%\svc
+set STOPKEY=secret
+set STOPPORT=__JETTY_STOP_PORT__
+set PR_INSTALL=%HOME_DIR%\app\prunsrv.exe
+set JETTY_TEMP=%HOME_DIR%\jetty_tmp
+set USER_TEMP_LOCAL=%HOME_DIR%\tmp
+set USER_TEMP_WWW=%HOME_DIR%\svc\www\download
+set USER_LOG_PATH=%HOME_DIR%\log
+
+@REM Service Log Configuration
+set PR_LOGPREFIX=%SERVICE_NAME%
+@REM set PR_LOGPATH=%HOME_DIR%\svc\service_log
+set PR_LOGPATH=%USER_LOG_PATH%
+set PR_STDOUTPUT=auto
+set PR_STDERROR=auto
+set PR_LOGLEVEL=Debug
+@REM Path to Java Installation
+set PR_JVM=%JAVA_HOME%\jre\bin\server\jvm.dll
+set PR_CLASSPATH=%JETTY_HOME%\start.jar;%JAVA_HOME%\lib\tools.jar
+
+ 
+@REM JVM Configuration
+set PR_JVMMS=128
+set PR_JVMMX=2048
+set PR_JVMSS=4000
+
+@REM set PR_JVMOPTIONS=-Duser.dir="%JETTY_BASE%";-Djava.io.tmpdir="%JETTY_TEMP%";-Djetty.home="%JETTY_HOME%";-Djetty.base="%JETTY_BASE%"
+set PR_JVMOPTIONS=-Duser.log.path=%USER_LOG_PATH%;-Duser.tmp.local=%USER_TEMP_LOCAL%;-Duser.tmp.www=%USER_TEMP_WWW%;-Djetty.port=%JETTY_PORT%;-Duser.region=US;-Duser.language=en;-Duser.country=US;-Dfile.encoding=UTF-8;-Xmx512m;-Djava.io.tmpdir="%JETTY_TEMP%";-Djetty.home="%JETTY_HOME%";-Djetty.base="%JETTY_BASE%";-Duser.dir="%JETTY_BASE%"
+
+
+@REM Startup Configuration
+set JETTY_START_CLASS=org.eclipse.jetty.start.Main
+
+set PR_STARTUP=auto
+set PR_STARTMODE=java
+set PR_STARTCLASS=%JETTY_START_CLASS%
+set PR_STARTPARAMS=STOP.KEY="%STOPKEY%";STOP.PORT=%STOPPORT%
+
+@REM Shutdown Configuration 
+set PR_STOPMODE=java
+set PR_STOPCLASS=%JETTY_START_CLASS%
+set PR_STOPPARAMS=--stop;STOP.KEY="%STOPKEY%";STOP.PORT=%STOPPORT%;STOP.WAIT=10
+
+"%PR_INSTALL%" //IS/%SERVICE_NAME% ^
+ --DisplayName="%SERVICE_NAME%" ^
+ --Install="%PR_INSTALL%" ^
+ --Startup="%PR_STARTUP%" ^
+ --LogPath="%PR_LOGPATH%" ^
+ --LogPrefix="%PR_LOGPREFIX%" ^
+ --LogLevel="%PR_LOGLEVEL%" ^
+ --StdOutput="%PR_STDOUTPUT%" ^
+ --StdError="%PR_STDERROR%" ^
+ --JavaHome="%JAVA_HOME%" ^
+ --Jvm="%PR_JVM%" ^
+ --JvmMs="%PR_JVMMS%" ^
+ --JvmMx="%PR_JVMMX%" ^
+ --JvmSs="%PR_JVMSS%" ^
+ --JvmOptions="%PR_JVMOPTIONS%" ^
+ --Classpath="%PR_CLASSPATH%" ^
+ --StartMode="%PR_STARTMODE%" ^
+ --StartClass="%JETTY_START_CLASS%" ^
+ --StartParams="%PR_STARTPARAMS%" ^
+ --StopMode="%PR_STOPMODE%" ^
+ --StopClass="%PR_STOPCLASS%" ^
+ --StopParams="%PR_STOPPARAMS%"
+
+@REM echo "%PR_INSTALL%" //IS/%SERVICE_NAME%  --DisplayName="%SERVICE_NAME%"   --Install="%PR_INSTALL%"   --Startup="%PR_STARTUP%"   --LogPath="%PR_LOGPATH%"   --LogPrefix="%PR_LOGPREFIX%"   --LogLevel="%PR_LOGLEVEL%"  --StdOutput="%PR_STDOUTPUT%"   --StdError="%PR_STDERROR%"   --JavaHome="%JAVA_HOME%"   --Jvm="%PR_JVM%"   --JvmMs="%PR_JVMMS%"   --JvmMx="%PR_JVMMX%"   --JvmSs="%PR_JVMSS%"   --JvmOptions="%PR_JVMOPTIONS%"   --Classpath="%PR_CLASSPATH%" ^ --StartMode="%PR_STARTMODE%"   --StartClass="%JETTY_START_CLASS%"   --StartParams="%PR_STARTPARAMS%"  --StopMode="%PR_STOPMODE%"  --StopClass="%PR_STOPCLASS%"  --StopParams="%PR_STOPPARAMS%"
+
+sc start %SERVICE_NAME%
+
+if not errorlevel 1 goto installed
+echo Failed to install "%SERVICE_NAME%" service. Refer to log in %PR_LOGPATH%
+goto end
+
+:installed
+echo The Service "%SERVICE_NAME%" has been installed
+
+:end

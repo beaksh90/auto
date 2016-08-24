@@ -1,0 +1,70 @@
+input_mode=0;
+case $1 in
+-d)
+	input_mode=2;
+	;;
+-D)
+	input_mode=2;
+	;;
+-r)
+	input_mode=1;
+	;;
+-R)
+	input_mode=1;
+	;;
+*)
+	;;
+esac
+
+
+if [ "$input_mode" = 0 ]; then
+	while ( true ) ; do
+		clear;
+
+		echo ;
+		echo ;
+		echo "		PlatformJS ";
+		echo "		Select the operation mode you wish to perform. ";
+		echo ;
+		echo "		1. Release Mode ( background execution ) ";
+		echo "		2. Debug Mode ( Console execution ) ";
+		echo ;
+		echo "Choose Mode (Enter Key. Default '1') :";
+
+		read input_mode 
+
+		if [ "$input_mode" = "" ]; then 
+			input_mode=1;
+		fi
+
+
+		if [ "$input_mode" = "1" ]; then 
+			break;
+		fi
+
+		if [ "$input_mode" = "2" ]; then 
+			break;
+		fi
+	done
+fi
+
+
+if [ "$input_mode" = "1" ]; then 
+	echo ;
+	echo "		PlatformJS(Release Mode)  Started. ";
+
+	cd ./svc
+	nohup java -Duser.debug.console=false -DSTOP.PORT=__JETTY_STOP_PORT__ -DSTOP.KEY=secret -Djetty.port=__JETTY_PORT__ -Duser.region=US -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8  -Djava.io.tmpdir=__currentdir__/jetty_tmp -Djetty.home=__currentdir__/bin/jetty -Djetty.base=__currentdir__/svc -Duser.tmp.local=__currentdir__/tmp -Duser.tmp.www=__currentdir__/svc/www/download -Duser.log.path=__currentdir__/log -Duser.dir=__currentdir__/svc -DPJS__JETTY_PORT__ -jar __currentdir__/bin/jetty/start.jar  1> /dev/null 2>&1 & 
+
+fi
+
+if [ "$input_mode" = "2" ]; then 
+	echo ;
+	echo "		PlatformJS(Debug Mode)  Started. ";
+
+	cd ./svc
+	java -Duser.debug.console=true -DSTOP.PORT=__JETTY_STOP_PORT__ -DSTOP.KEY=secret -Djetty.port=__JETTY_PORT__ -Duser.region=US -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8  -Djava.io.tmpdir=__currentdir__/jetty_tmp -Djetty.home=__currentdir__/bin/jetty -Djetty.base=__currentdir__/svc -Duser.tmp.local=__currentdir__/tmp -Duser.tmp.www=__currentdir__/svc/www/download -Duser.log.path=__currentdir__/log -Duser.dir=__currentdir__/svc -DPJS__JETTY_PORT__ -jar __currentdir__/bin/jetty/start.jar  
+
+fi
+
+exit;

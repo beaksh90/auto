@@ -1,0 +1,3 @@
+@java -jar __HOME_DIR__/bin/jetty/start.jar --stop STOP.KEY="secret" STOP.PORT=__JETTY_STOP_PORT__ STOP.WAIT=10
+@sc stop PlatformJS(__JETTY_PORT__)
+sc delete PlatformJS(__JETTY_PORT__)

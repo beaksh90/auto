@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_runable_jar" name="Create Runnable Jar for Project MFO_DataGather">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+	<path id="dgrefclass.path">
+		<fileset dir="../../mfodg/mfodg_library">
+		 <include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<tstamp>
+		<format property="DSTAMP" pattern="yyyy-MM-dd"/>
+		<format property="TSTAMP" pattern="HHmmss"/>
+	</tstamp>
+
+	<property name="build.product" value="MFO"/>
+	<property name="build.version" value="5.3.2"/>
+	<property name="bulid.name" value="DataGather"/>
+	<property name="build.dir" value="../../mfodg/deploy/${build.product}/${DSTAMP}/${TSTAMP}"/>
+	<property name="jar.dir" value="${build.dir}/${bulid.name}"/>
+	<property name="src.dir" value="../../mfodg/src"/>
+	<property name="class.dir" value="class"/>
+	<property name="dglibrary.dir" value="../../mfodg/mfodg_library"/>
+	
+		
+	<target name="prepare">
+		<echo>Build ${build.version}</echo>
+		<echo># start - ${DSTAMP} ${TSTAMP}</echo>
+	</target>
+	<!--######################### CLEAR & COPY ######################################-->
+	
+	<!--######################### COMPLIE ###########################################-->
+	<target name="compile" depends="prepare" >
+		<mkdir dir="${build.dir}/${class.dir}"/>
+		<javac  srcdir="${src.dir}" destdir="${build.dir}/${class.dir}" debug="true" 
+		       debuglevel="lines,vars,source" target="1.6" source="1.6" encoding="UTF-8" includeantruntime="false" >
+			<classpath refid="dgrefclass.path" />
+		</javac>
+		<copy todir="${build.dir}/${class.dir}">
+			<fileset dir="${src.dir}" includes="**/*.history,**/*.sql,**/*.txt" />
+		</copy>
+	</target>
+	<!--######################### JAR ###############################################-->
+    <target name="create_runable_jar" depends="compile">
+        <jar destfile="${jar.dir}/DGServer.jar" filesetmanifest="mergewithoutmain" >
+            <manifest>
+                <attribute name="Main-Class" value="jdg.server.DGServer"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${build.dir}/${class.dir}"/>
+			<zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/bcprov-ext-jdk15on-150.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/exem-ext-crypto.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/ojdbc5.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/postgresql-9.4-1201.jdbc4.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/tibero5-jdbc-14.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/xm_common_util.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/xm_customize.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/xm_db_conn.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/xm_sql_parser.jar"/>
+        </jar>
+		<delete dir="${build.dir}/${class.dir}"/>
+    </target>
+</project>
