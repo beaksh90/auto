@@ -1,26 +1,28 @@
-#Defaul DG source Directory
-DGSRC_DIR="C:\Multi-Runner\mfodg"
-DGOUT_DIR="C:\Multi-Runner\mfodg\deploy\mfo"
-DGETC_DIR="C:\Multi-Runner\mfobuild\01_build_mfodg"
-ANT_BUILD_SCRIPT_DIR="C:\Multi-Runner\mfobuild\01_build_mfodg"
+## Written by EXEM Co., Ltd. DEVQA BSH
+## Last modified 2016.08.25
+## Default source Directory
+DGSRC_DIR="C:/Multi-Runner/mfodg"
+DGOUT_DIR="C:/Multi-Runner/mfodg/deploy/mfo"
+DGETC_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
+ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
 
-FETCH_TAG_VER ()
+echo "DG BUILD..!"
+
+FETCH_TAG_VER_DG ()
 {
 	COMP_TAG="MFODG_TAG"
 	## Here are choices of COMP_TAGs. 
 	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
 	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG 
-	
+	cd $DGSRC_DIR
 	echo "
 	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
 	select $COMP_TAG from mfo_tag t join runner_stat r
 	on t.MFO_RELEASE_VER = r.TOTAL_VER
-	where r.RUN_COMP='mfototal_win';" > ./checkout_tag.sql
-
-	TAG=`echo exit | sqlplus -slient git/git@DEVQA23 @./checkout_tag.sql`
+	where r.RUN_COMP='mfototal_win';" > checkout_tag.sql
+	TAG=`echo exit | sqlplus -slient git/git@DEVQA23 @checkout_tag.sql`
 	sleep 1
-	rm ./checkout_tag.sql
-	cd $DGSRC_DIR
+	rm checkout_tag.sql
 	git checkout $TAG
 }
 
@@ -117,15 +119,16 @@ MAKE_TAR()
 	cp -v $DGOUT_DIR/tar/DGServer_M/bin/mxg_obsd/win64/mxg_obsd_x64.exe  $DGOUT_DIR/tar/DGServer_M/bin/mxg_obsd.exe
 }
 
-## 과거 구식의 산물임
+
 INIT_SRC_RM_AND_COPY()
 {
 	rm -rf C:/Multi-Runner/workspace/MFO_DataGather/src
 	cp -av C:/Multi-Runner/mfodg/src C:\Multi-Runner/workspace/MFO_DataGather/src
 }
-#	INIT_SRC_RM_AND_COPY
 
-	FETCH_TAG_VER
+DG_GO()
+{
+#	FETCH_TAG_VER_DG
 	CLEAN_DG_FILES
 	ECLIPCE_AND_BUILD
 	VERSION_CHECK
@@ -138,3 +141,8 @@ else
 	echo SOURCE_VERSION  is 	$SERV_DESC;
 fi
 	CHECKOUT_MASTER
+}
+
+DG_GO
+
+echo "DG_BUILD END"

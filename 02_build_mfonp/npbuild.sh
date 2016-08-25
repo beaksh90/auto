@@ -1,40 +1,22 @@
-#Defaul DG source Directory
-NPSRC_DIR="C:\Multi-Runner\mfonp"
-NPOUT_DIR="C:\Multi-Runner\mfonp\deploy\MFO"
-NP_SERVICE_DIR="C:\Multi-Runner\mfobuild\02_build_mfonp\np_service"
-NP_CONFIG_DIF="C:\Multi-Runner\mfobuild\02_build_mfonp\config"
-SET_NP_DIR="$NPOUT_DIR\PlatformJS"
+## Written by EXEM Co., Ltd. DEVQA BSH
+## Last modified 2016.08.25
+## Default source Directory
+NPSRC_DIR="C:/Multi-Runner/mfonp"
+NPOUT_DIR="C:/Multi-Runner/mfonp/deploy/MFO"
+NP_SERVICE_DIR="C:/Multi-Runner/mfobuild/02_build_mfonp/np_service"
+NP_CONFIG_DIF="C:/Multi-Runner/mfobuild/02_build_mfonp/config"
+SET_NP_DIR="$NPOUT_DIR/PlatformJS"
 
-WEBSRC_DIR="C:\Multi-Runner\mfoweb"
-WEBOUT_DIR="$SET_NP_DIR\svc\www\MAXGAUGE"
-SQLSRC_DIR="C:\Multi-Runner\mfosql"
-SQLOUT_DIR="$SET_NP_DIR\sql"
+WEBSRC_DIR="C:/Multi-Runner/mfoweb"
+WEBOUT_DIR="$SET_NP_DIR/svc/www/MAXGAUGE"
+SQLSRC_DIR="C:/Multi-Runner/mfosql"
+SQLOUT_DIR="$SET_NP_DIR/sql"
 
 ANT_BUILD_SCRIPT_DIR="C:\Multi-Runner\mfonp\platformjs"
 
 CLEAN_NP_FILES ()
 {
 	rm -rf $NPOUT_DIR
-}
-
-FETCH_TAG_VER_NP ()
-{
-	COMP_TAG="MFONP_TAG"
-	## Here are choices of COMP_TAGs. 
-	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
-	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG 
-	
-	echo "
-	SET PAGESIZE 0 FEEDBACK OFF VERIzFY OFF HEADING OFF ECHO OFF;
-	select $COMP_TAG from mfo_tag t join runner_stat r
-	on t.MFO_RELEASE_VER = r.TOTAL_VER
-	where r.RUN_COMP='mfototal_win';" > ./checkout_tag.sql
-
-	TAG=`echo exit | sqlplus -slient git/git@DEVQA23 @./checkout_tag.sql`
-	sleep 1
-	rm ./checkout_tag.sql
-	cd $NPSRC_DIR
-	git checkout $TAG
 }
 
 ECLIPCE_AND_BUILD()
@@ -59,26 +41,6 @@ CHECKOUT_MASTER_NP()
 {
 	cd $NPSRC_DIR
 	git checkout master
-}
-
-FETCH_TAG_VER_WEB()
-{
-	COMP_TAG="MFOWEB_TAG"
-	## Here are choices of COMP_TAGs. 
-	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
-	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG 
-	
-	echo "
-	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
-	select $COMP_TAG from mfo_tag t join runner_stat r
-	on t.MFO_RELEASE_VER = r.TOTAL_VER
-	where r.RUN_COMP='mfototal_win';" > checkout_tag.sql
-
-	TAG=`echo exit | sqlplus -slient git/git@DEVQA23 @checkout_tag.sql`
-	rm checkout_tag.sql
-	sleep 1
-	cd $WEBSRC_DIR
-	git checkout $TAG
 }
 
 CP_WEB()
@@ -143,25 +105,6 @@ CHECKOUT_MASTER_WEB()
 	git checkout 5.3.2_July
 }
 
-FETCH_TAG_VER_SQL ()
-{
-	COMP_TAG="MFOSQL_TAG"
-	## Here are choices of COMP_TAGs. 
-	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
-	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG 
-	cd $SQLSRC_DIR
-	echo "
-	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
-	select $COMP_TAG from mfo_tag t join runner_stat r
-	on t.MFO_RELEASE_VER = r.TOTAL_VER
-	where r.RUN_COMP='mfototal_win';" > ./checkout_tag.sql
-	
-	TAG=`echo exit | sqlplus -slient git/git@DEVQA23 @./checkout_tag.sql`
-	sleep 1
-	rm ./checkout_tag.sql
-	git checkout $TAG
-}
-
 CP_SQL()
 {
 mkdir -p $SQLOUT_DIR
@@ -178,15 +121,13 @@ CHECKOUT_MASTER_SQL()
 NEWPJS()
 {
 CLEAN_NP_FILES
-# FETCH_TAG_VER_NP
 ECLIPCE_AND_BUILD
 GET_NP_FILES
-#CHECKOUT_MASTER_NP
+CHECKOUT_MASTER_NP
 }
 
 WEB()
 {
-FETCH_TAG_VER_WEB
 CP_WEB
 JAVASCRIPT_COMMPRESS
 CHECKOUT_MASTER_WEB
@@ -194,7 +135,6 @@ CHECKOUT_MASTER_WEB
 
 SQL()
 {
-FETCH_TAG_VER_SQL
 CP_SQL
 CHECKOUT_MASTER_SQL
 }

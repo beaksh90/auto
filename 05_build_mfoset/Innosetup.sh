@@ -1,8 +1,14 @@
-DATABASE_HOME="C:/Multi-Runner/Database"
+## Written by EXEM Co., Ltd. DEVQA BSH
+## Last modified 2016.08.25
+## Default source Directory
+## 경로를 표시 할 때 윈도우(\) , 리눅스(/) 간 차이가 있음. 
+## There are difference of expression of dilimeter between Win(\) and Linux(/)
+DATABASE_HOME="C:/Multi-Runner/mfopg/Database"
 DGSERVER_M_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/DGServer_M"
 DGSERVER_S1_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/DGServer_S1"
 PLATFORMJS_HOME="C:/Multi-Runner/mfonp/deploy/MFO/PlatformJS"
 XMPING_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/XmPing"
+
 INNOSETUP_LANG_HOME="C:\Multi-Runner\mfobuild\05_build_mfoset\innosetup-lang"
 LICENSEFILE="C:\Multi-Runner\mfobuild\05_build_mfoset\license.rtf"
 LICENSEFILE_JP="C:\Multi-Runner\mfobuild\05_build_mfoset\license-jp.rtf"
@@ -3932,5 +3938,3 @@ end;
 
 
 ISS_FILE_MAKER
-
-
