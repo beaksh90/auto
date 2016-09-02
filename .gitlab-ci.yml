@@ -5,7 +5,6 @@ stages:
 MFO_TOTAL_BUILD:
   stage: build
   script:
-  - make build
   - sh C:\Multi-Runner\mfobuild\05_build_mfoset\mfoset.sh
   tags:
   - mfototal_win
