@@ -1,5 +1,25 @@
-mfopjs_linux:
+stages:
+- build
+- env_conf
+
+MFO_TOTAL_BUILD:
+  stage: build
   script:
-   - sh C:\Multi-Runner\mfobuild\05_build_mfoset\mfoset.sh
+  - make build
+  - sh C:\Multi-Runner\mfobuild\05_build_mfoset\mfoset.sh
   tags:
-    - mfototal_win
+  - mfototal_win
+
+MFO_TOTAL_ENV_a:
+  stage: env_conf
+  script:
+  - sh C:\Multi-Runner\mfobuild\06_etc\sendfile.sh
+  tags:
+  - mfototal_win
+
+MFO_TOTAL_ENV_b:
+  stage: env_conf
+  script:
+  - sh /home/gitlab-runner/build_test.sh
+  tags:
+  - devqa21
