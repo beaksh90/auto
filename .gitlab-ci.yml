@@ -22,3 +22,11 @@ MFO_TOTAL_ENV_b:
   - sh /home/gitlab-runner/build_test.sh
   tags:
   - devqa21
+
+MFO_TOTAL_ENV_c:
+  stage: env_conf
+  script:
+  - sh /home/gitlab-runner/build_test.sh
+  tags:
+  - devqa22
+
