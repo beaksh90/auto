@@ -268,8 +268,8 @@ RENAME_DG_FOR_DEPLOY ()
 {
 	cd $DGSRC_DIR/deploy/MFO/tar
 	DG_TAR_FILE=`ls Maxgauge*.tar`
-	DGS_BUILD_NUMBER=`cat $DG_TAR_FILE | awk -F "MaxGauge" '{print $2}' | awk -F "_" '{print $1}'`
-	DGS_DATE=`cat $DG_TAR_FILE | awk -F "." '{print $3}' | awk -F "_" '{print $2}'`
+	DGS_BUILD_NUMBER=`echo $DG_TAR_FILE | awk -F "MaxGauge" '{print $2}' | awk -F "_" '{print $1}'`
+	DGS_DATE=`echo $DG_TAR_FILE | awk -F "." '{print $3}' | awk -F "_" '{print $2}'`
 	cp -av $DG_TAR_FILE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${DGS_BUILD_NUMBER}]_[DataGather]_[$DGS_DATE].tar
 }
 
@@ -294,7 +294,10 @@ WRITE_DOWN_TAG_INFO ()
 	sleep 1
 	rm checkout_tag.sql
 	cd $PACKAGE_DIR
-	echo $TAG > TAG_INFO.txt
+	for i in $TAG
+	do
+	echo $TAG >> TAG_INFO.txt;
+	done
 }
 
 BUILD_AS_REQ_ORDER()
@@ -307,6 +310,7 @@ case $REQ_TAG in
 	INNOSETUP_PART
 	RENAME_NP_FOR_DEPLOY
 	RENAME_DG_FOR_DEPLOY
+	RENAME_INNOSETUPFILES_FOR_DEPLOY
 	WRITE_DOWN_TAG_INFO
 	;;
 	nwsd|nwd|nsd|nd|wsd|wd|sd)
