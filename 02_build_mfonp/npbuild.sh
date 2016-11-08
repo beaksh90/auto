@@ -3,6 +3,7 @@
 ## Default source Directory
 NPSRC_DIR="C:/Multi-Runner/mfonp"
 NPOUT_DIR="C:/Multi-Runner/mfonp/deploy/MFO"
+PJS_FILE_DIR="C:/Multi-Runner/mfonp/deploy/MFO/PlatformJS"
 NP_SERVICE_DIR="C:/Multi-Runner/mfobuild/02_build_mfonp/np_service"
 NP_CONFIG_DIF="C:/Multi-Runner/mfobuild/02_build_mfonp/config"
 SET_NP_DIR="$NPOUT_DIR/PlatformJS"
@@ -49,7 +50,7 @@ mkdir -p $WEBOUT_DIR
 cp -av $WEBSRC_DIR/* $WEBOUT_DIR
 }
 
-JAVASCRIPT_COMMPRESS()
+JAVASCRIPT_COMPRESS()
 {
 	JAVASCRIPT_MAXGAUGE_DIR="$WEBOUT_DIR"
 
@@ -118,6 +119,13 @@ CHECKOUT_MASTER_SQL()
 	git checkout MFO5.3
 }
 
+MAKE_PJS_ZIP_FILE ()
+{
+	BUILD_NUMBER=`cat ${WEBSRC_DIR}/common/VersionControl.js | grep "var BuildNumber" | awk -F "'" '{print $2}'`
+	cd $NPOUT_DIR/PlatformJS
+	7z.exe a PlatformJS_${BUILD_NUMBER}.zip -x!*.zip
+}
+	
 NEWPJS()
 {
 CLEAN_NP_FILES
@@ -129,7 +137,7 @@ CHECKOUT_MASTER_NP
 WEB()
 {
 CP_WEB
-JAVASCRIPT_COMMPRESS
+JAVASCRIPT_COMPRESS
 CHECKOUT_MASTER_WEB
 }
 
@@ -143,7 +151,7 @@ CHECKOUT_MASTER_SQL
 NEWPJS
 SQL
 WEB
-
+MAKE_PJS_ZIP_FILE
 
 
 

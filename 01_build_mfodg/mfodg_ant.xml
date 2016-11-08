@@ -15,7 +15,7 @@
 	</tstamp>
 
 	<property name="build.product" value="MFO"/>
-	<property name="build.version" value="5.3.2"/>
+	<property name="build.version" value="5.3.3"/>
 	<property name="bulid.name" value="DataGather"/>
 	<property name="build.dir" value="../../mfodg/deploy/${build.product}/${DSTAMP}/${TSTAMP}"/>
 	<property name="jar.dir" value="${build.dir}/${bulid.name}"/>

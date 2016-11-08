@@ -7,6 +7,7 @@
  01_build_mfodg/DGServer_M/bin/dginstall.bat  eol=lf
  01_build_mfodg/DGServer_M/bin/dgsctl  eol=lf
  01_build_mfodg/DGServer_M/conf/DG/common.conf  eol=lf
+ 01_build_mfodg/DGServer_M/conf/DG/common_linux.conf eol=lf
  01_build_mfodg/DGServer_M/conf/DG/dg.status  eol=lf
  01_build_mfodg/DGServer_M/conf/DGServer.xml  eol=lf
  01_build_mfodg/DGServer_S1/.mxgrc  eol=lf
@@ -16,6 +17,7 @@
  01_build_mfodg/DGServer_S1/bin/dginstall.bat  eol=lf
  01_build_mfodg/DGServer_S1/bin/dgsctl  eol=lf
  01_build_mfodg/DGServer_S1/conf/DG/common.conf  eol=lf
+ 01_build_mfodg/DGServer_S1/conf/DG/common_linux.conf eol=lf
  01_build_mfodg/DGServer_S1/conf/DG/dg.status  eol=lf
  01_build_mfodg/DGServer_S1/conf/DGServer.xml  eol=lf
  01_build_mfodg/DGServer_S1/conf/mail.xml  eol=lf
@@ -576,4 +578,4 @@
  02_build_mfonp/server/utils/win/openssl-0.9.8k_X64/include/openssl/x509v3.h  eol=lf
  02_build_mfonp/server/utils/win/openssl-0.9.8k_X64/openssl.cnf  eol=lf
  05_build_mfoset/innosetup-lang/Thai.isl  eol=lf
-
+ 

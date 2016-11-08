@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_runable_jar" name="Create Runnable Jar for Project MFO_DataGather">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+	<path id="dgrefclass.path">
+		<fileset dir="../../mfodg/mfodg_library">
+		 <include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<tstamp>
+		<format property="DSTAMP" pattern="yyyy-MM-dd"/>
+		<format property="TSTAMP" pattern="HHmmss"/>
+	</tstamp>
+
+	<property name="build.product" value="MFO"/>
+	<property name="build.version" value="5.3.3"/>
+	<property name="bulid.name" value="DataGather"/>
+	<property name="build.dir" value="../../mfodg/deploy/${build.product}/mfosms"/>
+	<property name="jar.dir" value="${build.dir}/${bulid.name}"/>
+	<property name="src.dir" value="../../mfosms/src"/>
+	<property name="class.dir" value="class"/>
+	<property name="dglibrary.dir" value="../../mfodg/mfodg_library"/>
+	
+		
+	<target name="prepare">
+		<echo>Build ${build.version}</echo>
+		<echo># start - ${DSTAMP} ${TSTAMP}</echo>
+	</target>
+	<!--######################### CLEAR & COPY ######################################-->
+	
+	<!--######################### COMPLIE ###########################################-->
+	<target name="compile" depends="prepare" >
+		<mkdir dir="${build.dir}/${class.dir}"/>
+		<javac  srcdir="${src.dir}" destdir="${build.dir}/${class.dir}" debug="true" 
+		       debuglevel="lines,vars,source" target="1.6" source="1.6" encoding="UTF-8" includeantruntime="false" >
+			<classpath refid="dgrefclass.path" />
+		</javac>
+		<copy todir="${build.dir}/${class.dir}">
+			<fileset dir="${src.dir}" includes="**/*.history,**/*.sql,**/*.txt" />
+		</copy>
+	</target>
+	<!--######################### JAR ###############################################-->
+    <target name="create_runable_jar" depends="compile">
+        <jar destfile="${jar.dir}/sample_sms.jar" filesetmanifest="mergewithoutmain" >
+            <manifest>
+                <attribute name="Main-Class" value="com.exem.mfo.service.sms.XmAlarmMGR"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${build.dir}/${class.dir}"/>
+			<zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/bcprov-ext-jdk15on-150.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/exem-ext-crypto.jar"/>
+        </jar>
+		<delete dir="${build.dir}/${class.dir}"/>
+    </target>
+</project>

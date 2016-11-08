@@ -39,14 +39,14 @@ ISS_FILE_MAKER()
 	ISS_FILE_CODE_PART_MFO_TOTAL
 	MAKE_UP_FOR_NEXT_SETUP
 #ONLY PJS WITHOUT DG&REPO
-	# MINOR_FILE_NAME="_ONLY_PJS"
-	# ISS_FILE_TOP_PART
-	# for CURR_DIR in $MFO_ORA_PACAKAGE
-	# do
-		# FILE_DIR_ATTACH_ROUTINE
-	# done
-	# ISS_FILE_CODE_PART_ONLY_PJS
-	# MAKE_UP_FOR_NEXT_SETUP
+	MINOR_FILE_NAME="_ONLY_PJS"
+	ISS_FILE_TOP_PART
+	for CURR_DIR in $MFO_ORA_PACAKAGE
+	do
+		FILE_DIR_ATTACH_ROUTINE
+	done
+	ISS_FILE_CODE_PART_ONLY_PJS
+	MAKE_UP_FOR_NEXT_SETUP
 ## NEW JAVA PJS 이전의 패키지
 #REPO_ORACLE_PACKAGE
 	# MINOR_FILE_NAME="_Oracle"
@@ -3113,115 +3113,85 @@ ISS_FILE_CODE_PART_ONLY_PJS()
 echo "
 
 [Icons]
-Name: {group}\PlatformJS Start; Filename: {app}\PlatformJS\bin\sc_start.bat; Comment: web service start; WorkingDir: {app}\PlatformJS\bin\; IconFilename: {app}\PlatformJS\bin\PlatformJS_Service64.exe; Tasks: desktopicon
-Name: {userdesktop}\PlatformJS Start; Filename: {app}\PlatformJS\bin\sc_start.bat; WorkingDir: {app}\PlatformJS\bin; Comment: web service start; IconFilename: {app}\PlatformJS\bin\PlatformJS_Service64.exe; Tasks: desktopicon
-Name: {group}\PlatformJS Stop; Filename: {app}\PlatformJS\bin\sc_stop.bat; Comment: web service stop; WorkingDir: {app}\PlatformJS\bin\; IconFilename: {app}\PlatformJS\bin\PlatformJS_Service64.exe; Tasks: desktopicon
-Name: {userdesktop}\PlatformJS Stop; Filename: {app}\PlatformJS\bin\sc_stop.bat; WorkingDir: {app}\PlatformJS\bin\; Comment: web service stop; IconFilename: {app}\PlatformJS\bin\PlatformJS_Service64.exe; Tasks: desktopicon
-Name: {group}\PlatformJS Restart; Filename: {app}\PlatformJS\bin\sc_restart.bat; Comment: web service restart; WorkingDir: {app}\PlatformJS\bin\; IconFilename: {app}\PlatformJS\bin\PlatformJS_Service64.exe; Tasks: desktopicon
-Name: {userdesktop}\PlatformJS Restart; Filename: {app}\PlatformJS\bin\sc_restart.bat; WorkingDir: {app}\PlatformJS\bin\; Comment: web service restart; IconFilename: {app}\PlatformJS\bin\PlatformJS_Service64.exe; Tasks: desktopicon
+Name: {group}\PlatformJS Start; Filename: {app}\PlatformJS\bin\sc_start.bat; Comment: web service start; WorkingDir: {app}\PlatformJS\bin\; IconFilename: {app}\PlatformJS\bin\maxgauge.ico; Tasks: desktopicon
+Name: {userdesktop}\PlatformJS Start; Filename: {app}\PlatformJS\bin\sc_start.bat; WorkingDir: {app}\PlatformJS\bin; Comment: web service start; IconFilename: {app}\PlatformJS\bin\maxgauge.ico; Tasks: desktopicon
+Name: {group}\PlatformJS Stop; Filename: {app}\PlatformJS\bin\sc_stop.bat; Comment: web service stop; WorkingDir: {app}\PlatformJS\bin\; IconFilename: {app}\PlatformJS\bin\maxgauge.ico; Tasks: desktopicon
+Name: {userdesktop}\PlatformJS Stop; Filename: {app}\PlatformJS\bin\sc_stop.bat; WorkingDir: {app}\PlatformJS\bin\; Comment: web service stop; IconFilename: {app}\PlatformJS\bin\maxgauge.ico; Tasks: desktopicon
+Name: {group}\PlatformJS Restart; Filename: {app}\PlatformJS\bin\sc_restart.bat; Comment: web service restart; WorkingDir: {app}\PlatformJS\bin\; IconFilename: {app}\PlatformJS\bin\maxgauge.ico; Tasks: desktopicon
+Name: {userdesktop}\PlatformJS Restart; Filename: {app}\PlatformJS\bin\sc_restart.bat; WorkingDir: {app}\PlatformJS\bin\; Comment: web service restart; IconFilename: {app}\PlatformJS\bin\maxgauge.ico; Tasks: desktopicon
+
 
 [Run]
-;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\MAXGAUGE.zip -d {app}\web\MAXGAUGE\; Flags : runhidden
-;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\Intermax.zip -d {app}\web\Intermax\; Flags : runhidden
-;Filename: \"{tmp}\UNZIP.EXE\"; Parameters: \"{tmp}\MFOPG.zip -d {app}\sql\MFOPG\"; Flags : runhidden;
-;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\MSSQL.zip -d {app}\sql\MSSQL\; Flags : runhidden
-;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\MFO_Oracle.zip -d {app}\sql\MFO_Oracle\; Flags : runhidden
-;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\MFO_PostgreSQL.zip -d {app}\sql\MFO_PostgreSQL\; Flags : runhidden
-;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\jdk17.zip -d {app}\bin\jdk17\; Flags : runhidden
-
-;Filename: net; Description: {cm:selectInstall64}; Flags: runhidden nowait postinstall skipifsilent; WorkingDir: {app}\PlatformJS\bin
-Filename: net; Description: {cm:launchMsg}; Flags: nowait postinstall skipifsilent
-
-
+;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\MAXGAUGE.zip -d {app}; StatusMsg: During decompression... ; Flags : runhidden
+;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\DataGather.zip -d {app}\DataGather; StatusMsg: During decompression datagather...; Flags : runhidden
+;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\Database.zip -d {app}\Database; StatusMsg: During decompression Database...; Flags : runhidden
+;Filename: {tmp}\UNZIP.EXE; Parameters: {tmp}\PlatformJS.zip -d {app}\PlatformJS; StatusMsg: During decompression PlatformJS...; Flags : runhidden
+;Filename: {app}\All_Start.bat; WorkingDir: {app}; StatusMsg: Register service; Flags: runhidden; Tasks:
+;Filename: {app}\DGServer_M\bin\DGServer_x86_64.exe; Parameters: /install; WorkingDir: {app}\DGServer_M\bin; StatusMsg: Registration of datagather Master...; Flags: runhidden
+;Filename: net; Check: procWaiting( 'Starting service datagather Master', 'start DGServer Master' ); Flags: runhidden
+;Filename: {app}\DGServer_S1\bin\DGServer_x86_64.exe; Parameters: /install; WorkingDir: {app}\DGServer_S1\bin; StatusMsg: Registration of datagather Slave...; Flags: runhidden
+;Filename: net; Check: procWaiting( 'Starting service datagather Slave', 'start DGServer Slave' ); Flags: runhidden
+;Filename: {app}\PlatformJS\bin\PlatformJS_Service64.exe; Parameters: '-install'; Description: Launch Platform. JS 64bit; Flags: nowait postinstall skipifsilent unchecked; WorkingDir: {app}\PlatformJS\bin
+;Filename: {app}\PlatformJS\bin\PlatformJS_Service32.exe; Parameters: '-install'; Description: Launch Platform. JS 32bit; Flags: nowait postinstall skipifsilent unchecked; WorkingDir: {app}\PlatformJS\bin; Tasks:
+;Filename: net; Parameters: {code:GetParams32|{app}}; Description: Run PlatformJS 32bit If the 32bit Oracle; Flags: runhidden nowait postinstall skipifsilent unchecked; WorkingDir: {app}\PlatformJS\bin; Tasks:
+;Filename: {app}\PlatformJS\bin\PlatformJS_Service64.exe; Parameters: -install; Description: Launch Platform. JS 64bit; Flags: nowait postinstall skipifsilent; WorkingDir: {app}\PlatformJS\bin; Check: IsWin64; Tasks:
+;Filename: {app}\PlatformJS\bin\PlatformJS_Service32.exe; Parameters: -install; Description: Launch Platform. JS 32bit; Flags: nowait postinstall skipifsilent; WorkingDir: {app}\PlatformJS\bin; Check: not IsWin64
 ;Filename: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe; Parameters: http://127.0.0.1:8080/Maxgauge/Config; Description: {cm:launchMsg}; Flags: nowait postinstall skipifsilent
 
+;Filename: net; Description: {cm:launchMsg}; Flags: nowait postinstall skipifsilent
+
+
+
+;Filename: {sys}\sc.exe; Parameters: create DGServer_M  start= auto    binPath= {app}\DGServer_M\bin\DGServer_x86_64_M.exe; Flags: runhidden
+;Filename: {sys}\sc.exe; Parameters: create DGServer_S1 start= auto    binPath= {app}\DGServer_S1\bin\DGServer_x86_64_S1.exe; Flags: runhidden
+;Filename: {sys}\sc.exe; Parameters: \"create DGServer_OBS_M start= auto binPath= \"\"{app}\DGServer_M\bin\mxg_obsd.exe -f  {app}\DGServer_M\conf\DG\common.conf -i 10 -D -OTHERD\"\"\"; Flags: runhidden
+;Filename: {sys}\sc.exe; Parameters: \"create DGServer_OBS_S1 start= demand  binPath= \"\"{app}\DGServer_S1\bin\mxg_obsd.exe -f {app}\DGServer_S1\conf\DG\common.conf -i 10 -D -OTHERD\"\"\"; Flags: runhidden
+
+
+Filename: {app}\Database\bin\pg_ctl.exe; Parameters: register -N PostgreSQL -D {app}\Database\data; WorkingDir: {app}; StatusMsg: {cm:registrationPG}; Flags: runhidden
+Filename: net; Check: procWaiting( ExpandConstant('{cm:startServicePG}') , 'start PostgreSQL' ); Flags: runhidden
+;Filename: net; Description: {cm:selectInstall64}; Flags: runhidden nowait postinstall skipifsilent; WorkingDir: {app}\PlatformJS\bin
+;Filename: {sys}\sc.exe; Parameters: \"config \"\"PostgreSQL\"\" DisplayName= \"\"Exem_PostgreSQL(5432)\"\"\"; Flags: runhidden
+Filename: net; Description: {cm:launchMsg}; Flags: nowait postinstall skipifsilent
+;Filename: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe; Parameters: http://127.0.0.1:8080/Maxgauge/Config; Description: {cm:launchMsg}; Flags: nowait postinstall skipifsilent
 
 [UninstallRun]
+Filename: {sys}\sc.exe; Parameters: stop PostgreSQL; WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: delete PostgreSQL; WorkingDir: {app}; Flags: runhidden
 
-Filename: {sys}\sc.exe; Parameters: stop PlatformJS_OBS; WorkingDir: {app}; Flags: runhidden
-Filename: {sys}\sc.exe; Parameters: delete PlatformJS_OBS; WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: stop DGServer_S1; WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: delete DGServer_S1; WorkingDir: {app}; Flags: runhidden
 
+Filename: {sys}\sc.exe; Parameters: stop DGServer_OBS_M; WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: delete DGServer_OBS_M; WorkingDir: {app}; Flags: runhidden
 
-Filename: {sys}\sc.exe; Parameters: stop PlatformJS8080; WorkingDir: {app}; Flags: runhidden
-Filename: {sys}\sc.exe; Parameters: delete PlatformJS8080; WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: stop DGServer_M; WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: delete DGServer_M; WorkingDir: {app}; Flags: runhidden
+
+Filename: {sys}\sc.exe; Parameters: stop DGServer_OBS_S1; WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: delete DGServer_OBS_S1; WorkingDir: {app}; Flags: runhidden
+
+Filename: {sys}\sc.exe; Parameters: stop PlatformJS_OBS(8080); WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: delete PlatformJS_OBS(8080); WorkingDir: {app}; Flags: runhidden
+
+Filename: {sys}\sc.exe; Parameters: stop PlatformJS(8080); WorkingDir: {app}; Flags: runhidden
+Filename: {sys}\sc.exe; Parameters: delete PlatformJS(8080); WorkingDir: {app}; Flags: runhidden
 
 [UninstallDelete]
 Type: filesandordirs; Name: {app}
 
 
-;[CustomMessages]
-;DatabaseInfoForm_Caption=Platform JS Infomation
-;DatabaseInfoForm_Description=Input database infomation.
-;DatabaseInfoForm_DatabaseName=Database Name
-;DatabaseInfoForm_DatabaseType=Type
-;DatabaseInfoForm_DatabaseServer=Server(IP)
-;DatabaseInfoForm_Database=Database
-;DatabaseInfoForm_DatabaseUser=User
-;DatabaseInfoForm_Databasepwd=password
-;DatabaseInfoForm_port=Port
-;DatabaseInfoForm_DatabaseDescription=Description
-;DatabaseInfoForm_FileWrite=Write
-;DatabaseInfoForm_GatherIP=Gather IP
-;DatabaseInfoForm_GatherPort=Gather Port
-
-;Repository_Caption=DLL Infomation
-;Repository_Description=Input database infomation.
-;Repository_Info_Refresh=Refresh Time
-;Repository_Info_pwd=Password
-;Repository_Info_user=User
-;Repository_Info_DB=Database
-;Repository_Info_Type=Type
-;Repository_Info_Server=Server
-;Repository_Info_Port=Port
-;Repository_Info_Gather_IP=Gather IP
-;Repository_Info_Gather_Port=Gather Port
-;Repository_Info_Name=Database Name
-
-
 [Code]
+
+
 var
-  lblDatabaseName: TLabel;
-  edtDatabaseName: TEdit;
-  lblDatabaseType: TLabel;
-  edtDatabaseType: TEdit;
-  lblDatabaseSvr : TLabel;
-  edtDatabaseSvr : TEdit;
-  lblDatabaseDB  : TLabel;
-  edtDatabaseDB  : TEdit;
-  lblDatabaseUser: TLabel;
-  edtDatabaseUser: TEdit;
-  lblDatabasepwd : TLabel;
-  edtDatabasepwd : TEdit;
-  lblDatabasePort: TLabel;
-  edtDatabasePort: TEdit;
-  lblDescription : TLabel;
-  edtDescription : TEdit;
-  lblgatherip    : TLabel;
-  edtgatherip    : TEdit;
-  lblgatherport  : TLabel;
-  edtgatherport  : TEdit;
-
-  cbType         : TCombobox;
-
-  serverType     : String;
-  sqlPath        : String;
-
-  javaHomePath: String;
-  jdkVersion  : String;
-
-
-  Button1: TButton;
-
-  Panel1: TPanel;
-
-  // config.json 생성시 user/pwd 암호화 관련
-  function xmEncryptc( source : pAnsichar ) : pAnsichar;
-  external 'xmEncryptc@files:excrypt32.dll stdcall' ;
-
-  // TEdit에서 focus 사용 하기 위함.
-  function SetFocus(hWnd: HWND): HWND;
-  external 'SetFocus@user32.dll stdcall';
-
+  lblMasterGather: TLabel;
+  edtMasterGather: TEdit;
+  lblSlaveGather : TLabel;
+  edtSlaveGather : TEdit;
+  lblGB1         : TLabel;
+  lblGB2         : TLabel;
+  Panel1         : TPanel;
 
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
@@ -3229,60 +3199,193 @@ var
   path : string;
 begin
   // always allow move through the wizard pages
-   //MsgBox( inttostr( ord( CurStep )), mbError, MB_OK);
   Result := True;
 
   if (CurPageID = wpFinished) and (WizardForm.RunList.Visible) then
   begin
-      //sleep(1000);
-	//ShellExec('', 'net', 'start platformJS8080', '', SW_HIDE, ewNoWait, ErrorCode );
+    //if WizardForm.RunList.Checked[0] then
+	//begin
+	//	Exec(ExpandConstant('{app}\PlatformJS\bin\PlatformJS_Service64.exe'), '-install', '', SW_SHOW, ewNoWait, ErrorCode );
+	//end
+	//else
+	//begin
+	//	Exec(ExpandConstant('{app}\PlatformJS\bin\PlatformJS_Service32.exe'), '-install', '', SW_SHOW, ewNoWait, ErrorCode );
+	//end;
+	//msgbox( 'start platformJS8080', mbInformation, MB_OK);
+	sleep(1000);
+	ShellExec('', 'net', 'start platformJS(8081)', '', SW_HIDE, ewNoWait, ErrorCode );
 
 	if WizardForm.RunList.Checked[0] then
 	begin
 		sleep(1000);
-	    ShellExec('open', 'chrome.exe', 'http://127.0.0.1:8080/Maxgauge/Config', '', SW_HIDE, ewNoWait, ErrorCode );
+	    ShellExec('open', 'chrome.exe', 'http://127.0.0.1:8080/MAXGAUGE/config', '', SW_HIDE, ewNoWait, ErrorCode );
 	end
   end;
+
 end;
 
 
-
-procedure CurStepChanged(CurStep:TSetupStep);
+procedure CurStepChanged(CurStep: TSetupStep);
 var
 	ErrorCode: Integer;
+	optionDGMStr : string;
+	optionDGSStr : string;
+
+	optionOBMStr : string;
+	optionOBSStr : string;
+
+
+    filePathDGM    : string;
+    ChangePathDGM  : string;
+    filePathDGS    : string;
+    ChangePathDGS  : string;
+
+    filePathOBM    : string;
+    ChangePathOBM  : string;
+    filePathOBS    : string;
+    ChangePathOBS : string;
+
 begin
+
 
     if (CurStep=ssPostInstall) then
     begin
+	    filePathDGM   := ExpandConstant('{app}\DGServer_M');
+		ChangePathDGM := filePathDGM;
+        StringChange(ChangePathDGM,'\\','\\\\');
 
-		//Exec( ExpandConstant('{sys}\sc.exe'), ExpandConstant('create \"PlatformJS_OBS\" start= auto  binPath= \"{app}\PlatformJS\bin\mxg_obsd.exe -f {app}\PlatformJS\conf\common.conf -i  10 -D -OTHERD\"'),'', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
-    end
-    if (CurStep=ssDone) then
+        filePathDGS   := ExpandConstant('{app}\DGServer_S1');
+		ChangePathDGS := filePathDGS;
+        StringChange(ChangePathDGS,'\\','\\\\');
+
+        filePathOBM   := ExpandConstant('{app}\DGServer_M');
+		ChangePathOBM := filePathDGM;
+        StringChange(ChangePathOBM,'\\','\\\\');
+
+        filePathOBS   := ExpandConstant('{app}\DGServer_S1');
+		ChangePathOBS := filePathOBS;
+        StringChange(ChangePathOBS,'\\','\\\\');
+
+        //MasterDGMemroy := Trunc(FloatToStr(strTofloat(edtMasterGather.Text) * 1024)) + 'm';
+
+        optionDGMStr :=
+			'option -Xms'+FloatToStr(strTofloat(edtMasterGather.Text) * 1024)+'m'+#13#10 +
+			'option -Xmx'+FloatToStr(strTofloat(edtMasterGather.Text) * 1024)+'m'+#13#10 +
+			'option -XX:+UseParNewGC'+ #13#10 +
+			'option -XX:+UseConcMarkSweepGC'+ #13#10+
+			'option -XX:CMSInitiatingOccupancyFraction=45'+ #13#10 +
+			'Stderr NUL'+ #13#10;
+
+		optionDGSStr :=
+			'option -Xms'+FloatToStr(strTofloat(edtSlaveGather.Text) * 1024)+'m'+ #13#10 +
+			'option -Xmx'+FloatToStr(strTofloat(edtSlaveGather.Text) * 1024)+'m'+ #13#10 +
+			'option -XX:+UseParNewGC'+ #13#10+
+			'option -XX:+UseConcMarkSweepGC'+ #13#10+
+			'option -XX:CMSInitiatingOccupancyFraction=45'+ #13#10 +
+			'Stderr NUL'+ #13#10;
+
+		optionOBMStr :=
+			'obs1=1'+ #13#10 +
+			'obs1_cmd=DGServer_M'+ #13#10 +
+			'obs1_keyword=DGServer_M_x86_64'+#13#10 +
+			'obs1_keyword2=DGServer_M_x86_64'+#13#10 +
+			'obs1_cpu_limit=80'+ #13#10 +
+			'obs1_mem_limit='+FloatToStr((strTofloat(edtMasterGather.Text)+1) * 1024 *1024)+ #13#10 +
+			'obs1_init_wait=180'+ #13#10 +
+			'obs1_activity_time=300'+ #13#10 +
+			'obs1_activity_file=dg.act';
+
+		optionOBSStr :=
+			'obs1=1'+ #13#10 +
+			'obs1_cmd=DGServer_S1'+ #13#10 +
+			'obs1_keyword=DGServer_S1_x86_64'+#13#10 +
+			'obs1_keyword2=DGServer_S1_x86_64'+#13#10 +
+			'obs1_cpu_limit=80'+ #13#10 +
+			'obs1_mem_limit='+FloatToStr((strTofloat(edtSlaveGather.Text)+1) * 1024 *1024)+ #13#10 +
+			'obs1_init_wait=180'+ #13#10 +
+			'obs1_activity_time=300'+ #13#10 +
+			'obs1_activity_file=dg.act';
+
+		SaveStringToFile(filePathDGM + '\bin\DGServer_M_x86_64.config', optionDGMStr, False);
+        SaveStringToFile(filePathDGM + '\bin\DGServer_M_x86.config', optionDGMStr, False);
+        SaveStringToFile(filePathDGS + '\bin\DGServer_S1_x86_64.config', optionDGSStr, False);
+	    SaveStringToFile(filePathDGS + '\bin\DGServer_S1_x86.config', optionDGSStr, False);
+	    SaveStringToFile(filePathOBM + '\conf\DG\common.conf', optionOBMStr, False);
+	    SaveStringToFile(filePathOBS + '\conf\DG\common.conf', optionOBSStr, False);
+
+        Exec( ExpandConstant('{sys}\sc.exe'), ExpandConstant('config \"PostgreSQL\" DisplayName= \"Exem_PostgreSQL(5432)\"'), '', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
+	    sleep(500);
+		Exec( ExpandConstant('{sys}\sc.exe'), ExpandConstant('create \"DGServer_M\"  DisplayName= \"Exem_DGServer_M\" start= auto   binPath= \"{app}\DGServer_M\bin\DGServer_M_x86_64.exe\"'),'', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
+		sleep(500);
+		Exec( ExpandConstant('{sys}\sc.exe'), ExpandConstant('create \"DGServer_S1\" DisplayName= \"Exem_DGServer_S1\" start= auto   binPath= \"{app}\DGServer_S1\bin\DGServer_S1_x86_64.exe'),'', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
+		sleep(500);
+		Exec( ExpandConstant('{sys}\sc.exe'), ExpandConstant('create \"DGServer_OBS_M\" DisplayName= \"Exem_DGServer_OBS_M\" start= auto binPath= \"{app}\DGServer_M\bin\mxg_obsd.exe -f  {app}\DGServer_M\conf\DG\common.conf -i 10 -D -OTHERD\"'),'', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
+		sleep(500);
+		Exec( ExpandConstant('{sys}\sc.exe'), ExpandConstant('create \"DGServer_OBS_S1\" DisplayName= \"Exem_DGServer_OBS_S1\" start= auto  binPath= \"{app}\DGServer_S1\bin\mxg_obsd.exe -f {app}\DGServer_S1\conf\DG\common.conf -i 10 -D -OTHERD\"'),'', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
+		//sleep(500);
+		//Exec( ExpandConstant('{sys}\sc.exe'), ExpandConstant('create \"PlatformJS_OBS(8080)\" DisplayName= \"Exem_PlatformJS_OBS(8080)\" start= auto  binPath= \"{app}\PlatformJS\config\mxg_obsd.exe -f {app}\PlatformJS\config\common.service.conf -i  10 -D -OTHERD\"'),'', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
+
+		sleep(500);
+		Exec( ExpandConstant('{app}\PlatformJS\service_install.bat'),'','', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
+
+		sleep(500);
+		Exec( ExpandConstant('{app}\PlatformJS\mxg_obsd_service_install.bat'),'','', SW_HIDE,  ewWaitUntilTerminated, ErrorCode );
+
+
+
+
+    end;
+
+
+	if (CurStep=ssDone) then
 	begin
-			//sleep(1000);
-	 		//ShellExec('', 'net', 'start PlatformJS_OBS', '', SW_HIDE, ewNoWait, ErrorCode );
-	end
+	    sleep(500);
+		ShellExec('', 'net', 'start DGServer_OBS_M', '', SW_HIDE, ewNoWait, ErrorCode );
+		sleep(500);
+		ShellExec('', 'net', 'start DGServer_OBS_S1', '', SW_HIDE, ewNoWait, ErrorCode );
+		sleep(500);
+		ShellExec('', 'net', 'start DGServer_M', '', SW_HIDE, ewNoWait, ErrorCode );
+		sleep(500);
+		ShellExec('', 'net', 'start DGServer_S1', '', SW_HIDE, ewNoWait, ErrorCode );
 
+		sleep(500);
+		ShellExec('', 'net', 'start PlatformJS_OBS(8080)', '', SW_HIDE, ewNoWait, ErrorCode );
 
+	end;
 end;
 
 
+function procWaiting( title : string; command : string ) : boolean;
+var
+  ix : integer;
+  resultCode : integer;
+begin
+  result := true;
+  WizardForm.StatusLabel.Caption := title;
 
-{ DatabaseInfo_Activate }
+  Exec( 'net', command, '', SW_HIDE, ewNoWait, resultCode );
+
+  for ix := 1 to 20 do
+  begin
+    if ( ix mod 6 ) = 0 then
+      WizardForm.StatusLabel.Caption := title;
+
+    WizardForm.StatusLabel.Caption := WizardForm.StatusLabel.Caption + '.'
+    sleep(150);
+  end;
+end;
 
 procedure SampleForm_Activate(Page: TWizardPage);
 begin
   // enter code here...
 end;
 
-{ SampleForm_ShouldSkipPage }
 
 function SampleForm_ShouldSkipPage(Page: TWizardPage): Boolean;
 begin
   Result := False;
 end;
 
-{ SampleForm_BackButtonClick }
 
 function SampleForm_BackButtonClick(Page: TWizardPage): Boolean;
 begin
@@ -3290,183 +3393,55 @@ begin
 end;
 
 
-{ SampleForm_CancelButtonClick }
-
 procedure SampleForm_CancelButtonClick(Page: TWizardPage; var Cancel, Confirm: Boolean);
 begin
   // enter code here...
 end;
 
-procedure MaxgaugeFileWrite( sender : TObject );
-var
-  jsonString : string;
-  appPath    : string;
-  ChangePath : string;
-  dbUserStr  : string;
-  dbPwdStr   : string;
-begin
-  appPath := ExpandConstant('{app}\PlatformJS');
-  ChangePath := appPath;
-  StringChange(ChangePath,'\','\\');
-  dbUserStr := string( xmEncryptc(+edtDatabaseUser.Text ) );
-  dbPwdStr := string( xmEncryptc(+edtDatabasepwd.Text ) );
-
-
-
-    jsonString :=
-	'{' + #13#10+
-    '\"service_port\": 8080,' + #13#10+
-    '\"database_default\": \"'+edtDatabaseDB.text+'\",' + #13#10+
-    '\"datagather_default\": \"default\",' + #13#10+
-    '\"database_pool_max\": 300,' + #13#10+
-    '\"database_pool_min\": 30,' + #13#10+
-    '\"database_maxrows\": 2000000,' + #13#10+
-    '\"second_charset\": \"CP949\",' + #13#10+
-    '\"pjs_loadbalancer_master\": false,'+ #13#10+
-    '\"maxgauge_option\":' + #13#10+
-    '{'+ #13#10+
-        '\"refresh_time\": 3,' + #13#10+
-        '\"execute_exa\": false,'+ #13#10+
-        '\"version\": \"5.3.1\"'+ #13#10+
-    '},'+ #13#10+
-    '\"datagathers\": ['+ #13#10+
-        '{'+ #13#10+
-           '\"datagather_name\": \"default\",' + #13#10+
-           '\"datagather_ip\": \"'+edtgatherip.text+'\",' + #13#10+
-           '\"datagather_port\": \"'+edtgatherport.text+'\",' + #13#10+
-           '\"desc\": \" \"' + #13#10+
-        '}'+ #13#10+
-    '],'+ #13#10+
-    '\"databases\": ['+ #13#10+
-        '{'+ #13#10+
-            '\"database_name\":\"'+edtDatabaseName.Text+'\",' + #13#10+
-            '\"database_type\": \"'+cbType.text+'\",' + #13#10+
-            '\"database_server\": \"'+edtDatabaseSvr.text+'\",' + #13#10+
-            '\"database_port\": \"'+edtDatabasePort.text+'\",' + #13#10+
-            '\"database_database\": \"'+edtDatabaseDB.text+'\",' + #13#10+
-            '\"database_user\": \"'+dbUserStr+'\",' + #13#10+
-            '\"database_password\": \"'+dbPwdStr+'\",' + #13#10+
-            '\"sql_directory\": \"'+sqlPath+'\",' + #13#10+
-            '\"database_description\": \"'+edtDescription.text+'\"' + #13#10+
-        '}' + #13#10+
-    '],' + #13#10+
-    '\"log_level\": \"info\",' + #13#10+
-    '\"log_max_history\": 90,' + #13#10+
-    '\"log_max_file_size\": \"30MB\",' + #13#10+
-    '\"log_directory\": \"./log\"' + #13#10+
-	'}';
-
-   SaveStringToFile(appPath + '\config\config.json', jsonString, False);
-
-end;
-
-// 입력이 비어있는지 체크.
-function emptyFieldCheck (Sender : TObject) : Boolean;
-
-begin
-   Result := True;
-   if TEdit( Sender ).text = '' then
-    begin
-       SetFocus( TEdit( Sender ).Handle );
-	   Result := False;
-    end;
-end;
-
-
-
-
-{ SampleForm_NextkButtonClick }
 function SampleForm_NextButtonClick(Page: TWizardPage): Boolean;
 begin
-  if not emptyFieldCheck(edtDatabaseName) then
-  begin
-    msgbox( 'Please Enter ' +lblDatabaseName.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
-
-  else if cbType.text = '' then
-  begin
-    SetFocus(TCombobox( cbType).Handle )
-    msgbox( 'Please select ' +lblDatabaseType.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
+    try
+		StrToFloat(edtMasterGather.Text);
+    except
+		msgbox( ExpandConstant('{cm:InputNumberErrMsg}'), mbInformation, MB_OK);
+		edtMasterGather.clear();
+		edtMasterGather.Focused();
+		result := false;
+		exit;
+    end;
 
 
-  else if not emptyFieldCheck(edtDatabaseDB) then
-  begin
-    msgbox( 'Please Enter ' +lblDatabaseDB.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
-
-  else if not emptyFieldCheck(edtDatabaseSvr) then
-  begin
-    msgbox( 'Please Enter ' +lblDatabaseSvr.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
-
-  else if not emptyFieldCheck(edtDatabaseUser) then
-  begin
-    msgbox( 'Please Enter ' +lblDatabaseUser.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
-
-  else if not emptyFieldCheck(edtDatabasepwd) then
-  begin
-    msgbox( 'Please Enter ' +lblDatabasepwd.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
-
-  else if not emptyFieldCheck(edtDatabasePort) then
-  begin
-    msgbox( 'Please Enter ' +lblDatabasePort.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
-
-  else if not emptyFieldCheck(edtgatherip) then
-  begin
-    msgbox( 'Please Enter ' +lblgatherip.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
-
-  else if not emptyFieldCheck(edtgatherport) then
-  begin
-    msgbox( 'Please Enter ' +lblgatherport.Caption, mbInformation, MB_OK);
-    Result := False;
-  end
-
-
-  else
-  begin
-    //Wizardform.NextButton.Enabled := True;
-	MaxgaugeFileWrite( nil );
-	Result := True;
-  end
-
+   try
+		StrToFloat(edtSlaveGather.Text);
+   except
+		msgbox( ExpandConstant('{cm:InputNumberErrMsg}'), mbInformation, MB_OK);
+		edtSlaveGather.clear();
+		edtSlaveGather.Focused();
+		result := false;
+		exit;
+   end;
+   result := true;
 end;
 
-procedure ChangeServerType( Sender : TObject );
-begin
-  serverType := TCombobox( Sender ).text;
+//function SampleForm_NextButtonClick(Page: TWizardPage): Boolean;
+//begin
+  // result := true;
+//end;
 
-  sqlPath:= '/../sql/MFO_Oracle';
-  edtDatabasePort.text := '1521';
-  lblDatabaseDB.Caption := 'TNS Name';
-  edtDatabaseUser.text := 'maxgauge';
-  edtDescription.text  := 'Oracle';
+//procedure onkeyDown(Sender: TObject; var Key: Char) ;
+//begin
 
-  if serverType = 'postgresql' then
-  begin
-    sqlPath:= '/../sql/MFO_PostgreSQL';
-    edtDatabasePort.text := '5432';
-    lblDatabaseDB.Caption := 'Database';
-    edtDatabaseUser.text := 'postgres';
-    edtDescription.text  := 'Postgresql';
-  end;
-end;
+  //msgbox( Key, mbInformation, MB_OK);
+	//#8,#9,#32,#3,#22,
+  //if (Key in ['0'..'9'] ) then
+  //begin
+
+  //end ;
+
+//end;
 
 
 
-{ DatabaseInfoForm_CreatePage }
 
 function DatabaseInfoForm_CreatePage(PreviousPageId: Integer): Integer;
 var
@@ -3475,7 +3450,7 @@ begin
   Page := CreateCustomPage(
     PreviousPageId,
     ExpandConstant('{cm:DatabaseInfoForm_Caption}'),
-    ExpandConstant('{cm:DatabaseInfoForm_Description}')
+    'Input Gather memory Information'
   );
 
   { Panel1 }
@@ -3494,266 +3469,75 @@ begin
   end;
 
 { Label1 }
-  lblDatabaseName := TLabel.Create(Page);
-  with lblDatabaseName do
+  lblMasterGather := TLabel.Create(Page);
+  with lblMasterGather do
   begin
     Parent  := Panel1;
     Left    := ScaleX(16);
     Top     := ScaleY(10);
     Width   := ScaleX(92);
     Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_DatabaseName}');
+
+    Caption := 'Master Gather';
   end;
 
-  edtDatabaseName := TEdit.Create(Page);
-  with edtDatabaseName do
+  edtMasterGather := TEdit.Create(Page);
+  with edtMasterGather do
   begin
     Parent := Panel1;
-    Left   := ScaleX(100);
+    Left   := ScaleX(95);
     Top    := ScaleY(8);
-    Width  := ScaleX(200);
+    Width  := ScaleX(100);
     Height := ScaleY(13);
-    Text    := 'maxgauge';
+    Text    := '1';
   end;
 
-  lblDatabaseType := TLabel.Create(Page);
-  with lblDatabaseType do
+  lblGB1 := TLabel.Create(Page);
+  with lblGB1 do
+  begin
+    Parent  := Panel1;
+    Left    := ScaleX(200);
+    Top    := ScaleY(11);
+    Width   := ScaleX(50);
+    Height  := ScaleY(13);
+    Caption := 'GB';
+  end;
+
+  lblSlaveGather := TLabel.Create(Page);
+  with lblSlaveGather do
   begin
     Parent  := Panel1;
     Left    := ScaleX(16);
-    Top     := ScaleY(20) + edtDatabaseName.height;
+    Top     := ScaleY(30) + edtMasterGather.height;
     Width   := ScaleX(92);
     Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_DatabaseType}');
+    Caption := 'Slave Gather';
   end;
 
-  cbType    := TCombobox.Create(Page);
-  with cbType do
+  edtSlaveGather := TEdit.Create(Page);
+  with edtSlaveGather do
   begin
     Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(29);
-    Width  := ScaleX(200);
+    Left   := ScaleX(95);
+    Top    := ScaleY(39);
+    Width  := ScaleX(100);
     Height := ScaleY(13);
-    DropDownCount := 2;
-    //Items.add( 'mssql' );
-    Items.add( 'oracle' );
-    Items.add( 'postgresql' );
-    onChange := @ChangeServerType;
-    Text     := 'postgresql';
+    Text   := '3';
   end;
 
-{
-  edtDatabaseType := TEdit.Create(Page);
-  with edtDatabaseType do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(29);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    Text   := 'postgresql';
-    readonly:= true;
-  end;
-}
-  lblDatabaseSvr := TLabel.Create(Page);
-  with lblDatabaseSvr do
+  lblGB2 := TLabel.Create(Page);
+  with lblGB2 do
   begin
     Parent  := Panel1;
-    Left    := ScaleX(16);
-    Top     := ScaleY(39) + edtDatabaseName.height;
-    Width   := ScaleX(92);
+    Left    := ScaleX(200);
+    Top    := ScaleY(42);
+    Width   := ScaleX(50);
     Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_DatabaseServer}');
-   end;
-
-  edtDatabaseSvr := TEdit.Create(Page);
-  with edtDatabaseSvr do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(49);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    Text   := '127.0.0.1';
-  end;
-//----------------------------------------------------------------------------------
-  lblDatabaseDB := TLabel.Create(Page);
-  with lblDatabaseDB do
-  begin
-    Parent  := Panel1;
-    Left    := ScaleX(16);
-    Top     := ScaleY(59) + edtDatabaseName.height;
-    Width   := ScaleX(92);
-    Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_Database}');
-  end;
-
-  edtDatabaseDB := TEdit.Create(Page);
-  with edtDatabaseDB do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(69);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    Text   := 'MFO';
-  end;
-
-  //----------------------------------------------------------------------------------
-  lblDatabaseUser := TLabel.Create(Page);
-  with lblDatabaseUser do
-  begin
-    Parent  := Panel1;
-    Left    := ScaleX(16);
-    Top     := ScaleY(79) + edtDatabaseName.height;
-    Width   := ScaleX(92);
-    Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_DatabaseUser}');
-  end;
-
-  edtDatabaseUser := TEdit.Create(Page);
-  with edtDatabaseUser do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(89);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    Text   := 'postgres';
-  end;
-
-    //----------------------------------------------------------------------------------
-  lblDatabasepwd := TLabel.Create(Page);
-  with lblDatabasepwd do
-  begin
-    Parent  := Panel1;
-    Left    := ScaleX(16);
-    Top     := ScaleY(99) + edtDatabaseName.height;
-    Width   := ScaleX(92);
-    Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_DatabasePwd}');
-  end;
-
-  edtDatabasepwd := TEdit.Create(Page);
-  with edtDatabasepwd do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(109);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    PasswordChar := '*';
-  end;
-
-  //----------------------------------------------------------------------------------
-  lblDescription := TLabel.Create(Page);
-  with lblDescription do
-  begin
-    Parent  := Panel1;
-    Left    := ScaleX(16);
-    Top     := ScaleY(119) + edtDatabaseName.height;
-    Width   := ScaleX(92);
-    Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_DatabaseDescription}');
-  end;
-
-  edtDescription := TEdit.Create(Page);
-  with edtDescription do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(129);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    Text   := 'Postgres';
-  end;
-
-  //----------------------------------------------------------------------------------
-  lblDatabasePort := TLabel.Create(Page);
-  with lblDatabasePort do
-  begin
-    Parent  := Panel1;
-    Left    := ScaleX(16);
-    Top     := ScaleY(139) + edtDatabaseName.height;
-    Width   := ScaleX(92);
-    Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_port}');
-//    visible := false;
-  end;
-
-  edtDatabasePort := TEdit.Create(Page);
-  with edtDatabasePort do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(149);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    //visible := false;
-    Text    := '5432';
+    Caption := 'GB';
   end;
 
 
-  // Gather Info
-  lblgatherip    := TLabel.Create( page );
-  with lblgatherip do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(16);
-    Top    := ScaleY(169) + edtDatabaseName.height;
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_GatherIP}');
-  end;
 
-  edtgatherip    := TEdit.Create( page );
-  with edtgatherip do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(179);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    Text   := '127.0.0.1';
-  end;
-
-  lblgatherport  := TLabel.Create( page );
-  with lblgatherport do
-  begin
-    Parent  := Panel1;
-    Left    := ScaleX(16);
-    Top     := ScaleY(189) + edtDatabaseName.height;
-    Width   := ScaleX(200);
-    Height  := ScaleY(13);
-    Caption := ExpandConstant('{cm:DatabaseInfoForm_GatherPort}');
-  end;
-
-  edtgatherport  := TEdit.Create( page );
-  with edtgatherport do
-  begin
-    Parent := Panel1;
-    Left   := ScaleX(100);
-    Top    := ScaleY(199);
-    Width  := ScaleX(200);
-    Height := ScaleY(13);
-    Text   := '7000';
-  end;
-
-  { Button1 }
-  {Button1 := TButton.Create(Page);
-  with Button1 do
-  begin
-    Parent   := Panel1;
-    Left     := ScaleX(100);
-    Top      := ScaleY(169);
-    Width    := ScaleX(75);
-    Height   := ScaleY(23);
-    Caption  := ExpandConstant('{cm:DatabaseInfoForm_FileWrite');
-    TabOrder := 0;
-    onClick  := @Filewrite;
-  end;
- }
   with Page do
   begin
     OnActivate := @SampleForm_Activate;
@@ -3763,175 +3547,16 @@ begin
     OnCancelButtonClick := @SampleForm_CancelButtonClick;
   end;
 
+
   Result := Page.ID;
 end;
 
-{ DatabaseInfoForm_InitializeWizard }
-
-//procedure CurStepChanged(CurStep:TSetupStep);
-//begin
-  //MsgBox( inttostr( ord( CurStep )), mbError, MB_OK);
-//end;
-
-
-// 크롬 설치 체크 2015-10-03 추가
-const ChromeAppRegKey = 'Software\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe';
-const ChromeAppVersionRegKey = 'Software\Google\Chrome\BLBeacon';
-
-
-function checkChromeVersion: Boolean;
-var Name : String;
-var Version : Integer;
-begin
-  Result := false;
-  RegQueryStringValue(HKEY_CURRENT_USER, ChromeAppVersionRegKey, 'version', Name);
-  Name := Copy(Name, 1, 2)
-
-  Version:= strToInt(Name);
-  if Version > 42 then
-     Result := true;
-
-end;
-
-function checkJDk(): Boolean;
-var
-	ErrorCode: Integer;
-	JavaInstalled : Boolean;
-	ResultMsg : Boolean;
-	Versions: TArrayOfString;
-	I: Integer;
-	regRoot: Integer;
-begin
-    // Check which view of registry should be taken:
-	regRoot := HKLM ;
-	if IsWin64 then
-	begin
-		regRoot := HKLM64
-	end;
-
-
-	if (RegGetSubkeyNames(regRoot, 'SOFTWARE\JavaSoft\Java Runtime Environment', Versions)) or (RegGetSubkeyNames(regRoot, 'SOFTWARE\JavaSoft\Java Development Kit', Versions)) then
-	begin
-		RegQueryStringValue(regRoot, 'SOFTWARE\JavaSoft\Java Development Kit', 'CurrentVersion', jdkVersion);
-
-		for I := 0 to GetArrayLength(Versions)-1 do
-			if JavaInstalled = true then
-			begin
-			//do nothing
-			end
-			else
-			begin
-				// 1.8 이상인지 체크
-				if ( Versions[I][2]='.' ) and ( ( StrToInt(Versions[I][1]) > 1 ) or ( ( StrToInt(Versions[I][1]) = 1 ) and ( StrToInt(Versions[I][3]) >= 8 ) ) ) then
-				begin
-					JavaInstalled := true;
-			end
-			else
-			begin
-				JavaInstalled := false;
-			end;
-		end;
-	end else
-	begin
-		JavaInstalled := false;
-	end;
-
-	if JavaInstalled then
-	begin
-		Result := true;
-	end
-end;
-
-
-
-function GetJavaPath(Default: String): String;
-var
-    javaHome: String;
-    path: String;
-    regRoot: Integer;
-begin
-    path := '';
-	Result := '' ;
-
-	regRoot := HKLM
-	if IsWin64 then
-	begin
-		regRoot := HKLM64
-	end;
-
-    // try to find JDK \"javaw.exe\"
-    if (Length(path) = 0) and (Length(jdkVersion) > 0) and ((jdkVersion) >= '1.8.0') then begin
-        RegQueryStringValue(regRoot, 'SOFTWARE\JavaSoft\Java Development Kit\' + jdkVersion, 'JavaHome', javaHome);
-        path := javaHome + '\jre\bin\' + 'javaw.exe';
-        if FileExists(path) then begin
-            Log('(JDK) found javaw.exe: ' + path);
-            Result := javaHome + '\jre';
-        end;
-    end
-    else
-    begin
-		Result := '' ;
-    end ;
-    javaHomePath := Result; // save found value as global
-
-end;
-
-
-// 설치 페이지가 보여지기 전에 실행됨. 팝업은 보이고 설치는 계속
-function InitializeSetup(): Boolean;
-
-var
-   msgStr  : string;
-   count   : Integer;
-   javaPath: String;
-begin
-
-	Result := true;
-	msgStr := '';
-
-
-
-    // 크롬 설치 체크 , 크롬 버전 체크
-    //if  not IsChromeInstalled or not checkChromeVersion then
-    if   not checkChromeVersion then
-    begin
-		count  := count+1;
-		msgStr := msgStr + IntToStr(count)+'. '+  ExpandConstant('{cm:chromeNotInstalledMsg}') + #13#10;
-		Result := false;
-    end;
-
-    // JDK 설치 체크
-    if  not checkJDk then
-	begin
-	    count  := count+1;
-	    msgStr := msgStr + IntToStr(count)+'. '+ ExpandConstant('{cm:JDKNotIstalledMsg1}') + #13#10 +  ExpandConstant('{cm:JDKNotIstalledMsg2}')+ #13#10;
-	    Result := false;
-	end;
-
-	// JAVA_HOME 체크
-	javaPath := GetEnv('JAVA_HOME') ;
-	//javaPath := GetJavaPath('');
-	if javaPath = '' then begin
-        count  := count+1;
-	    msgStr := msgStr + IntToStr(count)+'. ' +  ExpandConstant('{cm:JVHOMENotIstalledMsg}')
-        Result := false;
-    end ;
-
-    if Result = false then
-	begin
-	   // 결과가 false 더라도 popup만 표시해주고 인스톨은 진행. result 는 true
-		msgbox( msgStr, mbInformation, MB_OK);
-		Result := true;
-	end ;
-
-
-end;
 
 
 procedure InitializeWizard();
 begin
   // Common
-  DatabaseInfoForm_CreatePage(wpInstalling);
+  DatabaseInfoForm_CreatePage(wpSelectTasks);
 end;
 [Files]" >> $ISS_FILE_DIR
 }

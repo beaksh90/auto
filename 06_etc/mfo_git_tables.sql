@@ -25,3 +25,26 @@ create table runner_stat  (run_comp varchar2(15),
 -- * unit test를 위해서는 unit_ver(가칭) 칼럼이 추가되어야 하지 않을까 당장 통합 빌드에는 문제 없음
 -- * unit test와 comp만 변경하는(4단계 추후 추가) 경우에는 lock 제어를 위해서 runner_stat 테이블을 다시 수정해야함. 
 -- * 지금은 어떻게 해야할 지 잘 모르겠음)
+-- * 161028 해결책이 보였음 하나의 vm에 cpu 및 메모리를 몰빵해주고 최소한의 빌드 동작만 case화 하여 명세 및 실행한다.
+
+
+create table ipaddress (who varchar2(20),
+             ipaddr varchar2(15),
+             part varchar2(30),
+             remark varchar2(4000),
+             constraint uk_address unique(ipaddr,part)
+             );
+-- * IP Address 에 관한 테이블이며, Client에서 요청하였을 때, 설치파일 전달 할 때 참조한다.		
+ 
+create table requirer (who varchar2(20),
+             part varchar2(30),
+             req_tag varchar2(6),
+             mfo_release_ver varchar2(30)
+             );
+-- * 요청에 대한 정보 테이블이며, 누가, 어떤 파일을 변경시키고자 하는 태그 어느쪽 부분인지에 대한 정보가 있다.
+
+create table mfo_tag_part(tag_info varchar2(30),
+             build_ref varchar2(30),
+             constraint tag_part_uk unique(tag_info)
+			  );
+-- * 커스터마이징한 환경구성을 위해 태그를 저장하는 테이블이다.

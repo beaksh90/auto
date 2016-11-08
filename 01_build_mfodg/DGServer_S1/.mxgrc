@@ -1,18 +1,22 @@
-# JAVA home directory
+# DataGather_Slave1 home directory
 JAVA_HOME=/home/
 
-# DataGather_Slave1 home directory
-MXG_HOME=/home/maxgauge/
-DG_S1_HOME=/home/maxgauge/DGServer_S1
-DG_S1_NAME=DG_S1
+# /home/admin/MaxGauge5.3.2_160905.01.package/DGServer_S1
+MXG_HOME=/home/
+DG_NAME=DG_S1
+DG_XMS=3072
+DG_XMX=3072
+
+#OS_TYPE ( aix | hpia | hppa | linux32 | linux64 | sun32 | sun64 )
+OS_TYPE=
 
 # Add DataGather bin to $PATH
-PATH=${JAVA_HOME}/bin:${MXG_HOME}/bin:${DG_S1_HOME}/bin:$PATH
+PATH=${JAVA_HOME}/bin:${MXG_HOME}/bin:$PATH
 
 # ksh : Export Variables
 
-export DG_S1_HOME DG_S1_NAME MXG_HOME PATH
+export DG_NAME DG_XMS DG_XMX MXG_HOME OS_TYPE PATH
 
-alias bin="cd $DG_S1_HOME/bin"
-alias conf="cd $DG_S1_HOME/conf"
-alias log="cd $DG_S1_HOME/log"
+alias bin="cd $MXG_HOME/bin"
+alias conf="cd $MXG_HOME/conf"
+alias log="cd $MXG_HOME/log"

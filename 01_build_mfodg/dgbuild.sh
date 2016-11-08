@@ -2,6 +2,9 @@
 ## Last modified 2016.08.25
 ## Default source Directory
 DGSRC_DIR="C:/Multi-Runner/mfodg"
+DGSMS_DIR="C:/Multi-Runner/mfosms"
+DGMAIL_DIR="C:/Multi-Runner/mfomail"
+DGAPI_DIR="C:/Multi-Runner/mfoapi"
 DGOUT_DIR="C:/Multi-Runner/mfodg/deploy/mfo"
 DGETC_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
 ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
@@ -41,18 +44,25 @@ ECLIPCE_AND_BUILD()
 {
 	cd $ANT_BUILD_SCRIPT_DIR
 	ant -buildfile mfodg_ant.xml
+	ant -buildfile mfosms_ant.xml
+	ant -buildfile mfomail_ant.xml
+	ant -buildfile mfoapi_ant.xml
 }
 
 VERSION_CHECK()
 {
 	DG_TITLE=`cat $DGSRC_DIR/src/jdg/server/XmConfig.java | grep DATAGATHER_TITLE | grep public | awk -F "=" '{print $2}'  | tr -d '' | tr -d ';' | tr -d '"'`
-	DG_MAJOR=`cat $DGSRC_DIR/src/jdg/server/XmConfig.java | grep DATAGATHER_MAJOR | grep public | awk -F "=" '{print $2}'  | tr -d ' ' | tr -d ';'`
+	DG_MAJOR=`cat $DGSRC_DIR/src/jdg/server/XmConfig.java | grep DATAGATHER_MAJOR | grep public | awk -F "=" '{print $2}'  | tr -d ' ' | tr -d ';'| tr -d '"'`
 	DG_MINOR=`cat $DGSRC_DIR/src/jdg/server/XmConfig.java | grep DATAGATHER_MINOR | grep public | awk -F "=" '{print $2}'  | tr -d ' ' | tr -d ';' | tr -d '"'`
 	SERV_DESC=$DG_TITLE$DG_MAJOR.$DG_MINOR
 	
 	cd $DGOUT_DIR
-	DG_FILE=`find -type f`
+	DG_FILE=`find -type f -name DGServer.jar`
+	SMS_FILE=`find -type f -name sample_sms.jar`
+	MAIL_FILE=`find -type f -name sample_mail.jar`
+	API_FILE=`find -type f -name sample_api.jar`
 	RUNABLE_DG_JAR_VER=`java -jar $DG_FILE -version`
+	export RUNABLE_DG_JAR_VER;
 	# Don't know why Do not like below 2 cmd, a not matched error occur.
 	SERV_DESC=`echo $SERV_DESC | awk '{print $1 $2 $3 $4}' `
 	RUNABLE_DG_JAR_VER=`echo $RUNABLE_DG_JAR_VER | awk '{print $1 $2 $3 $4}'`
@@ -71,6 +81,16 @@ CP_DG_JAR()
 	cp -av $DGETC_DIR/XmPing $DGOUT_DIR/XmPing
 	cp -av $DG_FILE $DGOUT_DIR/DGServer_M/bin
 	cp -av $DG_FILE $DGOUT_DIR/DGServer_S1/bin
+	cp -av $SMS_FILE $DGOUT_DIR/DGServer_S1/svc
+	cp -av $MAIL_FILE $DGOUT_DIR/DGServer_S1/svc
+	cp -av $API_FILE $DGOUT_DIR/DGServer_S1/svc
+
+	cp -av $DGSMS_DIR/sample_sms.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -av $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc
+	cp -av $DGMAIL_DIR/sample_mail.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -av $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc
+	cp -av $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -av $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc
 }
 
 JAR_TO_EXE()
@@ -92,8 +112,8 @@ JAR_TO_EXE()
 			else
 				OUTPUT_DIR="$OUTPUT_DIR_1$OS_BIT"
 			fi;
-			
-			echo "\"C:\Program Files (x86)\Jar2Exe Wizard\j2ewiz\" /jar C:\Multi-Runner\mfodg\deploy\mfo\DGServer_S1\bin\DGServer.jar $OUTPUT_DIR /m jdg.server.DGServer /type service /minjre 1.6 /maxjre 1.8 /platform windows /checksum $AMD_64  /service $DG /serviceshow $DG /servicedesc \"$SERV_DESC\" /pv 2,1,7,1099 /fv 2,1,7,1099 /ve \"ProductVersion=2, 1, 7, 1099\" /ve \"ProductName=Your product name\" /ve \"LegalCopyright=Copyright (c) 2007 - 2015\" /ve \"FileVersion=2, 1, 7, 1099\" /ve \"FileDescription=This file is the main program\" /ve \"LegalTrademarks=Trade marks\" /ve \"CompanyName=Your Company\"" >>  ./DGJAR2EXE.bat
+			DG_DESC="Exem_$DG"
+			echo "\"C:\Program Files (x86)\Jar2Exe Wizard\j2ewiz\" /jar C:\Multi-Runner\mfodg\deploy\mfo\DGServer_S1\bin\DGServer.jar $OUTPUT_DIR /m jdg.server.DGServer /type service /minjre 1.6 /maxjre 1.8 /platform windows /checksum $AMD_64  /service $DG /serviceshow $DG_DESC /servicedesc \"$SERV_DESC\" /pv 2,1,7,1099 /fv 2,1,7,1099 /ve \"ProductVersion=2, 1, 7, 1099\" /ve \"ProductName=Your product name\" /ve \"LegalCopyright=Copyright (c) 2007 - 2015\" /ve \"FileVersion=2, 1, 7, 1099\" /ve \"FileDescription=This file is the main program\" /ve \"LegalTrademarks=Trade marks\" /ve \"CompanyName=Your Company\"" >>  ./DGJAR2EXE.bat
 			unset AMD_64
 		done	
 	done
@@ -104,9 +124,9 @@ JAR_TO_EXE()
 MAKE_TAR()
 {
 	SERV_DESC=$DG_TITLE$DG_MAJOR.$DG_MINOR
-	SERV_DESC=`echo $SERV_DESC | awk '{print $4}'`
-	SERV_DESC=`echo "$SERV_DESC package.tar" | tr -d ' '`
-	TAR_NAME="MaxGauge$SERV_DESC"
+	SERV_DESC=`echo $SERV_DESC | awk '{print $3}'`
+	SERV_DESC=`echo "$SERV_DESC .package.tar" | tr -d ' '`
+	TAR_NAME="$SERV_DESC"
 	cd $DGOUT_DIR
 	
 	mkdir $DGOUT_DIR/tar
@@ -145,4 +165,4 @@ fi
 
 DG_GO
 
-echo "DG_BUILD END"
+echo "DG_BUILD [ $RUNABLE_DG_JAR_VER ] END"

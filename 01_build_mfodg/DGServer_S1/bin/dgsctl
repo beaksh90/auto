@@ -5,346 +5,340 @@
 # Last modified Jul 2003.
 #
 
+ECHO_OPTION_CHECK=`echo -e`
+
+if [ "${ECHO_OPTION_CHECK}" != "-e" ]; then
+        echo "CHANGING ECHO OPTION START ======================= ";
+        sed -n '1,7p;20,$p' $0 | awk '{gsub(/echo/,"echo -e"); print}' > mxctl_bash.sh;
+        echo -e "sleep 1\nmv mxctl_bash.sh $0\nrm -rf mxctlsaver.sh" >> mxctlsaver.sh;
+        echo -e "chmod 775 $0" >> mxctlsaver.sh;
+        echo "echo CHANGING ECHO OPTION FINISH ======================" >> mxctlsaver.sh;
+        echo "sh $0" >> mxctlsaver.sh;
+        sh mxctlsaver.sh;
+        exit;
+fi;
+
 # Check the environments MXG_HOME and PATH.
 if [ "$MXG_HOME" = "" ];
 then
-   echo ERROR :: MXG_HOME variable is not defined.
+   echo "\033[31mERROR :: MXG_HOME variable is not defined.\033[0m"
+   exit 1;
+fi;
+if [ "$OS_TYPE" = "" ];
+then
+   echo "\033[31mERROR :: OS_TYPE variable is not defined.\033[0m"
    exit 1;
 fi;
 
+# MaxGauge Datagateher Process.
+# Start MaxGauge Datagather and OBSD process.
 
-GET_TARGET_CONF_LIST () 
-{
-   TARGET_CONF_LIST=""
-   if [ "$1" = "" ];
-   then 
-      TARGET_CONF_LIST=`ls -1 ${MXG_HOME}/conf | grep -v sample | grep -v DGServer.xml`;
-      if [ "$TARGET_CONF_LIST" = "" ];
-      then
-         echo Configuration does not exist;
-      fi;
-   else 
-      for name in `ls -1 ${MXG_HOME}/conf | grep -v sample`
-      do
-         if [ "$name" = "$1" ];
-         then
-            TARGET_CONF_LIST=$1;
-            break;
-         fi;
-      done
-      if [ "$TARGET_CONF_LIST" = "" ];
-      then
-         echo Configuration $1 does not exist;
-      fi;
-   fi;
-}
-
-GET_START_TARGET_PROC_LIST ()
-{
-   TARGET_PROC_LIST=""
-   if [ "$1" = "" ];
-   then 
-      TARGET_PROC_LIST="DGS OBSD";
-   elif [ "$1" = "DGS" -o "$1" = "OBSD" ];
-   then 
-      TARGET_PROC_LIST=$1;
-   else 
-      echo $1 is not valid daemon type.
-      TARGET_PROC_LIST="";
-   fi;
-}
-
-GET_TARGET_PROC_LIST ()
-{
-   TARGET_PROC_LIST=""
-   if [ "$1" = "" ];
-   then 
-      TARGET_PROC_LIST="DGS OBSD";
-   elif [ "$1" = "RTAD" -o "$1" = "LOGD" -o "$1" = "OBSD" -o "$1" = "DGS" ];
-   then 
-      TARGET_PROC_LIST=$1;
-   else 
-      echo $1 is not valid daemon type.
-      TARGET_PROC_LIST="";
-   fi;
-}
-
-
-#  Start MaxGauge daemon process.
-START_A_PROC () 
-{
-   config_name=$1;
-   daemon_type=$2;
-   if [ "$config_name" != ""  -a "$daemon_type" != "" ];
-   then
-      if [ "$daemon_type" = "DGS" ];
-      then proc_name="DGServer";
-      elif [ "$daemon_type" = "OBSD" ];
-      then proc_name="mxg_obsd";
-      fi;
-      PID=`ps -ef | grep ${proc_name} | grep ${config_name} | grep -v grep | awk '{print $2}'`;
-      if [ "$PID" != "" ];
-      then echo WARNING :: ${daemon_type} process for ${config_name} already exists.
-      else 
-         if [ "$daemon_type" = "DGS" ];
-         then 
-            nohup java -${config_name} -Xms16m -Xmx1024m -jar DGServer.jar 1>/dev/null 2>&1 &
-         elif [ "$daemon_type" = "OBSD" ];
-         then
-            mxg_obsd -c ${config_name} -OTHERD -i 10 -D
-         fi;
-         echo ${daemon_type} process for ${config_name} is started.
-      fi;
-   fi;
-}
-
-
-#  Stop MaxGauge daemon process.
-STOP_A_PROC () 
-{
-   config_name=$1;
-   daemon_type=$2;
-   if [ "$config_name" != ""  -a "$daemon_type" != "" ];
-   then
-      if [ "$daemon_type" = "DGS" ];
-      then proc_name="DGServer";
-      elif [ "$daemon_type" = "OBSD" ];
-      then proc_name="mxg_obsd";
-      fi;
-      PID=`ps -ef | grep ${proc_name} | grep ${config_name} | grep -v grep | awk '{print $2}'`;
-      if [ "$PID" = "" ];
-      then echo No ${daemon_type} process for ${config_name} does not exist.;
-      else kill ${PID};
-           if [ $? = 0 ];
-           then echo ${daemon_type} process ${PID} for ${config_name} is shutdown.;
-           else echo WARNING :: ${daemon_type} process ${PID} is not shutdown.;
-           fi;
-      fi;
-   fi;
-}
-
-#  Print status of MaxGauge daemon process.
-STATUS_A_PROC () 
-{
-   config_name=$1;
-   daemon_type=$2;
-   if [ "$config_name" != ""  -a "$daemon_type" != "" ];
-   then
-      if [ "$daemon_type" = "DGS" ];
-      then proc_name="DGServer";
-           status_file="dg.status";
-      elif [ "$daemon_type" = "OBSD" ];
-      then proc_name="mxg_obsd";
-           status_file="";
-      fi;
-      PID=`ps -ef | grep ${proc_name} | grep ${config_name} | grep -v grep | awk '{print $2}'`;
-      if [ "$status_file" != "" ];
-      then
-        PSTATUS=`cat ${MXG_HOME}/conf/${config_name}/${status_file}`;
-      else
-        PSTATUS="";
-      fi;
-      if [ "$PID" = "" ];
-      then echo ${daemon_type} for ${config_name} does not exist.
-      else echo ${daemon_type} for ${config_name} : name = ${proc_name} : pid = ${PID} : ${PSTATUS}
-      fi;
-   fi;
-}
+COMP_PART=("MFODG")
+TAG_VALUE=("will_support_as_of_2016.11")
 
 START_MXG_PROC ()
 {
-   GET_TARGET_CONF_LIST $1
-   GET_START_TARGET_PROC_LIST $2
-   for conf in ${TARGET_CONF_LIST}
-   do
-      for proc in ${TARGET_PROC_LIST}
-      do
-         START_A_PROC $conf $proc
-      done
-   done
+	PID=`ps -ef |grep ${DG_NAME} | grep DGServer.jar | grep -v grep | awk '{print $2}'`;
+	OBSD=`ps -ef | grep ${DG_NAME} | grep mxg_obsd | grep -v grep | awk '{print $2}'`;
+	PREV_PATH=`pwd`
+	
+	if [ "$PID" != "" ];
+		then echo "\033[31m WARNING :: DataGather for ${DG_NAME} already exists.\033[0m"
+	else
+		cd ${MXG_HOME}/bin
+		nohup java -Xms${DG_XMS}m -Xmx${DG_XMX}m -${DG_NAME} -jar DGServer.jar 1>/dev/null 2>&1 &	
+		echo "\033[33m < DataGather for ${DG_NAME} Start >\033[0m"
+		cd ${PREV_PATH}
+	fi;
+	echo
+	if [ "$OBSD" != "" ];
+		then echo "\033[31m WARNING :: DataGather Observer for ${DG_NAME} already exists.\033[0m"
+	else
+		cd ${MXG_HOME}/bin
+		mxg_obsd/${OS_TYPE}/mxg_obsd -c ${DG_NAME} -f ${MXG_HOME}/conf/DG/common_linux.conf -OTHERD -i 10 -D
+		echo "\033[33m < DataGather Observer for ${DG_NAME} Start >\033[0m"
+		cd ${PREV_PATH}
+	fi;
+	echo	
+	sleep 2
+	STATUS_MXG_PROC
+}
+# Start MaxGauge Datagather debug mode.
+START_MXG_PROC_DEBUG ()
+{
+	PID=`ps -ef |grep ${DG_NAME} | grep DGServer.jar | grep -v grep | awk '{print $2}'`;
+	if [ "$PID" != "" ];
+		then echo "\033[31m WARNING :: DataGather for ${DG_NAME} already exists.\033[0m"
+	else
+		PREV_PATH=`pwd`
+		cd ${MXG_HOME}/bin
+		java -Xms${DG_XMS}m -Xmx${DG_XMX}m -${DG_NAME} -jar DGServer.jar
+		cd ${PREV_PATH}
+	fi;
 }
 
+# Stop MaxGauge Datagather and OBSD process.
 STOP_MXG_PROC ()
 {
-   GET_TARGET_CONF_LIST $1
-   GET_TARGET_PROC_LIST $2
-   for conf in ${TARGET_CONF_LIST}
-   do
-      for proc in ${TARGET_PROC_LIST}
-      do
-         STOP_A_PROC $conf $proc
-      done
-   done
+	PID=`ps -ef | grep ${DG_NAME} | grep DGServer.jar | grep -v grep | awk '{print $2}'`;
+	OBSD=`ps -ef | grep ${DG_NAME} | grep mxg_obsd | grep -v grep | awk '{print $2}'`;
+
+	if [ "$PID" = "" ];
+		then echo "\033[31m WARNING:: DataGather for ${DG_NAME} does not exist.\033[0m"
+	else
+	    kill ${PID};
+		if [ $? = 0 ];
+		then echo "\033[33m <DataGather for ${DG_NAME} Stop>\033[0m"
+		else echo "\033[31m WARNING :: DataGather for ${DG_NAME} is not shutdown.\033[0m"
+		fi;
+	fi;
+	echo
+	if [ "$OBSD" = "" ];
+		then echo "\033[31m WARNING:: DataGather Observer for ${DB_NAME} does not exist.\033[0m"
+	else
+		kill ${OBSD};
+		if [ $? = 0 ];
+		then echo "\033[33m <DataGather Observer for ${DG_NAME} Stop>\033[0m"
+		else echo "\033[31m WARNING :: DataGather Observer for  ${DG_NAME} is not shutdown.\033[0m"
+		fi;
+	fi;
+	echo
+	sleep 2
+	STATUS_MXG_PROC
 }
 
-RESTART_MXG_PROC ()
-{
-   GET_TARGET_CONF_LIST $1
-   GET_TARGET_PROC_LIST $2
-   for conf in ${TARGET_CONF_LIST}
-   do
-      for proc in ${TARGET_PROC_LIST}
-      do
-         STOP_A_PROC $conf $proc
-      done
-   done
-   for conf in ${TARGET_CONF_LIST}
-   do
-      for proc in ${TARGET_PROC_LIST}
-      do
-         START_A_PROC $conf $proc
-      done
-   done
-}
-
+# Print status of Datagather and OBSD process.
 STATUS_MXG_PROC ()
 {
-   GET_TARGET_CONF_LIST $1
-   GET_TARGET_PROC_LIST $2
-   for conf in ${TARGET_CONF_LIST}
-   do
-      for proc in ${TARGET_PROC_LIST}
-      do
-         STATUS_A_PROC $conf $proc
-      done
-   done
+	PID=`ps -ef | grep ${DG_NAME} | grep DGServer.jar | grep -v grep | awk '{print $2}'`;
+	OBSD=`ps -ef | grep ${DG_NAME} | grep mxg_obsd | grep -v grep | awk '{print $2}'`;
+	
+if [ "${PID}" = "" ]; then
+	STATUS="X"
+	PID="-"
+else
+	STATUS="O"
+fi;
+
+if [ "${OBSD}" = "" ]; then
+	OBSD_STATUS="X"
+	OBSD="-"
+else
+	OBSD_STATUS="O"
+fi;
+
+PORT=`cat ${MXG_HOME}/conf/DGServer.xml | grep gather_port | sed 's/gather_port/*/g' | tr -d '</* >'`
+
+REPO_TYPE=`cat ${MXG_HOME}/conf/DGServer.xml | grep database_type | sed 's/database_type/*/g' | tr -d '</* >'`
+
+REPO_IP=`cat ${MXG_HOME}/conf/DGServer.xml | grep database_ip | sed 's/database_ip/*/g' | tr -d '</* >'`
+
+REPO_PORT=`cat ${MXG_HOME}/conf/DGServer.xml | grep database_port | sed 's/database_port/*/g' | tr -d '</* >'`
+
+REPO_SID=`cat ${MXG_HOME}/conf/DGServer.xml | grep database_sid | sed 's/database_sid/*/g' | tr -d '</* >'`
+
+echo "\t\t\t\033[33m < DATAGATHER STATUS CHECK > \033[36m"
+echo "      COMP PART      STATUS  PID  SERVICE_PORT   REPO_INFO\033[0m"
+
+echo " [1] DGServer.jar     [${STATUS}]  [ ${PID} ] [ ${PORT} ]    [ ${REPO_IP}:${REPO_PORT}:${REPO_SID}(${REPO_TYPE}) ]"
+echo " [2] OBSD             [${OBSD_STATUS}]  [ ${OBSD} ] [ - ]    [ - ]"
+
+DATE=`date +%y%m%d`
+                LOG_FILE="$MXG_HOME/log/maxgauge/obsd$DATE.log"
+                OBSD_LOG_LASTROW=`tail -3 $LOG_FILE 2> /dev/null | grep "\]\[" `
+                BARRIER1="------------------------------------------------------------------------------"
+                BARRIER2="------------------------------------------------------------------------------"
+        if [ "$OBSD_LOG_LASTROW" = "" ]; then
+			OBSD_LOG_LASTROW="No issue today or not yet written"
+		fi;
+        
+		echo  "\033[36m Observer Log\033[m \n$BARRIER1\n$OBSD_LOG_LASTROW\n$BARRIER2 "
+        
+
+echo " * \033[36mJAVA HEAP MEMORY INFO\033[0m [ INITIAL(XMS)= ${DG_XMS} MB ] [ MAX(XMX)= ${DG_XMX} MB ]\033[0m"
+echo " * OS memory usage can be greater than XMX option value because None Heap Mem + Heap Mem = OS Memory Usage."	
+}
+
+# Check version of Datagather
+VERSION_MXG_PROC ()
+{
+	echo "\033[36mTAG_VALUE : ${TAG_VALUE[0]}\033[0m"
+	java -jar ${MXG_HOME}/bin/DGServer.jar -v;
+}
+
+# Start Datagather install process
+INSTALL_MXG_PROC ()
+{
+	PREV_PATH=`pwd`
+	cd ${MXG_HOME}/bin
+	java -jar DGServer.jar install;
+	cd ${PREV_PATH}
 }
 
 
+# MaxGauge Datagather Help Message.
 
+HELP_MENU=(
+"start"
+"stop"
+"stat(us)"
+"restart"
+"install"
+"ver(sion)"
+"debug"
+"quit|q|exit|e"
+)
 
-HELP_STATUS="stat(us) [config_name [DGS/OBSD]] : to check the status of Maxgauge DGServer process."
-HELP_START="start [config_name [DGS/OBSD]] : to start Maxgauge DGServer process."
-HELP_STOP="stop [config_name [DGS/OBSD]] : to stop Maxgauge DGServer process."
-HELP_RESTART="restart [config_name [DGS/OBSD]] : to restart Maxgauge DGServer process."
-HELP_VERSION="ver(sion) : to get the version of Maxgauge DGServer Daemon."
-HELP_INSTALL="install : to run install mode Maxgauge DGServer."
-HELP_EXIT="quit|q|exit|e : to exit rtsctl program. (interactive mode only)"
+HELP_DESC=(
+"to start Maxgauge DataGather."
+"to stop Maxgauge DataGather."
+"to check the status of Maxgauge DataGather."
+"to restart Maxgauge DataGather."
+"to run install mode DataGather."
+"to check the version of Maxgauge DataGather."
+"to debug Maxgauge DataGather."
+"to exit dgsctl program. (interactive mode only)"
+)
+
+PRINT_ERROR="Invalid parameter."
+
 PRINT_HELP ()
 {
-   echo $HELP_START 
-   echo $HELP_STOP 
-   echo $HELP_STATUS 
-   echo $HELP_RESTART 
-   echo $HELP_VERSION
-   echo $HELP_INSTALL
-   echo $HELP_EXIT
+	for idx in ${!HELP_MENU[@]}; do
+	NUM=`expr $idx + 1`
+	printf "[%2d] %-15s: %s\n" "$NUM" "${HELP_MENU[$idx]}" "${HELP_DESC[$idx]}"
+	done
 }
 
 # if non-interactive mode
+
 if [ $# -gt 0 ];
 then 
    cmd=$1;
-   arg1=$2;
-   arg2=$3;
-   unnecessary=$4;
-   case "$cmd" in 
-        start) 
+   unnecessary=$2;
+   
+   case "$cmd" in
+        start|1) 
                if [ "$unnecessary" != "" ];
-               then echo Usage : ${HELP_START};
+               then echo ${PRINT_ERROR};
                exit 1
                fi;
-               START_MXG_PROC $arg1 $arg2
+               START_MXG_PROC
         ;;
-        stop) 
+        stop|2) 
                if [ "$unnecessary" != "" ];
-               then echo Usage : ${HELP_STOP};
+               then echo ${PRINT_ERROR};
                exit 1
                fi;
-               STOP_MXG_PROC $arg1 $arg2
+               STOP_MXG_PROC
         ;;
-        restart) 
+        status|stat|3) 
                if [ "$unnecessary" != "" ];
-               then echo Usage : ${HELP_RESTART};
+               then echo ${PRINT_ERROR};
                exit 1
                fi;
-               RESTART_MXG_PROC $arg1 $arg2
+               STATUS_MXG_PROC
         ;;
-        status|stat) 
-               if [ "$unnecessary" != "" ];
-               then echo Usage : ${HELP_STATUS};
-               exit 1
-               fi;
-               STATUS_MXG_PROC $arg1 $arg2
-        ;;
-        version|ver) 
-               java -jar ${MXG_HOME}/bin/DGServer.jar -v;
+        version|ver|6) 
+			   VERSION_MXG_PROC
                exit 0
         ;;
-	install) 
-               java -jar ${MXG_HOME}/bin/DGServer.jar install;
+	install|5) 
+			   INSTALL_MXG_PROC
                exit 0
         ;;
+	debug|7)
+		START_MXG_PROC_DEBUG
+		exit 0
+	;;
+	restart|4)
+		STOP_MXG_PROC
+		START_MXG_PROC
+	;;
         *)
-               PRINT_HELP
+			   echo "\033[31m${cmd} is invalid command.\033[0m"
+			   PRINT_HELP
                exit 1;
         ;;
    esac
    exit 0;
 fi;
 
+# interactive mode
+
+echo "\t\t\t\033[33m < MFO DataGather Environment Info > \033[36m"
+echo "COMP_PART	TAG_VALUE\033[0m"
+
+for (( idx = 0 ; idx < ${#COMP_PART[@]}; idx++ )) ; do
+num=`expr $idx + 1`
+printf "[%2d] %s	[ %s ]\n" "$num" "${COMP_PART[$idx]}" "${TAG_VALUE[$idx]}"
+
+done
+
 echo
-echo "Welcome to DGSCTL, type \"help\" for information."
+echo "Welcome to DGSCTL!"
 echo MaxGauge home directory is ${MXG_HOME}
 echo
+echo ===========================================================================
+
+PRINT_HELP
+
+echo ===========================================================================
 while true
 do
    printf "%s " "DGSCTL>"
-   read cmd arg1 arg2 unnecessary;
+   read cmd unnecessary;
    case "$cmd" in 
-        quit|exit|q|e) 
+        quit|exit|q|e|8) 
                 break 
         ;;
-        help|h) 
-                PRINT_HELP
-                continue 
-        ;;
-        start) 
+        start|1) 
                if [ "$unnecessary" != "" ];
-               then echo Usage : ${HELP_START};
+               then echo ${PRINT_ERROR};
                     continue;
                fi;
-               START_MXG_PROC $arg1 $arg2
+               START_MXG_PROC
                continue 
         ;;
-        stop) 
+        stop|2) 
                if [ "$unnecessary" != "" ];
-               then echo Usage : ${HELP_STOP};
+               then echo ${PRINT_ERROR};
                     continue;
                fi;
-               STOP_MXG_PROC $arg1 $arg2
+               STOP_MXG_PROC
                continue
         ;;
-        restart) 
+        status|stat|3) 
                if [ "$unnecessary" != "" ];
-               then echo Usage : ${HELP_RESTART};
+               then echo ${PRINT_ERROR};
                     continue;
                fi;
-               RESTART_MXG_PROC $arg1 $arg2
+               STATUS_MXG_PROC
                continue
         ;;
-        status|stat) 
-               if [ "$unnecessary" != "" ];
-               then echo Usage : ${HELP_STATUS};
-                    continue;
-               fi;
-               STATUS_MXG_PROC $arg1 $arg2
+	restart|4)
+		STOP_MXG_PROC
+		START_MXG_PROC
+	continue
+	;;
+        version|ver|6) 
+			   VERSION_MXG_PROC
                continue
         ;;
-        version|ver) 
-               java -jar ${MXG_HOME}/bin/DGServer.jar -v;
+	install|5) 
+			   INSTALL_MXG_PROC
                continue
         ;;
-	install) 
-               java -jar ${MXG_HOME}/bin/DGServer.jar install;
-               continue
-        ;;
+	debug|7)
+		START_MXG_PROC_DEBUG
+		continue
+	;;
         *)
                if [ "$cmd" = "" ];
                then continue;
                fi;
-               echo $cmd is invalid command.
-               PRINT_HELP
+			   echo "\033[31m${cmd} is invalid command.\033[0m"
+			   PRINT_HELP
                continue 
         ;;
    esac
