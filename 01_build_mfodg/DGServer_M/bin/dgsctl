@@ -2,7 +2,7 @@
 #
 # Utility to manage MaxGauge processes.
 # Written by EXEM Co., Ltd.
-# Last modified Jul 2003.
+# Last modified Nov 2016.
 #
 
 ECHO_OPTION_CHECK=`echo -e`
@@ -33,8 +33,8 @@ fi;
 # MaxGauge Datagateher Process.
 # Start MaxGauge Datagather and OBSD process.
 
-COMP_PART=("MFODG")
-TAG_VALUE=("will_support_as_of_2016.11")
+COMP_PART="MFODG"
+TAG_VALUE="will_support_as_of_2016.11"
 
 START_MXG_PROC ()
 {
@@ -162,7 +162,7 @@ echo " * OS memory usage can be greater than XMX option value because None Heap 
 # Check version of Datagather
 VERSION_MXG_PROC ()
 {
-	echo "\033[36mTAG_VALUE : ${TAG_VALUE[0]}\033[0m"
+	echo "\033[36mTAG_VALUE : ${TAG_VALUE}\033[0m"
 	java -jar ${MXG_HOME}/bin/DGServer.jar -v;
 }
 
@@ -178,36 +178,20 @@ INSTALL_MXG_PROC ()
 
 # MaxGauge Datagather Help Message.
 
-HELP_MENU=(
-"start"
-"stop"
-"stat(us)"
-"restart"
-"install"
-"ver(sion)"
-"debug"
-"quit|q|exit|e"
-)
-
-HELP_DESC=(
-"to start Maxgauge DataGather."
-"to stop Maxgauge DataGather."
-"to check the status of Maxgauge DataGather."
-"to restart Maxgauge DataGather."
-"to run install mode DataGather."
-"to check the version of Maxgauge DataGather."
-"to debug Maxgauge DataGather."
-"to exit dgsctl program. (interactive mode only)"
-)
-
 PRINT_ERROR="Invalid parameter."
 
 PRINT_HELP ()
 {
-	for idx in ${!HELP_MENU[@]}; do
-	NUM=`expr $idx + 1`
-	printf "[%2d] %-15s: %s\n" "$NUM" "${HELP_MENU[$idx]}" "${HELP_DESC[$idx]}"
-	done
+echo " ==========================================================================="
+echo " [1] start          : to start Maxgauge DataGather."
+echo " [2] stop           : to stop Maxgauge DataGather."
+echo " [3] stat(us)       : to check the status of Maxgauge DataGather."
+echo " [4] restart        : to restart Maxgauge DataGather."
+echo " [5] install        : to run install mode DataGather."
+echo " [6] ver(sion)      : to check the version of Maxgauge DataGather."
+echo " [7] debug          : to debug Maxgauge DataGather."
+echo " [8] quit|q|exit|e  : to exit dgsctl program. (interactive mode only)"
+echo " ==========================================================================="
 }
 
 # if non-interactive mode
@@ -267,26 +251,20 @@ fi;
 # interactive mode
 
 echo "\t\t\t\033[33m < MFO DataGather Environment Info > \033[36m"
-echo "COMP_PART	TAG_VALUE\033[0m"
+echo " COMP_PART	TAG_VALUE\033[0m"
 
-for (( idx = 0 ; idx < ${#COMP_PART[@]}; idx++ )) ; do
-num=`expr $idx + 1`
-printf "[%2d] %s	[ %s ]\n" "$num" "${COMP_PART[$idx]}" "${TAG_VALUE[$idx]}"
-
-done
+printf " [%d] %s	[ %s ]\n" 1 "${COMP_PART}" "${TAG_VALUE}"
 
 echo
-echo "Welcome to DGSCTL!"
-echo MaxGauge home directory is ${MXG_HOME}
+echo " Welcome to DGSCTL!"
+echo " MaxGauge home directory is ${MXG_HOME}"
 echo
-echo ===========================================================================
 
 PRINT_HELP
 
-echo ===========================================================================
 while true
 do
-   printf "%s " "DGSCTL>"
+   printf "%s " " DGSCTL>"
    read cmd unnecessary;
    case "$cmd" in 
         quit|exit|q|e|8) 
