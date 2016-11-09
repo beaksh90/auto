@@ -4,6 +4,8 @@ JAVA_HOME=/home/
 # /home/admin/MaxGauge5.3.2_160905.01.package/DGServer_M
 MXG_HOME=/home/
 DG_NAME=DG_M
+
+# Heap Memory ( unit : MB )
 DG_XMS=1024
 DG_XMX=1024
 
