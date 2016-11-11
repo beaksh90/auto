@@ -200,7 +200,7 @@ MFOBUILD_PART()
 {
 cd $BUILD_DIR
 RECOVER_KEEP
-git pull git@${GIT_IPADDR}:mfo/mfobuild.git master --tag
+git fetch git@${GIT_IPADDR}:mfo/mfobuild.git --tag
 FETCH_TAG_VER_BUILD
 REMOVE_KEEP
 }
@@ -208,15 +208,15 @@ REMOVE_KEEP
 NP_PART()
 {
 cd $SQLSRC_DIR
-git pull git@${GIT_IPADDR}:mfo/mfosql.git MFO5.3 --tag
+git fetch git@${GIT_IPADDR}:mfo/mfosql.git --tag
 FETCH_TAG_VER_SQL
 
 cd $WEBSRC_DIR
-git pull git@${GIT_IPADDR}:mfo/mfoweb.git 5.3.2_July --tag
+git fetch git@${GIT_IPADDR}:mfo/mfoweb.git --tag
 FETCH_TAG_VER_WEB
 
 cd $NPSRC_DIR
-git pull git@${GIT_IPADDR}:mfo/mfonp.git master --tag
+git fetch git@${GIT_IPADDR}:mfo/mfonp.git --tag
 FETCH_TAG_VER_NP
 
 ### VALUE=1 require, 2 Compile&Build, 3 Send File to requirer, 4 Waiting
@@ -232,7 +232,7 @@ sh $BUILD_DIR/02_build_mfonp/npbuild.sh;
 DG_PART()
 {
 cd $DGSRC_DIR
-git pull git@${GIT_IPADDR}:mfo/mfodg.git master --tag
+git fetch git@${GIT_IPADDR}:mfo/mfodg.git --tag
 FETCH_TAG_VER_DG
 
 ### VALUE=1 require, 2 Compile&Build, 3 Send File to requirer, 4 Waiting
@@ -254,6 +254,7 @@ INNOSETUP_PART()
 # FETCH_TAG_VER_PG
 # REMOVE_KEEP
 ## 2016.11.11부터 PG를 형상관리하지 않도록 로직을 변경하였다.
+cd $PG_INSTALL_FILE
 sh $PG_INSTALL_FILE/ready_pg.sh
 sh $BUILD_DIR/05_build_mfoset/Innosetup.sh;
 $PG_INSTALL_FILE/detach_pg.bat
@@ -285,9 +286,9 @@ RENAME_INNOSETUPFILES_FOR_DEPLOY ()
 {
 	cd $PACKAGE_DIR
 	PJS_ONLY=`ls *ONLY_PJS*`
-	mv $PJS_ONLY  $DG_TAR_FILE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[PlatformJS]_[$PJS_DATE].exe
+	mv $PJS_ONLY  $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[PlatformJS]_[$PJS_DATE].exe
 	TOTAL_PACKAGE=`ls *MaxGauge*`
-	mv $TOTAL_PACKAGE $DG_TAR_FILE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setsup]_[$PJS_DATE].exe
+	mv $TOTAL_PACKAGE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setsup]_[$PJS_DATE].exe
 }
 
 WRITE_DOWN_TAG_INFO ()
@@ -301,10 +302,10 @@ WRITE_DOWN_TAG_INFO ()
 	TAG=`echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql`
 	sleep 1
 	rm checkout_tag.sql
-	cd $PACKAGE_DIR
+	cd $PACKAGE_DIR/$MFO_PACKAGE_VER
 	for i in $TAG
 	do
-	echo $TAG >> TAG_INFO.txt;
+	echo -e "$TAG\n" >> TAG_INFO.txt;
 	done
 }
 
