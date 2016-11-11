@@ -51,7 +51,6 @@ DG_FILE_SEND()
 PJS_FILE_SEND()
 {
 	cd $PJS_FILE_DIR
-	7z.exe a PlatformJS_day.zip -x!*.zip
 	PJS_FILE=`ls PlatformJS*.zip`
 	for REPO_OR_TARGET_IP in $REPO_OR_TARGER_IPADDR
 	do
@@ -59,6 +58,13 @@ PJS_FILE_SEND()
 	done
 }
 
+MAKE_PJS_ZIP_FILE ()
+{
+	BUILD_NUMBER=`cat ${WEBSRC_DIR}/common/VersionControl.js | grep "var BuildNumber" | awk -F "'" '{print $2}'`
+	cd $NPOUT_DIR/PlatformJS
+	7z.exe a PlatformJS_${BUILD_NUMBER}.zip -x!*.zip
+}
+	
 SENDING_VALUE ()
 {
 ## VALUE=
@@ -81,10 +87,12 @@ case $REQ_TAG in
 ## PlatformJS & DataGahter ( total - CI PROCESS )
 ## total은 INNOSETUP패키지&리눅스 자동설치까지 포함하는 개념이다.
 	DG_FILE_SEND
+	MAKE_PJS_ZIP_FILE
 	PJS_FILE_SEND
 	;;
 	nws|nw|ns|n|ws|w|s)
 ## Only PlatformJS
+	MAKE_PJS_ZIP_FILE
 	PJS_FILE_SEND
 	;;
 	d)

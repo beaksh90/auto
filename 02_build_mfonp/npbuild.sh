@@ -38,6 +38,30 @@ GET_NP_FILES()
 	cp $NP_CONFIG_DIF/* $SET_NP_DIR/config/
 }
 
+INSERT_TAG_VALUE_TO_PJSCTL
+{
+	## Here are choices of COMP_TAGs. 
+	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
+	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG 
+	echo "
+	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
+	select MFONP_TAG,MFOWEB_TAG,MFOSQL_TAG  from mfo_tag t join runner_stat r
+	on t.MFO_RELEASE_VER = r.TOTAL_VER
+	where r.RUN_COMP='mfototal_win';" > checkout_tag.sql
+
+	TAG=`echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql`
+	sleep 1
+	rm checkout_tag.sql
+	MFONP_TAG_VALUE=`echo $TAG | awk '{print $1}'`
+	MFOWEB_TAG_VALUE=`echo $TAG | awk '{print $2}'`
+	MFOSQL_TAG_VALUE=`echo $TAG | awk '{print $3}'`
+	PJSCTL_TEMPLETE=$SET_NP_DIR/config/template/pjsctl_linux
+	sed 's/MFONP\ will_support_as_of_2016.11/'$MFONP_TAG_VALUE'/g' $PJSCTL_TEMPLETE
+	sed 's/MFOWEB\ will_support_as_of_2016.11/'$MFOWEB_TAG_VALUE'/g' $PJSCTL_TEMPLETE
+	sed 's/MFOSQL\ will_support_as_of_2016.11/'$MFOSQL_TAG_VALUE'/g' $PJSCTL_TEMPLETE
+}
+	
+	
 CHECKOUT_MASTER_NP()
 {
 	cd $NPSRC_DIR
@@ -119,39 +143,32 @@ CHECKOUT_MASTER_SQL()
 	git checkout MFO5.3
 }
 
-MAKE_PJS_ZIP_FILE ()
-{
-	BUILD_NUMBER=`cat ${WEBSRC_DIR}/common/VersionControl.js | grep "var BuildNumber" | awk -F "'" '{print $2}'`
-	cd $NPOUT_DIR/PlatformJS
-	7z.exe a PlatformJS_${BUILD_NUMBER}.zip -x!*.zip
-}
-	
 NEWPJS()
 {
 CLEAN_NP_FILES
 ECLIPCE_AND_BUILD
 GET_NP_FILES
-CHECKOUT_MASTER_NP
+#CHECKOUT_MASTER_NP
 }
 
 WEB()
 {
 CP_WEB
 JAVASCRIPT_COMPRESS
-CHECKOUT_MASTER_WEB
+#CHECKOUT_MASTER_WEB
 }
 
 SQL()
 {
 CP_SQL
-CHECKOUT_MASTER_SQL
+#CHECKOUT_MASTER_SQL
 }
 
 
 NEWPJS
 SQL
 WEB
-MAKE_PJS_ZIP_FILE
+
 
 
 

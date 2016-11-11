@@ -51,5 +51,6 @@
         <alarm_only>false</alarm_only>
         <sms_alertlog_length>0</sms_alertlog_length>
         <cont_alert_interval>60</cont_alert_interval>
+		<rts_daemon_disconnect_repeat_count>1</rts_daemon_disconnect_repeat_count>
     </AlarmOptions>
 </DataGather>
