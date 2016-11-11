@@ -7,11 +7,11 @@ NPSRC_DIR="C:/Multi-Runner/mfonp"
 WEBSRC_DIR="C:/Multi-Runner/mfoweb"
 SQLSRC_DIR="C:/Multi-Runner/mfosql"
 DGSRC_DIR="C:/Multi-Runner/mfodg"
-PGSRC_DIR="C:/Multi-Runner/mfopg/Database"
+PGSRC_DIR="C:/Database"
 BUILD_DIR="C:/Multi-Runner/mfobuild"
 KEEP_EMPTY_SCRIPT_DIR="C:/Multi-Runner/mfobuild/06_etc"
 PACKAGE_DIR="C:/Multi-Runner/package"
-
+PG_INSTALL_FILE="C:/Multi-Runner/mfobuild/07_build_mfopg"
 RECOVER_KEEP()
 {
 sh $KEEP_EMPTY_SCRIPT_DIR/recoverkeep.sh
@@ -96,6 +96,10 @@ FETCH_TAG_VER_BUILD ()
 
 FETCH_TAG_VER_PG ()
 {
+	## 2016년 11월 11일 부로 형상관리항목에서 제외시킨다.
+	## Postgres DB 엔진설치, DB 설치, 유저생성, DGServer.jar install을 차례대로 실행하고 
+	## 그렇게 만들어진 폴더를 패키징하는 것으로 로직을 변경하였다. 
+	## As of 2016.11.11, We will Not manage pg version and change logic toward install pg_db every INNOSETUP PACKAGING
 	COMP_TAG="MFOPG_TAG"
 	## Here are choices of COMP_TAGs. 
 	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
@@ -242,13 +246,16 @@ sh $BUILD_DIR/01_build_mfodg/dgbuild.sh;
 
 INNOSETUP_PART()
 {
-cd $PGSRC_DIR
-RECOVER_KEEP
-git pull git@${GIT_IPADDR}:mfo/mfopg.git master --tag
-FETCH_TAG_VER_PG
-REMOVE_KEEP
-
+## 2016.11.11부터 PG를 형상관리하지 않도록 로직을 변경하였다.
+# cd $PGSRC_DIR
+# RECOVER_KEEP
+# git pull git@${GIT_IPADDR}:mfo/mfopg.git master --tag
+# FETCH_TAG_VER_PG
+# REMOVE_KEEP
+## 2016.11.11부터 PG를 형상관리하지 않도록 로직을 변경하였다.
+sh $PG_INSTALL_FILE/ready_pg.sh
 sh $BUILD_DIR/05_build_mfoset/Innosetup.sh;
+$PG_INSTALL_FILE/detach_pg.bat
 }
 
 RENAME_NP_FOR_DEPLOY ()
@@ -277,9 +284,9 @@ RENAME_INNOSETUPFILES_FOR_DEPLOY ()
 {
 	cd $PACKAGE_DIR
 	PJS_ONLY=`ls *ONLY_PJS*`
-	mv $DG_TAR_FILE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[PlatformJS]_[$PJS_DATE].exe
+	mv $PJS_ONLY  $DG_TAR_FILE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[PlatformJS]_[$PJS_DATE].exe
 	TOTAL_PACKAGE=`ls *MaxGauge*`
-	mv $DG_TAR_FILE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setsup]_[$PJS_DATE].exe
+	mv $TOTAL_PACKAGE $DG_TAR_FILE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setsup]_[$PJS_DATE].exe
 }
 
 WRITE_DOWN_TAG_INFO ()

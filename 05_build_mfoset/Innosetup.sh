@@ -1,9 +1,10 @@
 ## Written by EXEM Co., Ltd. DEVQA BSH
-## Last modified 2016.08.25
+## Last modified 2016.11.11
 ## Default source Directory
 ## 경로를 표시 할 때 윈도우(\) , 리눅스(/) 간 차이가 있음. 
 ## There are difference of expression of dilimeter between Win(\) and Linux(/)
-DATABASE_HOME="C:/Multi-Runner/mfopg/Database"
+## 2016.11.11 부터 DATABASE_HOME을 변경하였다 (C:/Multi-Runner/mfodg/Database -> "C:/Database")
+DATABASE_HOME="C:/Database"
 DGSERVER_M_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/DGServer_M"
 DGSERVER_S1_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/DGServer_S1"
 PLATFORMJS_HOME="C:/Multi-Runner/mfonp/deploy/MFO/PlatformJS"
@@ -2694,7 +2695,7 @@ Name: {userdesktop}\PlatformJS Restart; Filename: {app}\PlatformJS\bin\sc_restar
 ;Filename: {sys}\sc.exe; Parameters: \"create DGServer_OBS_S1 start= demand  binPath= \"\"{app}\DGServer_S1\bin\mxg_obsd.exe -f {app}\DGServer_S1\conf\DG\common.conf -i 10 -D -OTHERD\"\"\"; Flags: runhidden
 
 
-Filename: {app}\Database\bin\pg_ctl.exe; Parameters: register -N PostgreSQL -D {app}\Database\data; WorkingDir: {app}; StatusMsg: {cm:registrationPG}; Flags: runhidden
+Filename: {app}\Database\pg94\bin\pg_ctl.exe; Parameters: register -N PostgreSQL -D {app}\Database\data\pg94; WorkingDir: {app}; StatusMsg: {cm:registrationPG}; Flags: runhidden
 Filename: net; Check: procWaiting( ExpandConstant('{cm:startServicePG}') , 'start PostgreSQL' ); Flags: runhidden
 ;Filename: net; Description: {cm:selectInstall64}; Flags: runhidden nowait postinstall skipifsilent; WorkingDir: {app}\PlatformJS\bin
 ;Filename: {sys}\sc.exe; Parameters: \"config \"\"PostgreSQL\"\" DisplayName= \"\"Exem_PostgreSQL(5432)\"\"\"; Flags: runhidden
@@ -3148,7 +3149,7 @@ Name: {userdesktop}\PlatformJS Restart; Filename: {app}\PlatformJS\bin\sc_restar
 ;Filename: {sys}\sc.exe; Parameters: \"create DGServer_OBS_S1 start= demand  binPath= \"\"{app}\DGServer_S1\bin\mxg_obsd.exe -f {app}\DGServer_S1\conf\DG\common.conf -i 10 -D -OTHERD\"\"\"; Flags: runhidden
 
 
-Filename: {app}\Database\bin\pg_ctl.exe; Parameters: register -N PostgreSQL -D {app}\Database\data; WorkingDir: {app}; StatusMsg: {cm:registrationPG}; Flags: runhidden
+Filename: {app}\Database\pg94\bin\pg_ctl.exe; Parameters: register -N PostgreSQL -D {app}\Database\data\pg94; WorkingDir: {app}; StatusMsg: {cm:registrationPG}; Flags: runhidden
 Filename: net; Check: procWaiting( ExpandConstant('{cm:startServicePG}') , 'start PostgreSQL' ); Flags: runhidden
 ;Filename: net; Description: {cm:selectInstall64}; Flags: runhidden nowait postinstall skipifsilent; WorkingDir: {app}\PlatformJS\bin
 ;Filename: {sys}\sc.exe; Parameters: \"config \"\"PostgreSQL\"\" DisplayName= \"\"Exem_PostgreSQL(5432)\"\"\"; Flags: runhidden
