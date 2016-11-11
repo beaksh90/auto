@@ -51,7 +51,6 @@ DG_FILE_SEND()
 PJS_FILE_SEND()
 {
 	cd $PJS_FILE_DIR
-	7z.exe a PlatformJS_day.zip -x!*.zip
 	PJS_FILE=`ls PlatformJS*.zip`
 	for REPO_OR_TARGET_IP in $REPO_OR_TARGER_IPADDR
 	do
