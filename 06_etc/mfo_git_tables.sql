@@ -38,7 +38,7 @@ create table ipaddress (who varchar2(20),
  
 create table requirer (who varchar2(20),
              part varchar2(30),
-             req_tag varchar2(6),
+             req_tag varchar2(10),
              mfo_release_ver varchar2(30)
              );
 -- * 요청에 대한 정보 테이블이며, 누가, 어떤 파일을 변경시키고자 하는 태그 어느쪽 부분인지에 대한 정보가 있다.

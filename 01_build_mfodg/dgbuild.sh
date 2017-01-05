@@ -139,7 +139,6 @@ MAKE_TAR()
 	cp -v $DGOUT_DIR/tar/DGServer_M/bin/mxg_obsd/win64/mxg_obsd_x64.exe  $DGOUT_DIR/tar/DGServer_M/bin/mxg_obsd.exe
 }
 
-
 INIT_SRC_RM_AND_COPY()
 {
 	rm -rf C:/Multi-Runner/workspace/MFO_DataGather/src
@@ -160,7 +159,7 @@ else
 	echo RUNABLE_JAR_VER is	$RUNABLE_DG_JAR_VER;
 	echo SOURCE_VERSION  is 	$SERV_DESC;
 fi
-	CHECKOUT_MASTER
+#	CHECKOUT_MASTER
 }
 
 DG_GO

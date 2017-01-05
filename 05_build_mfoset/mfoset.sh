@@ -23,7 +23,7 @@ REMOVE_KEEP()
 sh $KEEP_EMPTY_SCRIPT_DIR/removekeep.sh
 }
 
-REQEUIRER_CHECK()
+REQUIRER_CHECK()
 {
 echo "SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;" > insert_tag.sql
 echo "select WHO, PART, REQ_TAG from requirer;" >> insert_tag.sql
@@ -305,8 +305,13 @@ WRITE_DOWN_TAG_INFO ()
 	cd $PACKAGE_DIR/$MFO_PACKAGE_VER
 	for i in $TAG
 	do
-	echo -e "$b\n" >> TAG_INFO.txt;
+	echo -e "$i\n" >> TAG_INFO.txt;
 	done
+}
+
+SEND_DG_PJS_LINUX_BUILD_SRV ()
+{
+sh ${KEEP_EMPTY_SCRIPT_DIR}/sendfile_linux_packaging.sh;
 }
 
 BUILD_AS_REQ_ORDER()
@@ -314,7 +319,7 @@ BUILD_AS_REQ_ORDER()
 	MFOBUILD_PART
 
 case $REQ_TAG in
-	total)
+	totalwopjs|total)
 ## total은 INNOSETUP패키지&리눅스 자동설치까지 포함하는 개념이다.
 	DG_PART
 	NP_PART
@@ -323,6 +328,7 @@ case $REQ_TAG in
 	RENAME_DG_FOR_DEPLOY
 	RENAME_INNOSETUPFILES_FOR_DEPLOY
 	WRITE_DOWN_TAG_INFO
+	SEND_DG_PJS_LINUX_BUILD_SRV
 	;;
 	nwsd|nwd|nsd|nd|wsd|wd|sd)
 ## PlatformJS & DataGahter ( total - CI PROCESS )
@@ -340,7 +346,7 @@ case $REQ_TAG in
 esac
 }
 
-REQEUIRER_CHECK
+REQUIRER_CHECK
 GET_IPADDRESS_GIT_SERVER
 FETCH_TOTAL_VER_INFO
 BUILD_AS_REQ_ORDER
