@@ -4,6 +4,9 @@
 
 DG_TAR_FILE_DIR="C:/Multi-Runner/mfodg/deploy/MFO/tar"
 PJS_FILE_DIR="C:/Multi-Runner/mfonp/deploy/MFO/PlatformJS"
+WEBSRC_DIR="C:/Multi-Runner/mfoweb"
+NPOUT_DIR="C:/Multi-Runner/mfonp/deploy/MFO"
+PACK_DIR="C:/Multi-Runner/package"
 
 REQEUIRER_CHECK()
 {
@@ -20,7 +23,7 @@ REQ_TAG=`echo $REQUIRER_INFO | awk '{print $3}'`
 
 GET_IPADDRESS_REPO_OR_TARGET ()
 {
-	##WHO, PART 쿼리 그냥 조인 시키면 됨... Wanter Table 하나 만들고 원하는데에서 쿼리로 변형 후 입력 default는 QA, REPO ㅇㅇ)
+	##WHO, PART 쿼리 그냥 조인 시키면 됨... REQUIRER Table 하나 만들고 원하는데에서 쿼리로 변형 후 입력 default는 QA, REPO )
 	PART="REPO"
 	WHO="QA"
 	## Here are choices of PART. 
@@ -80,12 +83,61 @@ sleep 1
 rm checkout_tag.sql
 }
 
+FETCH_TOTAL_VER_INFO ()
+{
+	COMP_TAG="MFO_RELEASE_VER"
+	## Here are choices of COMP_TAGs. 
+	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
+	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG , MFO_RELEASE_VER
+		
+	echo "
+	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
+	select $COMP_TAG from mfo_tag t join runner_stat r
+	on t.MFO_RELEASE_VER = r.TOTAL_VER
+	where r.RUN_COMP='mfototal_win';" > checkout_tag.sql
+
+	TAG=`echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql`
+	sleep 1
+	rm checkout_tag.sql
+	MFO_PACKAGE_VER=${TAG}
+}
+
+TAKE_LINUX_TOTAL_PACK()
+{
+	##WHO, PART 쿼리 그냥 조인 시키면 됨... REQUIRER Table 하나 만들고 원하는데에서 쿼리로 변형 후 입력 default는 QA, REPO )
+
+	echo "SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
+	select ipaddr from ipaddress i join requirer r
+	on i.PART = 'BUILD'
+	and i.WHO = r.WHO
+	and i.REMARK='LINUX_PACKAGING';" > checkout_tag.sql
+	REPO_OR_TARGET_IP=`echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql`
+	sleep 1
+	rm checkout_tag.sql
+
+	cd ${PACK_DIR}
+	echo -e "git" | pscp gitlab-runner@${REPO_OR_TARGET_IP}:/home/gitlab-runner/*.tar ./;
+	## 리눅스 패키지도 여기에 포함시킴
+	## Linux total package also included in this function.
+	mv ./*.tar ${PACK_DIR}/${MFO_PACKAGE_VER}/
+	
+}
+
 SEND_FILE_TO_REQUIRER()
 {
 case $REQ_TAG in
-	total|nwsd|nwd|nsd|nd|wsd|wd|sd)
-## PlatformJS & DataGahter ( total - CI PROCESS )
+	totalwopjs|total)
+## PlatformJS & DataGather ( total - CI PROCESS )
 ## total은 INNOSETUP패키지&리눅스 자동설치까지 포함하는 개념이다.
+## totalwopjs 는 INNOSETUP패키지 파일 2개중 PJS만 있는 것을 제외하고 만든다.
+	DG_FILE_SEND
+	MAKE_PJS_ZIP_FILE
+	PJS_FILE_SEND
+	FETCH_TOTAL_VER_INFO
+	TAKE_LINUX_TOTAL_PACK
+	;;
+	nwsd|nwd|nsd|nd|wsd|wd|sd)
+## PlatformJS & DataGather
 	DG_FILE_SEND
 	MAKE_PJS_ZIP_FILE
 	PJS_FILE_SEND
@@ -115,4 +167,3 @@ GET_IPADDRESS_REPO_OR_TARGET
 SENDING_VALUE
 SEND_FILE_TO_REQUIRER
 REMOVE_RECORD_OF_REQUIRER_TABLE
-

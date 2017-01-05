@@ -38,7 +38,7 @@ GET_NP_FILES()
 	cp $NP_CONFIG_DIF/* $SET_NP_DIR/config/
 }
 
-INSERT_TAG_VALUE_TO_PJSCTL
+INSERT_TAG_VALUE_TO_PJSCTL ()
 {
 	## Here are choices of COMP_TAGs. 
 	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
@@ -56,11 +56,10 @@ INSERT_TAG_VALUE_TO_PJSCTL
 	MFOWEB_TAG_VALUE=`echo $TAG | awk '{print $2}'`
 	MFOSQL_TAG_VALUE=`echo $TAG | awk '{print $3}'`
 	PJSCTL_TEMPLETE=$SET_NP_DIR/config/template/pjsctl_linux
-	sed 's/MFONP\ will_support_as_of_2016.11/'$MFONP_TAG_VALUE'/g' $PJSCTL_TEMPLETE
-	sed 's/MFOWEB\ will_support_as_of_2016.11/'$MFOWEB_TAG_VALUE'/g' $PJSCTL_TEMPLETE
-	sed 's/MFOSQL\ will_support_as_of_2016.11/'$MFOSQL_TAG_VALUE'/g' $PJSCTL_TEMPLETE
+	sed -i 's/MFONP\ will_support_as_of_2016.11/'$MFONP_TAG_VALUE'/g' $PJSCTL_TEMPLETE
+	sed -i 's/MFOWEB\ will_support_as_of_2016.11/'$MFOWEB_TAG_VALUE'/g' $PJSCTL_TEMPLETE
+	sed -i 's/MFOSQL\ will_support_as_of_2016.11/'$MFOSQL_TAG_VALUE'/g' $PJSCTL_TEMPLETE
 }
-	
 	
 CHECKOUT_MASTER_NP()
 {
@@ -148,6 +147,7 @@ NEWPJS()
 CLEAN_NP_FILES
 ECLIPCE_AND_BUILD
 GET_NP_FILES
+INSERT_TAG_VALUE_TO_PJSCTL
 #CHECKOUT_MASTER_NP
 }
 
@@ -168,7 +168,6 @@ CP_SQL
 NEWPJS
 SQL
 WEB
-
 
 
 
