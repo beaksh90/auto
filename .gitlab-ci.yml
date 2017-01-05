@@ -1,32 +1,62 @@
 stages:
 - build
-- env_conf
+- linux_package
+- send_file
+- setting_env
+- integration_testing
 
-MFO_TOTAL_BUILD:
+mfo_build_win:
   stage: build
   script:
   - sh C:\Multi-Runner\mfobuild\05_build_mfoset\mfoset.sh
   tags:
   - mfototal_win
-
-MFO_TOTAL_ENV_a:
-  stage: env_conf
+  
+mfo_rts_linux64:
+  stage: build
+  script:
+  - sh /home/gitlab-runner/rts_linux_build.sh
+  tags:
+  - devqa118
+  
+mfo_pack_linux:
+  stage: linux_package
+  script:
+  - sh /home/gitlab-runner/linux_packaging.sh
+  tags:
+  - devqa29
+  
+sendingfile:
+  stage: send_file
   script:
   - sh C:\Multi-Runner\mfobuild\06_etc\sendfile.sh
   tags:
   - mfototal_win
-
-MFO_TOTAL_ENV_b:
-  stage: env_conf
+  
+devqa21_ora_patch:
+  stage: setting_env
   script:
   - sh /home/gitlab-runner/build_test.sh
   tags:
   - devqa21
-
-MFO_TOTAL_ENV_c:
-  stage: env_conf
+  
+devqa24_ora_new:
+  stage: setting_env
+  script:
+  - sh /home/gitlab-runner/build_test.sh
+  tags:
+  - devqa24
+  
+devqa20_pg_new:
+  stage: setting_env
+  script:
+  - sh C:\cygwin64\home\Administrator\build_test.sh
+  tags:
+  - devqa20
+  
+devqa22_pg_patch:
+  stage: setting_env
   script:
   - bash /home/gitlab-runner/build_test.sh
   tags:
   - devqa22
-

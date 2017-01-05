@@ -1,12 +1,11 @@
 ## Written by EXEM Co., Ltd. DEVQA BSH
-## Last modified 2016.09.02
+## Last modified 2017.01.03
 ## Default source Directory
 
 DG_TAR_FILE_DIR="C:/Multi-Runner/mfodg/deploy/MFO/tar"
 PJS_FILE_DIR="C:/Multi-Runner/mfonp/deploy/MFO/PlatformJS"
 WEBSRC_DIR="C:/Multi-Runner/mfoweb"
 NPOUT_DIR="C:/Multi-Runner/mfonp/deploy/MFO"
-PACK_DIR="C:/Multi-Runner/package"
 
 REQEUIRER_CHECK()
 {
@@ -26,6 +25,7 @@ GET_IPADDRESS_REPO_OR_TARGET ()
 	##WHO, PART 쿼리 그냥 조인 시키면 됨... REQUIRER Table 하나 만들고 원하는데에서 쿼리로 변형 후 입력 default는 QA, REPO )
 	PART="REPO"
 	WHO="QA"
+	REMARK="LINUX_PACKAGING"
 	## Here are choices of PART. 
 	## REPO, TARGET, GIT
 	## Here are choices of WHO.
@@ -33,8 +33,9 @@ GET_IPADDRESS_REPO_OR_TARGET ()
 
 	echo "SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
 	select ipaddr from ipaddress i join requirer r
-	on i.PART = r.PART
-	and i.WHO = r.WHO;" > checkout_tag.sql
+	on i.PART = 'BUILD'
+	and i.WHO = r.WHO
+	and i.REMARK='LINUX_PACKAGING';" > checkout_tag.sql
 	REPO_OR_TARGER_IPADDR=`echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql`
 	sleep 1
 	rm checkout_tag.sql
@@ -59,6 +60,8 @@ PJS_FILE_SEND()
 	do
 		echo -e "git" | pscp $PJS_FILE gitlab-runner@${REPO_OR_TARGET_IP}:/home/gitlab-runner/pjs8080;
 	done
+	## 리눅스 패키징을 위해 만든 압축파일이라 지운다, 추후 send file 섹터에서 다시 압축함.
+	rm $PJS_FILE
 }
 
 MAKE_PJS_ZIP_FILE ()
@@ -67,38 +70,6 @@ MAKE_PJS_ZIP_FILE ()
 	cd $NPOUT_DIR/PlatformJS
 	7z.exe a PlatformJS_${BUILD_NUMBER}.zip -x!*.zip
 }
-	
-SENDING_VALUE ()
-{
-## VALUE=
-## 1 require
-## 2 Compile&Build
-## 3 Send File to requirer
-## 0 Waiting
- 
-echo "
-update runner_stat set value='3' where run_comp='mfototal_win';" > checkout_tag.sql
-echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql
-sleep 1
-rm checkout_tag.sql
-}
-
-TAKE_LINUX_TOTAL_PACK()
-{
-	##WHO, PART 쿼리 그냥 조인 시키면 됨... REQUIRER Table 하나 만들고 원하는데에서 쿼리로 변형 후 입력 default는 QA, REPO )
-
-	echo "SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
-	select ipaddr from ipaddress i join requirer r
-	on i.PART = 'BUILD'
-	and i.WHO = r.WHO
-	and i.REMARK='LINUX_PACKAGING';" > checkout_tag.sql
-	REPO_OR_TARGET_IP=`echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql`
-	sleep 1
-	rm checkout_tag.sql
-
-	cd ${PACK_DIR}
-	echo -e "git" | pscp gitlab-runner@${REPO_OR_TARGET_IP}:/home/gitlab-runner/*.tar ./;
-}
 
 SEND_FILE_TO_REQUIRER()
 {
@@ -106,40 +77,15 @@ case $REQ_TAG in
 	totalwopjs|total)
 ## PlatformJS & DataGather ( total - CI PROCESS )
 ## total은 INNOSETUP패키지&리눅스 자동설치까지 포함하는 개념이다.
-## totalwopjs 는 INNOSETUP패키지 파일 2개중 PJS만 있는 것을 제외하고 만든다.
-	DG_FILE_SEND
-	MAKE_PJS_ZIP_FILE
-	PJS_FILE_SEND
-	TAKE_LINUX_TOTAL_PACK
-	;;
-	nwsd|nwd|nsd|nd|wsd|wd|sd)
-## PlatformJS & DataGather
+## totalwopjs는 INNOSETUP패키지 파일 2개중 PJS만 있는 것을 제외하고 만든다.
 	DG_FILE_SEND
 	MAKE_PJS_ZIP_FILE
 	PJS_FILE_SEND
 	;;
-	nws|nw|ns|n|ws|w|s)
-## Only PlatformJS
-	MAKE_PJS_ZIP_FILE
-	PJS_FILE_SEND
-	;;
-	d)
-## Only DataGather
-	DG_FILE_SEND;;
 esac
-}
-
-REMOVE_RECORD_OF_REQUIRER_TABLE()
-{
-echo "truncate table requirer;" > insert_tag.sql
-echo "update runner_stat set value='0' where run_comp='mfototal_win';" >> insert_tag.sql
-REQUIRER_INFO=`echo exit | sqlplus -silent git/git@DEVQA23 @insert_tag.sql`
-sleep 1
-rm insert_tag.sql
 }
 
 REQEUIRER_CHECK
 GET_IPADDRESS_REPO_OR_TARGET
-SENDING_VALUE
 SEND_FILE_TO_REQUIRER
-REMOVE_RECORD_OF_REQUIRER_TABLE
+

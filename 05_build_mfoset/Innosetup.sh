@@ -18,15 +18,24 @@ OUTPUTDIR="C:\Multi-Runner\package"
 ISS_FILE_DIR="C:/Multi-Runner/package/MFO_ISS_SCRIPT.ISS"
 ISS_FILE_DIR2="C:/Multi-Runner/package/MFO_ISS_SCRIPT2.ISS"
 
-
-DIR_ATTACHMENT="NAME: {app}\\"
-FILES_ATTACHMENT1="Source: "
-FILES_ATTACHMENT2="; DestDir: {app}\\"
-
-
 TOTAL_PACKAGE="$DGSERVER_M_HOME $DGSERVER_S1_HOME $PLATFORMJS_HOME $XMPING_HOME $DATABASE_HOME"
 MFO_ORA_PACAKAGE="$PLATFORMJS_HOME"
 MFO_PG_PACAKAGE="$PLATFORMJS_HOME"
+
+REQUIRER_CHECK()
+{
+echo "SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;" > insert_tag.sql
+echo "select WHO, PART, REQ_TAG from requirer;" >> insert_tag.sql
+REQUIRER_INFO=`echo exit | sqlplus -silent git/git@DEVQA23 @insert_tag.sql`
+sleep 1
+rm insert_tag.sql
+
+USING_USER=`echo $REQUIRER_INFO | awk '{print $1}'`
+FOR_WHAT=`echo $REQUIRER_INFO | awk '{print $2}'`
+## 여기서는 REQ_TAG 변수만 사용함
+## Only Var 'REQ_TAG' is used in this shell.
+REQ_TAG=`echo $REQUIRER_INFO | awk '{print $3}'`
+}
 
 ISS_FILE_MAKER()
 {
@@ -40,6 +49,8 @@ ISS_FILE_MAKER()
 	ISS_FILE_CODE_PART_MFO_TOTAL
 	MAKE_UP_FOR_NEXT_SETUP
 #ONLY PJS WITHOUT DG&REPO
+case $REQ_TAG in
+	total)
 	MINOR_FILE_NAME="_ONLY_PJS"
 	ISS_FILE_TOP_PART
 	for CURR_DIR in $MFO_ORA_PACAKAGE
@@ -48,6 +59,8 @@ ISS_FILE_MAKER()
 	done
 	ISS_FILE_CODE_PART_ONLY_PJS
 	MAKE_UP_FOR_NEXT_SETUP
+	;;
+esac
 ## NEW JAVA PJS 이전의 패키지
 #REPO_ORACLE_PACKAGE
 	# MINOR_FILE_NAME="_Oracle"
@@ -71,6 +84,9 @@ ISS_FILE_MAKER()
 
 FILE_DIR_ATTACH_ROUTINE()
 {
+	DIR_ATTACHMENT="NAME: {app}\\"
+	FILES_ATTACHMENT1="Source: "
+	FILES_ATTACHMENT2="; DestDir: {app}\\"
 	#IFS는 필드 구분자이며 엔터를 기준으로 나눔 for 문에서 필요함.
 	#VARAIBLE, IFS, means delimeter and each sentence is splited by enter '
 	IFS=$'
@@ -3562,5 +3578,5 @@ end;
 [Files]" >> $ISS_FILE_DIR
 }
 
-
+REQUIRER_CHECK
 ISS_FILE_MAKER
