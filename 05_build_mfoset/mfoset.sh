@@ -290,9 +290,6 @@ RENAME_INNOSETUPFILES_FOR_DEPLOY ()
 	mv $PJS_ONLY  $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[PlatformJS]_[$PJS_DATE].exe
 	TOTAL_PACKAGE=`ls *MaxGauge*`
 	mv $TOTAL_PACKAGE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setsup]_[$PJS_DATE].exe
-	## 리눅스 패키지도 여기에 포함시킴
-	## Linux total package also included in this function.
-	mv ./*.tar $PACKAGE_DIR/$MFO_PACKAGE_VER/
 }
 
 WRITE_DOWN_TAG_INFO ()
