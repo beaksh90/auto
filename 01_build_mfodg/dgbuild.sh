@@ -1,5 +1,5 @@
 ## Written by EXEM Co., Ltd. DEVQA BSH
-## Last modified 2016.08.25
+## Last modified 2017.01.11
 ## Default source Directory
 DGSRC_DIR="C:/Multi-Runner/mfodg"
 DGSMS_DIR="C:/Multi-Runner/mfosms"
@@ -9,30 +9,24 @@ DGOUT_DIR="C:/Multi-Runner/mfodg/deploy/mfo"
 DGETC_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
 ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
 
-echo "DG BUILD..!"
+## I Think that there are so tiny Changes of component, so I do hard coding.
+## 변화가 많치 않은 형상항목들이라 하드코딩 처리하였고, 필요시 매뉴얼하게 변경함.
+DGSMS_TAG_VER="mfosms_161109.01"
+DGMAIL_TAG_VER="mfomail_161109.01"
+DGAPI_TAG_VER="mfoapi_161109.01"
 
-FETCH_TAG_VER_DG ()
-{
-	COMP_TAG="MFODG_TAG"
-	## Here are choices of COMP_TAGs. 
-	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
-	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG 
-	cd $DGSRC_DIR
-	echo "
-	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
-	select $COMP_TAG from mfo_tag t join runner_stat r
-	on t.MFO_RELEASE_VER = r.TOTAL_VER
-	where r.RUN_COMP='mfototal_win';" > checkout_tag.sql
-	TAG=`echo exit | sqlplus -slient git/git@DEVQA23 @checkout_tag.sql`
-	sleep 1
-	rm checkout_tag.sql
-	git checkout $TAG
-}
+echo "================================================"
+echo "Data Gather Compile & BUILD & Packaging Start..!"
+echo "================================================"
 
-CHECKOUT_MASTER()
+GIT_CHECKOUT_SMS_MAIL_API()
 {
-	cd $DGSRC_DIR
-	git checkout master
+cd $DGSMS_DIR
+git checkout $DGSMS_TAG_VER
+cd $DGMAIL_DIR
+git checkout $DGMAIL_TAG_VER
+cd $DGAPI_DIR
+git checkout $DGAPI_TAG_VER
 }
 
 CLEAN_DG_FILES ()
@@ -40,7 +34,7 @@ CLEAN_DG_FILES ()
 	rm -rf $DGOUT_DIR
 }
 
-ECLIPCE_AND_BUILD()
+EXECUTE_ANT_SCRIPT()
 {
 	cd $ANT_BUILD_SCRIPT_DIR
 	ant -buildfile mfodg_ant.xml
@@ -79,6 +73,7 @@ CP_DG_JAR()
 	cp -av $DGETC_DIR/DGServer_M $DGOUT_DIR/DGServer_M
 	cp -av $DGETC_DIR/DGServer_S1 $DGOUT_DIR/DGServer_S1
 	cp -av $DGETC_DIR/XmPing $DGOUT_DIR/XmPing
+	cp -av $DGETC_DIR/PG_Backup $DGOUT_DIR/PG_Backup
 	cp -av $DG_FILE $DGOUT_DIR/DGServer_M/bin
 	cp -av $DG_FILE $DGOUT_DIR/DGServer_S1/bin
 	cp -av $SMS_FILE $DGOUT_DIR/DGServer_S1/svc
@@ -121,6 +116,35 @@ JAR_TO_EXE()
 	rm ./DGJAR2EXE.bat
 }
 
+INSERT_TAG_VALUE_TO_DGSCTL ()
+{
+	## Here are choices of COMP_TAGs. 
+	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
+	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG 
+	echo "
+	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
+	select MFODG_TAG from mfo_tag t join runner_stat r
+	on t.MFO_RELEASE_VER = r.TOTAL_VER
+	where r.RUN_COMP='mfototal_win';" > checkout_tag.sql
+
+	MFODG_TAG_VALUE=`echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql`
+	sleep 1
+	rm checkout_tag.sql
+	
+	
+	## Data Gather Master
+	DGSCTL_TEMPLETE=$DGOUT_DIR/DGServer_M/bin/dgsctl
+	DGSCTL_TEMPLETE_SED=$DGOUT_DIR/DGServer_M/bin/dgsctl_sed
+	sed -e 's/TAG\_VALUE\=\"will\_support\_as\_of\_2016\.11\"/TAG\_VALUE\=\"'$MFODG_TAG_VALUE'\"/g' $DGSCTL_TEMPLETE > ${DGSCTL_TEMPLETE_SED}
+	mv ${DGSCTL_TEMPLETE_SED} $DGSCTL_TEMPLETE
+	
+	## Data Gather Slave
+	DGSCTL_TEMPLETE=$DGOUT_DIR/DGServer_S1/bin/dgsctl
+	DGSCTL_TEMPLETE_SED=$DGOUT_DIR/DGServer_S1/bin/dgsctl_sed
+	sed -e 's/TAG\_VALUE\=\"will\_support\_as\_of\_2016\.11\"/TAG\_VALUE\=\"'$MFODG_TAG_VALUE'\"/g' $DGSCTL_TEMPLETE > ${DGSCTL_TEMPLETE_SED}
+	mv ${DGSCTL_TEMPLETE_SED} $DGSCTL_TEMPLETE
+}
+
 MAKE_TAR()
 {
 	SERV_DESC=$DG_TITLE$DG_MAJOR.$DG_MINOR
@@ -133,35 +157,28 @@ MAKE_TAR()
 	mv $DGOUT_DIR/DGServer_M $DGOUT_DIR/tar/DGServer_M
 	mv $DGOUT_DIR/DGServer_S1 $DGOUT_DIR/tar/DGServer_S1
 	mv $DGOUT_DIR/XmPing $DGOUT_DIR/tar/XmPing
+	mv $DGOUT_DIR/PG_Backup $DGOUT_DIR/tar/PG_Backup
 	cd $DGOUT_DIR/tar
-	7z.exe a $TAR_NAME -x!*.tar
 	cp -v $DGOUT_DIR/tar/DGServer_S1/bin/mxg_obsd/win64/mxg_obsd_x64.exe  $DGOUT_DIR/tar/DGServer_S1/bin/mxg_obsd.exe
 	cp -v $DGOUT_DIR/tar/DGServer_M/bin/mxg_obsd/win64/mxg_obsd_x64.exe  $DGOUT_DIR/tar/DGServer_M/bin/mxg_obsd.exe
+	7z.exe a $TAR_NAME -x!*.tar
 }
 
-INIT_SRC_RM_AND_COPY()
-{
-	rm -rf C:/Multi-Runner/workspace/MFO_DataGather/src
-	cp -av C:/Multi-Runner/mfodg/src C:\Multi-Runner/workspace/MFO_DataGather/src
-}
-
-DG_GO()
-{
-#	FETCH_TAG_VER_DG
+### Data Gather BUILD & Packaging Logic
 	CLEAN_DG_FILES
-	ECLIPCE_AND_BUILD
+	GIT_CHECKOUT_SMS_MAIL_API
+	EXECUTE_ANT_SCRIPT
 	VERSION_CHECK
 if [ "$ERROR" != "1" ]; then
 	CP_DG_JAR;
 	JAR_TO_EXE;
+	INSERT_TAG_VALUE_TO_DGSCTL;
 	MAKE_TAR;
 else
 	echo RUNABLE_JAR_VER is	$RUNABLE_DG_JAR_VER;
 	echo SOURCE_VERSION  is 	$SERV_DESC;
 fi
-#	CHECKOUT_MASTER
-}
 
-DG_GO
-
-echo "DG_BUILD [ $RUNABLE_DG_JAR_VER ] END"
+echo "========================================================================="
+echo "Data Gather BUILD & Packaging[ $RUNABLE_DG_JAR_VER ] END"
+echo "========================================================================="

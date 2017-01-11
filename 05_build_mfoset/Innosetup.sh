@@ -1,5 +1,5 @@
 ## Written by EXEM Co., Ltd. DEVQA BSH
-## Last modified 2016.11.11
+## Last modified 2017.01.11
 ## Default source Directory
 ## 경로를 표시 할 때 윈도우(\) , 리눅스(/) 간 차이가 있음. 
 ## There are difference of expression of dilimeter between Win(\) and Linux(/)
@@ -9,6 +9,7 @@ DGSERVER_M_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/DGServer_M"
 DGSERVER_S1_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/DGServer_S1"
 PLATFORMJS_HOME="C:/Multi-Runner/mfonp/deploy/MFO/PlatformJS"
 XMPING_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/XmPing"
+PGBACKUP_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/PG_Backup"
 
 INNOSETUP_LANG_HOME="C:\Multi-Runner\mfobuild\05_build_mfoset\innosetup-lang"
 LICENSEFILE="C:\Multi-Runner\mfobuild\05_build_mfoset\license.rtf"
@@ -18,7 +19,7 @@ OUTPUTDIR="C:\Multi-Runner\package"
 ISS_FILE_DIR="C:/Multi-Runner/package/MFO_ISS_SCRIPT.ISS"
 ISS_FILE_DIR2="C:/Multi-Runner/package/MFO_ISS_SCRIPT2.ISS"
 
-TOTAL_PACKAGE="$DGSERVER_M_HOME $DGSERVER_S1_HOME $PLATFORMJS_HOME $XMPING_HOME $DATABASE_HOME"
+TOTAL_PACKAGE="$DGSERVER_M_HOME $DGSERVER_S1_HOME $PLATFORMJS_HOME $XMPING_HOME $PGBACKUP_HOME $DATABASE_HOME"
 MFO_ORA_PACAKAGE="$PLATFORMJS_HOME"
 MFO_PG_PACAKAGE="$PLATFORMJS_HOME"
 
@@ -40,6 +41,9 @@ REQ_TAG=`echo $REQUIRER_INFO | awk '{print $3}'`
 ISS_FILE_MAKER()
 {
 #ISS 오리지널 그대로 만들고자 이런 로직이 만들어지게 되었음.
+## 16.11.11 FUNC 'ISS_FILE_TOP_PART' , 
+##               'ISS_FILE_CODE_PART_MFO_TOTAL'
+##               'ISS_FILE_CODE_PART_ONLY_PJS' has changed.
 #TOTAL PACKAGE
 	ISS_FILE_TOP_PART
 	for CURR_DIR in $TOTAL_PACKAGE
@@ -116,7 +120,8 @@ MAKE_UP_FOR_NEXT_SETUP()
 {
 	cat $ISS_FILE_DIR2 >> $ISS_FILE_DIR
 	rm $ISS_FILE_DIR2
-	ISCC $ISS_FILE_DIR
+	## Q option means silent mode , P option means show progress
+	ISCC /qp $ISS_FILE_DIR
 	rm $ISS_FILE_DIR
 }
 

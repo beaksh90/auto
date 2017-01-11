@@ -13,7 +13,7 @@
             <database_type>postgres</database_type>
             <database_ip>127.0.0.1</database_ip>
             <database_port>5432</database_port>
-            <database_sid>MFO</database_sid>
+            <database_sid service="false">MFO</database_sid>
             <database_user>postgres</database_user>
             <database_password>postgres</database_password>            
         </DBPool>
@@ -34,6 +34,7 @@
         <debug>false</debug>
         <socket_timeout>60</socket_timeout>
         <query_timeout>0</query_timeout>
-        <log_retention_days>10</log_retention_days>        
+        <log_retention_days>10</log_retention_days>
+	<exa_use>false</exa_use>
     </AdditionalOptions>
 </DataGather>

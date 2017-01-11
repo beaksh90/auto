@@ -1,5 +1,5 @@
 ## Written by EXEM Co., Ltd. DEVQA BSH
-## Last modified 2016.08.25
+## Last modified 2017.01.11
 ## Default source Directory
 NPSRC_DIR="C:/Multi-Runner/mfonp"
 NPOUT_DIR="C:/Multi-Runner/mfonp/deploy/MFO"
@@ -15,12 +15,16 @@ SQLOUT_DIR="$SET_NP_DIR/sql"
 
 ANT_BUILD_SCRIPT_DIR="C:\Multi-Runner\mfonp\platformjs"
 
+echo "===================================================="
+echo "JAVA PlatformJS Compile & BUILD & Packaging Start..!"
+echo "===================================================="
+
 CLEAN_NP_FILES ()
 {
 	rm -rf $NPOUT_DIR
 }
 
-ECLIPCE_AND_BUILD()
+EXECUTE_ANT_SCRIPT()
 {
 	cd $ANT_BUILD_SCRIPT_DIR
 	ant -buildfile build_MFO.xml
@@ -56,21 +60,30 @@ INSERT_TAG_VALUE_TO_PJSCTL ()
 	MFOWEB_TAG_VALUE=`echo $TAG | awk '{print $2}'`
 	MFOSQL_TAG_VALUE=`echo $TAG | awk '{print $3}'`
 	PJSCTL_TEMPLETE=$SET_NP_DIR/config/template/pjsctl_linux
-	sed -i 's/MFONP\ will_support_as_of_2016.11/'$MFONP_TAG_VALUE'/g' $PJSCTL_TEMPLETE
-	sed -i 's/MFOWEB\ will_support_as_of_2016.11/'$MFOWEB_TAG_VALUE'/g' $PJSCTL_TEMPLETE
-	sed -i 's/MFOSQL\ will_support_as_of_2016.11/'$MFOSQL_TAG_VALUE'/g' $PJSCTL_TEMPLETE
+	PJSCTL_TEMPLETE_SED=$SET_NP_DIR/config/template/pjsctl_linux_sed
+	sed -e 's/MFONP\ will_support_as_of_2016.11/MFONP\ '$MFONP_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
+	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
+	sed -e 's/MFOWEB\ will_support_as_of_2016.11/MFOWEB\ '$MFOWEB_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
+	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
+	sed -e 's/MFOSQL\ will_support_as_of_2016.11/MFOSQL\ '$MFOSQL_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
+	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
 }
-	
-CHECKOUT_MASTER_NP()
+
+CP_SQL()
 {
-	cd $NPSRC_DIR
-	git checkout master
+	mkdir -p $SQLOUT_DIR
+	echo " START TO COPY SQL STATEMENT"
+	cp -a $SQLSRC_DIR/MFO_Oracle $SQLOUT_DIR
+	cp -a $SQLSRC_DIR/MFO_PostgreSQL $SQLOUT_DIR
+	echo " END TO COPY SQL STATEMENT"
 }
 
 CP_WEB()
 {
-mkdir -p $WEBOUT_DIR
-cp -av $WEBSRC_DIR/* $WEBOUT_DIR
+	mkdir -p $WEBOUT_DIR
+	echo " START TO COPY JAVA SCRIPTS"
+	cp -a $WEBSRC_DIR/* $WEBOUT_DIR
+	echo " END TO COPY JAVA SCRIPTS"
 }
 
 JAVASCRIPT_COMPRESS()
@@ -92,82 +105,60 @@ JAVASCRIPT_COMPRESS()
 	# Cannot use array, cause too low bash version.
 
 	DIR="$JAVASCRIPT_MAXGAUGE_DIR"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\common"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\config"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\config\\view"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\Exem "
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\Exem\\chart"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\Exem\\config"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\PA"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\PA\\container"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\PA\\view"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\popup"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\RTM"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\RTM\\Frame"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\RTM\\tools"
-	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR\\RTM\\view"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/common"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/config"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/config/view"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/Exem "
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/Exem/chart"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/Exem/config"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/PA"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/PA/container"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/PA/view"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/popup"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/RTM"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/RTM/Frame"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/RTM/tools"
+	DIR="$DIR $JAVASCRIPT_MAXGAUGE_DIR/RTM/view"
 
-	#ls $JAVASCRIPT_MAXGAUGE_DIR\\lib\\IMXWS.js
+	#ls $JAVASCRIPT_MAXGAUGE_DIR/lib/IMXWS.js
 	for DIR_PRE in ${DIR}
 		do
 		cd $DIR_PRE; 
 			for APP in `ls | grep \.js | grep -v extjs`;
 			do
-				APP_DIR=$DIR_PRE\\${APP}
+				APP_DIR=$DIR_PRE/${APP}
 				echo $APP_DIR
 				jso -s -c $APP_DIR;
 				unset APP_DIR;
 			done
 	done
 
-	jso -s -c $JAVASCRIPT_MAXGAUGE_DIR\\lib\\IMXWS.js
+	jso -s -c $JAVASCRIPT_MAXGAUGE_DIR/lib/IMXWS.js
 }
 
-CHECKOUT_MASTER_WEB()
+MAKE_PJS_ZIP_FILE ()
 {
-	cd $WEBSRC_DIR
-	git checkout 5.3.2_July
+	BUILD_NUMBER=`cat ${WEBSRC_DIR}/common/VersionControl.js | grep "var BuildNumber" | awk -F "'" '{print $2}'`
+	cd $NPOUT_DIR/PlatformJS
+	7z.exe a PlatformJS_${BUILD_NUMBER}.zip -x!*.zip
+	PJS_FILE=`ls PlatformJS*.zip`
+	mkdir -p $NPOUT_DIR/zip
+	mv $SET_NP_DIR/$PJS_FILE $NPOUT_DIR/zip/
 }
 
-CP_SQL()
-{
-mkdir -p $SQLOUT_DIR
-cp -av $SQLSRC_DIR/MFO_Oracle $SQLOUT_DIR
-cp -av $SQLSRC_DIR/MFO_PostgreSQL $SQLOUT_DIR
-}
+## JAVA PlatformJS
+	CLEAN_NP_FILES
+	EXECUTE_ANT_SCRIPT
+	GET_NP_FILES
+	INSERT_TAG_VALUE_TO_PJSCTL
+## SQL
+	CP_SQL
+## JAVA SCRIPT 
+	CP_WEB
+	JAVASCRIPT_COMPRESS
+## Packaging 
+	MAKE_PJS_ZIP_FILE
 
-CHECKOUT_MASTER_SQL()
-{
-	cd $SQLSRC_DIR
-	git checkout MFO5.3
-}
-
-NEWPJS()
-{
-CLEAN_NP_FILES
-ECLIPCE_AND_BUILD
-GET_NP_FILES
-INSERT_TAG_VALUE_TO_PJSCTL
-#CHECKOUT_MASTER_NP
-}
-
-WEB()
-{
-CP_WEB
-JAVASCRIPT_COMPRESS
-#CHECKOUT_MASTER_WEB
-}
-
-SQL()
-{
-CP_SQL
-#CHECKOUT_MASTER_SQL
-}
-
-
-NEWPJS
-SQL
-WEB
-
-
-
+echo "=================================================="
+echo "JAVA PlatformJS Compile & BUILD & Packaging End..!"
+echo "=================================================="

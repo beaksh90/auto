@@ -12,7 +12,7 @@
             <database_type>postgres</database_type>
             <database_ip>127.0.0.1</database_ip>
             <database_port>5432</database_port>
-            <database_sid>MFO</database_sid>
+            <database_sid service="false">MFO</database_sid>
             <database_user>postgres</database_user>
             <database_password>postgres</database_password>            
         </DBPool>
@@ -46,6 +46,8 @@
         <max_record_hour>1</max_record_hour>
         <max_record_size>1024</max_record_size>
         <log_retention_days>10</log_retention_days>
+	<exa_use>false</exa_use>
+	<sql_hint_top_segment>false</sql_hint_top_segment>
     </AdditionalOptions>
     <AlarmOptions>
         <alarm_only>false</alarm_only>

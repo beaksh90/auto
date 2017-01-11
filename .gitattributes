@@ -23,6 +23,7 @@
  01_build_mfodg/DGServer_S1/conf/mail.xml  eol=lf
  01_build_mfodg/DGServer_S1/conf/sms.xml  eol=lf
  01_build_mfodg/XmPing/ReadMe.txt  eol=lf
+ 01_build_mfodg/PG_Backup/pg_backup_linux.sh  eol=lf
  02_build_mfonp/config/config.json  eol=lf
  02_build_mfonp/server/bin/jetty/jetty-distribution-9.2.11.v20150529/README.TXT  eol=lf
  02_build_mfonp/server/bin/jetty/jetty-distribution-9.2.11.v20150529/VERSION.txt  eol=lf
@@ -578,6 +579,10 @@
  02_build_mfonp/server/utils/win/openssl-0.9.8k_X64/include/openssl/x509v3.h  eol=lf
  02_build_mfonp/server/utils/win/openssl-0.9.8k_X64/openssl.cnf  eol=lf
  05_build_mfoset/innosetup-lang/Thai.isl  eol=lf
+ 06_etc/gitlab_server/gitlab-update.sh  eol=lf
+ 06_etc/gitlab_server/tag_checker.sh  eol=lf
+ 06_etc/win_repo/build_test.sh  eol=lf
+ 06_etc/win_repo/chmod.bat  eol=lf
  07_build_mfopg/pg94101/pgadmin3/install-pgadmin3.py.    eol=lf
  07_build_mfopg/pg94101/pgadmin3/pgAdmin[[:space:]]III/branding/Makefile.am.    eol=lf
  07_build_mfopg/pg94101/pgadmin3/pgAdmin[[:space:]]III/docs/en_US/_static/basic.css.    eol=lf
