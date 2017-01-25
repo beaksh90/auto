@@ -70,22 +70,22 @@ VERSION_CHECK()
 
 CP_DG_JAR()
 {
-	cp -av $DGETC_DIR/DGServer_M $DGOUT_DIR/DGServer_M
-	cp -av $DGETC_DIR/DGServer_S1 $DGOUT_DIR/DGServer_S1
-	cp -av $DGETC_DIR/XmPing $DGOUT_DIR/XmPing
-	cp -av $DGETC_DIR/PG_Backup $DGOUT_DIR/PG_Backup
-	cp -av $DG_FILE $DGOUT_DIR/DGServer_M/bin
-	cp -av $DG_FILE $DGOUT_DIR/DGServer_S1/bin
-	cp -av $SMS_FILE $DGOUT_DIR/DGServer_S1/svc
-	cp -av $MAIL_FILE $DGOUT_DIR/DGServer_S1/svc
-	cp -av $API_FILE $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGETC_DIR/DGServer_M $DGOUT_DIR/DGServer_M
+	cp -a $DGETC_DIR/DGServer_S1 $DGOUT_DIR/DGServer_S1
+	cp -a $DGETC_DIR/XmPing $DGOUT_DIR/XmPing
+	cp -a $DGETC_DIR/PG_Backup $DGOUT_DIR/PG_Backup
+	cp -a $DG_FILE $DGOUT_DIR/DGServer_M/bin
+	cp -a $DG_FILE $DGOUT_DIR/DGServer_S1/bin
+	cp -a $SMS_FILE $DGOUT_DIR/DGServer_S1/svc
+	cp -a $MAIL_FILE $DGOUT_DIR/DGServer_S1/svc
+	cp -a $API_FILE $DGOUT_DIR/DGServer_S1/svc
 
-	cp -av $DGSMS_DIR/sample_sms.unit $DGOUT_DIR/DGServer_S1/svc
-	cp -av $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc
-	cp -av $DGMAIL_DIR/sample_mail.unit $DGOUT_DIR/DGServer_S1/svc
-	cp -av $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc
-	cp -av $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc
-	cp -av $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGSMS_DIR/sample_sms.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGMAIL_DIR/sample_mail.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc
 }
 
 JAR_TO_EXE()

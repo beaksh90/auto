@@ -134,12 +134,12 @@ TAKE_LINUX_TOTAL_PACK()
 	
 	echo "REPO OR TARGET SERVER IPADDRESS = [ $REPO_OR_TARGET_IP ] "
 	cd ${PACK_DIR}
-	echo -e "\n === START to take Win Full Package ==="
+	echo -e "\n === START to take Linux Full Package ==="
 	echo -e "git" | pscp gitlab-runner@${REPO_OR_TARGET_IP}:/home/gitlab-runner/*.tar ./;
 	## 리눅스 패키지도 여기에 포함시킴
 	## Linux total package also included in this function.
 	mv ./*.tar ${PACK_DIR}/${MFO_PACKAGE_VER}/
-	echo " === END to take Win Full Package ==="
+	echo " === END to take Linux Full Package ==="
 }
 
 SEND_FILE_TO_REQUIRER()
