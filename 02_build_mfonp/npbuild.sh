@@ -30,16 +30,13 @@ EXECUTE_ANT_SCRIPT()
 	ant -buildfile build_MFO.xml
 }
 
-GET_NP_FILES()
+MV_NP_FILES()
 {
 	#configuration.bat파일로 막 생성된 np경로 추적함.
 	cd $NPOUT_DIR
 	DIR=`find ./ -name configuration.bat`
 	NP_FILES_DIR=`dirname $DIR`
-	echo $NP_FILES_DIR
 	mv $NP_FILES_DIR  $SET_NP_DIR
-	cp $NP_SERVICE_DIR/* $SET_NP_DIR
-	cp $NP_CONFIG_DIF/* $SET_NP_DIR/config/
 }
 
 INSERT_TAG_VALUE_TO_PJSCTL ()
@@ -67,6 +64,15 @@ INSERT_TAG_VALUE_TO_PJSCTL ()
 	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
 	sed -e 's/MFOSQL\ will_support_as_of_2016.11/MFOSQL\ '$MFOSQL_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
 	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
+	
+
+}
+
+EXECUTE_CONFIGURATION ()
+{
+	## 2017.02.10 configuration 실행하여 생성하는 것으로 로직을 변경함
+	cd $SET_NP_DIR
+	echo -e  "1\n\n\n\n\n\n\n\n\n\n\n1\n\n0\n\n\n" | sh $SET_NP_DIR/configuration.bat
 }
 
 CP_SQL()
@@ -149,8 +155,9 @@ MAKE_PJS_ZIP_FILE ()
 ## JAVA PlatformJS
 	CLEAN_NP_FILES
 	EXECUTE_ANT_SCRIPT
-	GET_NP_FILES
+	MV_NP_FILES
 	INSERT_TAG_VALUE_TO_PJSCTL
+	EXECUTE_CONFIGURATION
 ## SQL
 	CP_SQL
 ## JAVA SCRIPT 

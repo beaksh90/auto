@@ -28,6 +28,11 @@
             <partition>true</partition>
             <compress_partition>true</compress_partition>
 			<domain_index>false</domain_index>
+			<rac>false</rac>
+			<rac_ip>127.0.0.1</rac_ip>
+			<rac_port>1521</rac_port>
+			<rac_load_balance>false</rac_load_balance>
+			<rac_fail_over>false</rac_fail_over>
         </DatabaseType_Oracle>
     </DefaultOptions>
     <AdditionalOptions>
@@ -35,6 +40,7 @@
         <socket_timeout>60</socket_timeout>
         <query_timeout>0</query_timeout>
         <log_retention_days>10</log_retention_days>
-	<exa_use>false</exa_use>
+		<exa_use>false</exa_use>
+		<initialize_limit>1</initialize_limit>
     </AdditionalOptions>
 </DataGather>

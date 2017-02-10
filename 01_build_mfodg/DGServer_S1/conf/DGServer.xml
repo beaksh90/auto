@@ -35,6 +35,11 @@
             <session_cached_cursors>0</session_cached_cursors>
             <cached_preparestatement>true</cached_preparestatement>
 			<domain_index>false</domain_index>
+			<rac>false</rac>
+			<rac_ip>127.0.0.1</rac_ip>
+			<rac_port>1521</rac_port>
+			<rac_load_balance>false</rac_load_balance>
+			<rac_fail_over>false</rac_fail_over>
         </DatabaseType_Oracle>
     </DefaultOptions>
     <AdditionalOptions>
