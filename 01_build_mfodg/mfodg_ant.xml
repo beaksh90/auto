@@ -51,7 +51,6 @@
             <fileset dir="${build.dir}/${class.dir}"/>
 			<zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/bcprov-ext-jdk15on-150.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/exem-ext-crypto.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/ojdbc5.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/postgresql-9.4-1201.jdbc4.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/tibero5-jdbc-14.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/xm_common_util.jar"/>
