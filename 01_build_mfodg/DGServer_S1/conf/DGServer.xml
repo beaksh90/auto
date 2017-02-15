@@ -12,10 +12,20 @@
             <database_type>postgres</database_type>
             <database_ip>127.0.0.1</database_ip>
             <database_port>5432</database_port>
-            <database_sid service="false">MFO</database_sid>
+            <database_sid service="false">MFO</database_sid><!--When using oracle repo by service name, then make service="true" -->
             <database_user>postgres</database_user>
             <database_password>postgres</database_password>            
         </DBPool>
+		<RAC_DBPool use="false"
+			 encrypt="false"
+			 load_balance="false"
+			 fail_over="false"
+			 user="maxgauge"
+			 password="maxgauge"
+			 global_name="RACDB">
+			<node address="127.0.0.1" port="1521" />
+			<node address="127.0.0.1" port="1521" />
+		</RAC_DBPool>
         <ConnectionPool>
             <connection_pool_init_size>5</connection_pool_init_size>
             <connection_pool_max_size>10</connection_pool_max_size>
@@ -35,11 +45,6 @@
             <session_cached_cursors>0</session_cached_cursors>
             <cached_preparestatement>true</cached_preparestatement>
 			<domain_index>false</domain_index>
-			<rac>false</rac>
-			<rac_ip>127.0.0.1</rac_ip>
-			<rac_port>1521</rac_port>
-			<rac_load_balance>false</rac_load_balance>
-			<rac_fail_over>false</rac_fail_over>
         </DatabaseType_Oracle>
     </DefaultOptions>
     <AdditionalOptions>
