@@ -321,32 +321,43 @@ AutoStartProgramGroupDescription=スタートアップ:
 AutoStartProgram=%1 を自動的に開始する
 AddonHostProgramNotFound=選択されたフォルダーに %1 が見つかりませんでした。%n%nこのまま続行しますか？
 
-chromeNotInstalledMsg = Chrome browser should be installed.(43.X over)
-JDKNotIstalledMsg1    =  JDK should be installed (JDK1.6 over)
-JDKNotIstalledMsg2    =  - also JAVA_HOME should be set on system property
+DatabaseInfoForm_Caption=PlatformJS情報
+DatabaseInfoForm_Description=リポジトリDB情報を入力ください。
+DatabaseInfoForm_DatabaseName=リポジトリ名
+DatabaseInfoForm_DatabaseType=タイプ
+DatabaseInfoForm_DatabaseServer=サーバーIP
+DatabaseInfoForm_Database=データベース名
+DatabaseInfoForm_DatabaseUser=DBユーザー
+DatabaseInfoForm_Databasepwd=パスワード
+DatabaseInfoForm_port=ポート番号
+DatabaseInfoForm_DatabaseDescription=説明
+DatabaseInfoForm_FileWrite=書込み
+DatabaseInfoForm_GatherIP=DGマスタのIP
+DatabaseInfoForm_GatherPort=DGマスタのポート
+DatabaseInfoForm_TnsName=SID
 
-DatabaseInfoForm_Caption=Platform JS インフォメ?ション.
-DatabaseInfoForm_Description=デ?タベ?ス情報入力.
-DatabaseInfoForm_DatabaseName=デ?タベ?ス名
-DatabaseInfoForm_DatabaseServer=サ?バ?(IP)
-DatabaseInfoForm_DatabaseUser=ユ?ザ?
-DatabaseInfoForm_Databasepwd=パスワ?ド
-DatabaseInfoForm_port=ポ?ト
-DatabaseInfoForm_DatabaseDescription=ディスクリプション
-DatabaseInfoForm_FileWrite=Write
-DatabaseInfoForm_GatherIP=ギャザ?IP
-DatabaseInfoForm_GatherPort=ギャザ?ポ?ト
-DatabaseInfoForm_DatabaseType=Type
-DatabaseInfoForm_Database=Database
+emptyMsg_DataBaseName = データベース名を入力してください。
+emptyMsg_SelectType   = タイプを入力してください。
+emptyMsg_ServerIP     = サーバ(IP)を入力してください。
+emptyMsg_Database     = データベースを入力してください。
+emptyMsg_User         = ユーザーを入力してください。
+emptyMsg_Pwd          = パスワードを入力してください。
+emptyMsg_Port         = ポートを入力してください。
+emptyMsg_GatherIp     = ギャザーIPを入力してください。
+emptyMsg_GatherPort   = ギャザーポートを入力してください。
+emptyMsg_TnsName      = SIDを入力してください。
 
 
-selectInstall64 = オラクルクライアント64ビットだけチェックしてください. %n (32ビットはチェックしないでください);
-launchMsg       = マックス・ゲージ コンフィギュレーション 駆動
-registrationPG  = PostgreSQLを登録中...
-startServicePG  = PostgreSQLサービスを起動中...
 
-chromeNotInstalledMsg = Chrome browser should be installed.(43.X over)
-JDKNotIstalledMsg1    =  JDK should be installed (JDK1.6 over)
-JDKNotIstalledMsg2    =  - also JAVA_HOME should be set on system property
 
-InputNumberErrMsg = Please enter only numbers
+selectInstall64 =64bitのOracleクライアントの場合をチェックする(32bitの場合チェックしない)
+launchMsg       =環境構成画面の開く
+registrationPG  =PostgreSQLサービスを登録中
+startServicePG  =PostgreSQLサービスを起動中
+
+chromeNotInstalledMsg = Chromeブラウザ(48.0以上)がインストールしてください。
+JDKNotIstalledMsg1    = JDK(1.8以上)をインストールしてください。
+JDKNotIstalledMsg2    = また「JAVA_HOME」のシステム環境変数を設定してください。
+
+
+InputNumberErrMsg = 数字を入力してください。

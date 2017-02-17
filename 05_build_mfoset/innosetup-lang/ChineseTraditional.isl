@@ -343,6 +343,20 @@ DatabaseInfoForm_FileWrite=Write
 DatabaseInfoForm_GatherIP=Gather IP
 DatabaseInfoForm_GatherPort=Gather Port
 
+DatabaseInfoForm_TnsName=SID
+
+emptyMsg_DataBaseName = Please Enter Database Name 
+emptyMsg_SelectType   = Please select Type
+emptyMsg_ServerIP     = Please Enter Server(IP)
+emptyMsg_Database     = Please Enter Database
+emptyMsg_User         = Please Enter User
+emptyMsg_Pwd          = Please Enter password
+emptyMsg_Port         = Please Enter Port
+emptyMsg_GatherIp     = Please Enter Gather IP
+emptyMsg_GatherPort   = Please Enter Gather Port
+emptyMsg_TnsName      = Please Enter SID
+
+
 selectInstall64 = Select if you installed 64-bit Oracle client. %n (Don't select if you installed 32-bit)
 launchMsg       = Launch Maxgauge Configuration
 registrationPG  = Registration of postgreSQL... 

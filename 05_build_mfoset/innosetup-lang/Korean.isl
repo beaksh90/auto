@@ -336,6 +336,20 @@ DatabaseInfoForm_FileWrite=Write
 DatabaseInfoForm_GatherIP=Gather IP
 DatabaseInfoForm_GatherPort=Gather Port
 
+DatabaseInfoForm_TnsName=SID
+
+emptyMsg_DataBaseName = Please Enter Database Name 
+emptyMsg_SelectType   = Please select Type
+emptyMsg_ServerIP     = Please Enter Server(IP)
+emptyMsg_Database     = Please Enter Database
+emptyMsg_User         = Please Enter User
+emptyMsg_Pwd          = Please Enter password
+emptyMsg_Port         = Please Enter Port
+emptyMsg_GatherIp     = Please Enter Gather IP
+emptyMsg_GatherPort   = Please Enter Gather Port
+emptyMsg_TnsName      = Please Enter SID
+
+
 
 selectInstall64 = 64 비트 Oracle 클라이언트를 설치 한 경우 선택합니다. %n (32 비트를 설치 한 경우 선택하지 마십시오.)
 launchMsg       = Maxgauge Configuration 실행
