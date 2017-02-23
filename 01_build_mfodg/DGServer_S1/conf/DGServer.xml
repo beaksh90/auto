@@ -57,11 +57,11 @@
         <max_record_size>1024</max_record_size>
         <log_retention_days>10</log_retention_days>
 	<exa_use>false</exa_use>
-	<sql_hint_top_segment>false</sql_hint_top_segment>
     </AdditionalOptions>
     <AlarmOptions>
         <alarm_only>false</alarm_only>
         <sms_alertlog_length>0</sms_alertlog_length>
+		<sms_alertlog_line>3</sms_alertlog_line>
         <cont_alert_interval>60</cont_alert_interval>
 		<rts_daemon_disconnect_repeat_count>1</rts_daemon_disconnect_repeat_count>
     </AlarmOptions>

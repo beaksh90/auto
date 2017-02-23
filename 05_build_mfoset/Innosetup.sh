@@ -111,20 +111,24 @@ FILE_DIR_ATTACH_ROUTINE()
 		echo -e "$DIRS" | awk '{gsub(/\//,"\\"); print}' >> $ISS_FILE_DIR
 	done
 	
-	for FILES in `find -type f | awk '{gsub(/\.\//,""); print}'`
-		do 
-		FILES_DIR=`dirname $FILES | awk '{gsub(/\.\//,"/"); print}'`
-		if [ "$FILES_DIR" = "." ]; then FILES_DIR=""; fi
-		FILES="$FILES_ATTACHMENT1$CURR_DIR\\$FILES$FILES_ATTACHMENT2$BASENAME_DIR\\$FILES_DIR"
-		echo "$FILES"| awk '{gsub(/\//,"\\"); print}' >> $ISS_FILE_DIR2
-	done
+	## TUNINIG SUCCESS AS OF 2017.02.22 
+	## TOTAL BUILD TIME 25' -> 10'
+	# for FILES in `find -type f | awk '{gsub(/\.\//,""); print}'`
+		# do 
+		# FILES_DIR=`dirname $FILES | awk '{gsub(/\.\//,"/"); print}'`
+		# if [ "$FILES_DIR" = "." ]; then FILES_DIR=""; fi
+		# FILES="$FILES_ATTACHMENT1$CURR_DIR\\$FILES$FILES_ATTACHMENT2$BASENAME_DIR\\$FILES_DIR"
+		# echo "$FILES"| awk '{gsub(/\//,"\\"); print}' >> $ISS_FILE_DIR2
+	# done
 	IFS=$' '
 }
 
 MAKE_UP_FOR_NEXT_SETUP()
 {
-	cat $ISS_FILE_DIR2 >> $ISS_FILE_DIR
-	rm $ISS_FILE_DIR2
+	## TUNINIG SUCCESS AS OF 2017.02.22, 'ISS_FILE_DIR2' is useless
+	## TOTAL BUILD TIME 25' -> 10'
+	# cat $ISS_FILE_DIR2 >> $ISS_FILE_DIR
+	# rm $ISS_FILE_DIR2
 	## Q option means silent mode , P option means show progress
 	ISCC /qp $ISS_FILE_DIR
 	rm $ISS_FILE_DIR
@@ -3142,7 +3146,13 @@ begin
   DatabaseInfoForm_CreatePage(wpSelectTasks);
 end;
 
-[Files]" >> $ISS_FILE_DIR
+[Files]
+Source: C:\Multi-Runner\mfodg\deploy\MFO\tar\DGServer_M\*; DestDir: {app}\DGServer_M\; Flags:\"recursesubdirs\";
+Source: C:\Multi-Runner\mfodg\deploy\MFO\tar\DGServer_S1\*; DestDir: {app}\DGServer_S1\; Flags:\"recursesubdirs\";
+Source: C:\Multi-Runner\mfonp\deploy\MFO\PlatformJS\*; DestDir: {app}\PlatformJS\; Flags:\"recursesubdirs\";
+Source: C:\Multi-Runner\mfodg\deploy\MFO\tar\XmPing\*; DestDir: {app}\XmPing\; Flags:\"recursesubdirs\";
+Source: C:\Multi-Runner\mfodg\deploy\MFO\tar\PG_Backup\*; DestDir: {app}\PG_Backup\; Flags:\"recursesubdirs\";
+Source: C:\Database\*; DestDir: {app}\Database\; Flags:\"recursesubdirs\"; " >> $ISS_FILE_DIR
 }
 
 ISS_FILE_CODE_PART_ONLY_PJS()
@@ -3960,7 +3970,8 @@ begin
   DatabaseInfoForm_CreatePage(wpInstalling);
 end;
 
-[Files]" >> $ISS_FILE_DIR
+[Files]
+Source: C:\Multi-Runner\mfonp\deploy\MFO\PlatformJS\*; DestDir: {app}\PlatformJS\; Flags:\"recursesubdirs\";	" >> $ISS_FILE_DIR
 }
 
 REQUIRER_CHECK

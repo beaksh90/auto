@@ -13,9 +13,9 @@
             <database_type>postgres</database_type>
             <database_ip>127.0.0.1</database_ip>
             <database_port>5432</database_port>
-            <database_sid service="false">MFO</database_sid><!--When connect oracle repo by service name, then make service="true" -->
+            <database_sid service="false">MFO</database_sid><!--When connect to oracle by service name, then make service option true-->
             <database_user>postgres</database_user>
-            <database_password>postgres</database_password>            
+            <database_password>postgres</database_password>
         </DBPool>
 	<RAC_DBPool use="false"
 		 encrypt="false"
@@ -29,6 +29,7 @@
 	</RAC_DBPool>
         <DatabaseType_Postgres>
 		    <pool_commit>true</pool_commit>
+			<gather_vacuum>true</gather_vacuum><!--After partitions drop, Gather will call vacuum manually-->
 			<vacuum_max_pool>3</vacuum_max_pool>
 		</DatabaseType_Postgres>
         <DatabaseType_Oracle>

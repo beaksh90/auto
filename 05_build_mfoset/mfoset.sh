@@ -12,6 +12,7 @@ export BUILD_DIR="C:/Multi-Runner/mfobuild"
 export KEEP_EMPTY_SCRIPT_DIR="C:/Multi-Runner/mfobuild/06_etc"
 export PACKAGE_DIR="C:/Multi-Runner/package"
 export PG_INSTALL_FILE="C:/Multi-Runner/mfobuild/07_build_mfopg"
+export MAIN_DIR="C:/Multi-Runner"
 
 echo "the first step is setting git_tag "
 
@@ -70,7 +71,7 @@ FETCH_TOTAL_VER_INFO ()
 	## 자잘한 모든 형상항목의 버전을 다 보여준다.
 	echo "
 	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
-	select MFONP_TAG,MFOWEB_TAG,MFOSQL_TAG,MFODG_TAG,MFOBUILD_TAG,MFORTS_TAG from mfo_tag t join runner_stat r
+	select MFONP_TAG,MFOWEB_TAG,MFOSQL_TAG,MFODG_TAG,MFOBUILD_TAG from mfo_tag t join runner_stat r
 	on t.MFO_RELEASE_VER = r.TOTAL_VER
 	where r.RUN_COMP='mfototal_win';" > checkout_tag.sql
 
@@ -95,42 +96,36 @@ FETCH_TOTAL_VER_INFO ()
 TAG_VALUE_VAILD_CHECK ()
 {
 TAG_VAILD_ISSUE=0
-## 1 mfobuild
-cd $BUILD_DIR
-TAG_EXIST=`git tag -l | grep $MFOBUILD_TAG_VALUE | wc -l`
-if [ $TAG_EXIST = 0 ]; then TAG_VAILD_ISSUE=`expr $TAG_VAILD_ISSUE + 1`; 
-echo " $MFOBUILD_TAG_VALUE can not be checkouted"; fi
-unset TAG_EXIST
 
-cd $DGSRC_DIR
-TAG_EXIST=`git tag -l | grep $MFODG_TAG_VALUE | wc -l`
-if [ $TAG_EXIST = 0 ]; then TAG_VAILD_ISSUE=`expr $TAG_VAILD_ISSUE + 1 `;
-echo " $MFODG_TAG_VALUE can not be checkouted"; fi
-unset TAG_EXIST
-
-cd $NPSRC_DIR
-TAG_EXIST=`git tag -l | grep $MFONP_TAG_VALUE | wc -l`
-if [ $TAG_EXIST = 0 ]; then TAG_VAILD_ISSUE=`expr $TAG_VAILD_ISSUE + 1 `;
-echo " $MFONP_TAG_VALUE can not be checkouted"; fi
-unset TAG_EXIST
-
-cd $WEBSRC_DIR
-TAG_EXIST=`git tag -l | grep $MFOWEB_TAG_VALUE | wc -l`
-if [ $TAG_EXIST = 0 ]; then TAG_VAILD_ISSUE=`expr $TAG_VAILD_ISSUE + 1 `;
-echo " $MFOWEB_TAG_VALUE can not be checkouted"; fi
-unset TAG_EXIST
-
-cd $SQLSRC_DIR
-TAG_EXIST=`git tag -l | grep $MFOSQL_TAG_VALUE | wc -l`
-if [ $TAG_EXIST = 0 ]; then TAG_VAILD_ISSUE=`expr $TAG_VAILD_ISSUE + 1 `; 
-echo " $MFOSQL_TAG_VALUE can not be checkouted"; fi
-unset TAG_EXIST
+for TAG_VER in $TAG
+do
+	CONF_ITEM=`echo $TAG_VER | awk -F "_" '{print $1}'`
+	cd ${MAIN_DIR}/${CONF_ITEM}
+	TAG_EXIST=`git tag -l | grep $TAG_VER | wc -l`
+	
+	if [ $TAG_EXIST = 0 ]; then
+	git fetch git@${GIT_IPADDR}:mfo/${CONF_ITEM}.git --tag
+	TAG_EXIST=`git tag -l | grep $TAG_VER | wc -l`
+	
+		if [ $TAG_EXIST = 0 ]; then
+		TAG_VAILD_ISSUE=`expr $TAG_VAILD_ISSUE + 1`; 
+		echo
+		echo " $TAG_VER can not be checkouted"; 
+		fi
+	else
+		echo " $TAG_VER is available"; 
+	fi
+	unset TAG_EXIST
+done
 
 echo
 if [ $TAG_VAILD_ISSUE -gt 0 ]; then
 	echo " Tag VER Valid check : [Fail]" 
 	echo " 'TAG VAILD ISSUE' is should be fixed in advancd "
 	echo " To prevent next problems, Build Processing is going to be closed."
+	# MAKE it stop..!
+	echo "abc > ./error.sh";
+	sh error.sh ; rm ./error.sh;
 else
 	echo " Tag VER Valid check : [Pass]" 
 fi
