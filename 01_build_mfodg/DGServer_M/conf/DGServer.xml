@@ -13,7 +13,7 @@
             <database_type>postgres</database_type>
             <database_ip>127.0.0.1</database_ip>
             <database_port>5432</database_port>
-            <database_sid service="false">MFO</database_sid><!--When connect to oracle by service name, then make service option true-->
+            <database_sid service="false">MFO</database_sid><!--When connected to oracle by service name, then make service option true-->
             <database_user>postgres</database_user>
             <database_password>postgres</database_password>
         </DBPool>
@@ -47,5 +47,8 @@
         <log_retention_days>10</log_retention_days>
 		<exa_use>false</exa_use>
 		<initialize_limit>1</initialize_limit>
+		<partition_create_from>0</partition_create_from><!-- 0 means 00:00 AM -->
+		<partition_drop_from>3</partition_drop_from><!-- 3 means 03:00 AM -->
+		<partition_drop_to>8</partition_drop_to><!-- When failed, Gather will retry to drop partitions until 08:00 AM -->
     </AdditionalOptions>
 </DataGather>
