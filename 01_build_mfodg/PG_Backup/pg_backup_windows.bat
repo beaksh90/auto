@@ -1,8 +1,8 @@
 @ECHO OFF
 REM pg engine, 경로설정
-SET PGPATH=C:\EXEM\Database\bin
-SET SCRIPT_PATH=C:\EXEM_old\backup
-SET OUTPUT_PATH=C:\EXEM_old\backup
+SET PGPATH=""
+SET SCRIPT_PATH=
+SET OUTPUT_PATH=
 
 REM pg 접속정보 설정
 SET PGIP=127.0.0.1
@@ -10,6 +10,7 @@ SET pgport=5432
 SET PGUSER=postgres
 SET PGPASS=postgres
 SET DBNAME=MFO
+
 
 
 set ARG1=%1
@@ -47,7 +48,7 @@ goto :sub_menu%MENU1%
 echo.
 echo *** Select Instance List [Interactive Mode]
 echo -------------------------------------------------
-$PGPATH\psql --host %PGIP% --port %PGPORT% --username %PGUSER% -t -d %DBNAME% -c "select db_id,instance_name from apm_db_info order by db_id;"  
+%PGPATH%\psql --host %PGIP% --port %PGPORT% --username %PGUSER% -t -d %DBNAME% -c "select db_id,instance_name from apm_db_info order by db_id;"  
 
 if "%ARG2%"=="" (set /p SMENU1= "- Select Number of Instance For Backup (Type [all] for All Instances)  :") else (set SMENU1=%ARG2%)
 
