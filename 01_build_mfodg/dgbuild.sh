@@ -76,15 +76,15 @@ CP_DG_JAR()
 	cp -a $DGETC_DIR/PG_Backup $DGOUT_DIR/PG_Backup
 	cp -a $DG_FILE $DGOUT_DIR/DGServer_M/bin
 	cp -a $DG_FILE $DGOUT_DIR/DGServer_S1/bin
-	cp -a $SMS_FILE $DGOUT_DIR/DGServer_S1/svc
-	cp -a $MAIL_FILE $DGOUT_DIR/DGServer_S1/svc
-	cp -a $API_FILE $DGOUT_DIR/DGServer_S1/svc
+	cp -a $SMS_FILE $DGOUT_DIR/DGServer_S1/svc/sms.jar
+	cp -a $MAIL_FILE $DGOUT_DIR/DGServer_S1/svc/mail.jar
+	cp -a $API_FILE $DGOUT_DIR/DGServer_S1/svc/api.jar
 
-	cp -a $DGSMS_DIR/sample_sms.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGSMS_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc/api.unit
 	cp -a $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc/sms.xml
-	cp -a $DGMAIL_DIR/sample_mail.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGMAIL_DIR/sample_mail.unit $DGOUT_DIR/DGServer_S1/svc/mail.unit
 	cp -a $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc/mail.xml
-	cp -a $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc/api.unit
 	cp -a $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc/api.xml
 }
 
