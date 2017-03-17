@@ -81,11 +81,11 @@ CP_DG_JAR()
 	cp -a $API_FILE $DGOUT_DIR/DGServer_S1/svc
 
 	cp -a $DGSMS_DIR/sample_sms.unit $DGOUT_DIR/DGServer_S1/svc
-	cp -a $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc/sms.xml
 	cp -a $DGMAIL_DIR/sample_mail.unit $DGOUT_DIR/DGServer_S1/svc
-	cp -a $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc/mail.xml
 	cp -a $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc
-	cp -a $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc
+	cp -a $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc/api.xml
 }
 
 JAR_TO_EXE()
