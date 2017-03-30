@@ -2877,8 +2877,8 @@ begin
 			'obs1_keyword=DGServer_M_x86_64'+#13#10 +
 			'obs1_keyword2=DGServer_M_x86_64'+#13#10 +
 			'obs1_cpu_limit=80'+ #13#10 +
-			'obs1_mem_limit='+FloatToStr((strTofloat(edtMasterGather.Text)+1) * 1024 *1024)+ #13#10 +
-			'obs1_init_wait=180'+ #13#10 +
+			'obs1_mem_limit='+FloatToStr((strTofloat(edtMasterGather.Text)+0.5) * 1024 *1024)+ #13#10 +
+			'obs1_init_wait=20'+ #13#10 +
 			'obs1_activity_time=300'+ #13#10 +
 			'obs1_activity_file=dg.act';
 
@@ -2889,7 +2889,7 @@ begin
 			'obs1_keyword2=DGServer_S1_x86_64'+#13#10 +
 			'obs1_cpu_limit=80'+ #13#10 +
 			'obs1_mem_limit='+FloatToStr((strTofloat(edtSlaveGather.Text)+1) * 1024 *1024)+ #13#10 +
-			'obs1_init_wait=180'+ #13#10 +
+			'obs1_init_wait=20'+ #13#10 +
 			'obs1_activity_time=300'+ #13#10 +
 			'obs1_activity_file=dg.act';
 
