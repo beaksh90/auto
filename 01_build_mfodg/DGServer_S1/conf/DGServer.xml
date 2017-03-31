@@ -12,20 +12,20 @@
             <database_type>postgres</database_type>
             <database_ip>127.0.0.1</database_ip>
             <database_port>5432</database_port>
-            <database_sid service="false">MFO</database_sid><!--When using oracle repo by service name, then make service="true" -->
+            <database_sid service="false">MFO</database_sid><!--When connected to oracle by service name, then make service option true-->
             <database_user>postgres</database_user>
             <database_password>postgres</database_password>            
         </DBPool>
-		<RAC_DBPool use="false"
-			 encrypt="false"
-			 load_balance="false"
-			 fail_over="false"
-			 user="maxgauge"
-			 password="maxgauge"
-			 global_name="RACDB">
-			<node address="127.0.0.1" port="1521" />
-			<node address="127.0.0.1" port="1521" />
-		</RAC_DBPool>
+        <RAC_DBPool use="false"
+             encrypt="false"
+             load_balance="false"
+             fail_over="false"
+             user="maxgauge"
+             password="maxgauge"
+             global_name="RACDB">
+            <node address="127.0.0.1" port="1521" />
+            <node address="127.0.0.1" port="1521" />
+        </RAC_DBPool>
         <ConnectionPool>
             <connection_pool_init_size>5</connection_pool_init_size>
             <connection_pool_max_size>10</connection_pool_max_size>
@@ -36,15 +36,15 @@
             <sysdaily_conn_max>1</sysdaily_conn_max>
             <sqldaily_conn_max>1</sqldaily_conn_max>
         </ConnectionPool>
-		<DatabaseType_Postgres>
-		    <pool_commit>true</pool_commit>
-		</DatabaseType_Postgres>
+        <DatabaseType_Postgres>
+            <pool_commit>true</pool_commit>
+        </DatabaseType_Postgres>
         <DatabaseType_Oracle>
             <commit_write></commit_write>
             <statistics_level></statistics_level>
             <session_cached_cursors>0</session_cached_cursors>
             <cached_preparestatement>true</cached_preparestatement>
-			<domain_index>false</domain_index>
+            <domain_index>false</domain_index>
         </DatabaseType_Oracle>
     </DefaultOptions>
     <AdditionalOptions>
@@ -56,13 +56,14 @@
         <max_record_hour>1</max_record_hour>
         <max_record_size>1024</max_record_size>
         <log_retention_days>10</log_retention_days>
-	<exa_use>false</exa_use>
+        <sysstat_abnormal_increase_factor>0</sysstat_abnormal_increase_factor><!-- When the value of certain statistics ascends significantly compared to former values(*option value), Gather will exclude the value [ex) 0 : unuse, only natural number] -->
+        <exa_use>false</exa_use>
     </AdditionalOptions>
     <AlarmOptions>
         <alarm_only>false</alarm_only>
         <sms_alertlog_length>0</sms_alertlog_length>
-		<sms_alertlog_line>3</sms_alertlog_line>
+        <sms_alertlog_line>3</sms_alertlog_line>
         <cont_alert_interval>60</cont_alert_interval>
-		<rts_daemon_disconnect_repeat_count>1</rts_daemon_disconnect_repeat_count>
+        <rts_daemon_disconnect_repeat_count>1</rts_daemon_disconnect_repeat_count>
     </AlarmOptions>
 </DataGather>

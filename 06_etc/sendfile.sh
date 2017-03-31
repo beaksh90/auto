@@ -158,12 +158,10 @@ case $REQ_TAG in
 	nwsd|nwd|nsd|nd|wsd|wd|sd)
 ## PlatformJS & DataGather
 	DG_FILE_SEND
-	MAKE_PJS_ZIP_FILE
 	PJS_FILE_SEND
 	;;
 	nws|nw|ns|n|ws|w|s)
 ## Only PlatformJS
-	MAKE_PJS_ZIP_FILE
 	PJS_FILE_SEND
 	;;
 	d)

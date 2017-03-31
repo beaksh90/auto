@@ -17,27 +17,27 @@
             <database_user>postgres</database_user>
             <database_password>postgres</database_password>
         </DBPool>
-	<RAC_DBPool use="false"
-		 encrypt="false"
-		 load_balance="false"
-		 fail_over="false"
-		 user="maxgauge"
-		 password="maxgauge"
-		 global_name="RACDB">
-		<node address="127.0.0.1" port="1521" />
-		<node address="127.0.0.1" port="1521" />
-	</RAC_DBPool>
+    <RAC_DBPool use="false"
+         encrypt="false"
+         load_balance="false"
+         fail_over="false"
+         user="maxgauge"
+         password="maxgauge"
+         global_name="RACDB">
+        <node address="127.0.0.1" port="1521" />
+        <node address="127.0.0.1" port="1521" />
+    </RAC_DBPool>
         <DatabaseType_Postgres>
-		    <pool_commit>true</pool_commit>
-			<gather_vacuum>true</gather_vacuum><!--After partitions drop, Gather will call vacuum manually-->
-			<vacuum_max_pool>3</vacuum_max_pool>
-		</DatabaseType_Postgres>
+        <pool_commit>true</pool_commit>
+            <gather_vacuum>true</gather_vacuum><!--After partitions drop, Gather will call vacuum manually-->
+            <vacuum_max_pool>3</vacuum_max_pool>
+        </DatabaseType_Postgres>
         <DatabaseType_Oracle>
             <tablespace>tablespace_name</tablespace>
             <index_tablespace>tablespace_name</index_tablespace>
             <partition>true</partition>
             <compress_partition>true</compress_partition>
-			<domain_index>false</domain_index>
+            <domain_index>false</domain_index>
         </DatabaseType_Oracle>
     </DefaultOptions>
     <AdditionalOptions>
@@ -45,10 +45,10 @@
         <socket_timeout>60</socket_timeout>
         <query_timeout>0</query_timeout>
         <log_retention_days>10</log_retention_days>
-		<exa_use>false</exa_use>
-		<initialize_limit>1</initialize_limit>
-		<partition_create_from>0</partition_create_from><!-- 0 means 00:00 AM -->
-		<partition_drop_from>3</partition_drop_from><!-- 3 means 03:00 AM -->
-		<partition_drop_to>8</partition_drop_to><!-- When failed, Gather will retry to drop partitions until 08:00 AM -->
+        <exa_use>false</exa_use>
+        <initialize_limit>1</initialize_limit>
+        <partition_create_from>0</partition_create_from><!-- 0 means 00:00 AM -->
+        <partition_drop_from>3</partition_drop_from><!-- 3 means 03:00 AM -->
+        <partition_drop_to>8</partition_drop_to><!-- When failed, Gather will retry to drop partitions until 08:00 AM -->
     </AdditionalOptions>
 </DataGather>
