@@ -13,7 +13,7 @@ ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
 ## 변화가 많치 않은 형상항목들이라 하드코딩 처리하였고, 필요시 매뉴얼하게 변경함.
 DGSMS_TAG_VER="mfosms_170306.01"
 DGMAIL_TAG_VER="mfomail_161109.01"
-DGAPI_TAG_VER="mfoapi_161109.01"
+DGAPI_TAG_VER="mfoapi_170406.01"
 
 echo "================================================"
 echo "Data Gather Compile & BUILD & Packaging Start..!"
