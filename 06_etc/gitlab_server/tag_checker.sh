@@ -1,40 +1,13 @@
-## Written by EXEM Co., Ltd. DEVQA BSH
-## Last modified 2017.03.31
+#!/bin/bash
+## Written by EXEM Co., Ltd. DEVQA BSH, ASM
+## Last modified 2017.04.14
 ## Default source Directory
+## tag count list file  '. ./.mxctl/tag_checker.conf'
 
-TAG_DIR[1]=/var/opt/gitlab/git-data/repositories/mfo/mfonp.git;  ## MFONP_DIR
-TAG_DIR[2]=/var/opt/gitlab/git-data/repositories/mfo/mfoweb.git; ## MFOWEB_DIR
-TAG_DIR[3]=/var/opt/gitlab/git-data/repositories/mfo/mfosql.git; ## MFOSQL_DIR
-TAG_DIR[4]=/var/opt/gitlab/git-data/repositories/mfo/mfodg.git;  ## MFODG_DIR
-TAG_DIR[5]=/var/opt/gitlab/git-data/repositories/mfo/mforts.git; ## MFORTS_DIR
-TAG_DIR[6]=/var/opt/gitlab/git-data/repositories/mfo/mfobuild.git; ## MFOBUILD_DIR
+MAIN_DIR="/var/opt/gitlab/git-data/repositories"
 WORKING_DIR=`pwd`
 sh /root/.bash_profile
-
-TAG_COUNT()
-{
-TAG_COUNT1[1]=15
-TAG_COUNT1[2]=23
-TAG_COUNT1[3]=14
-TAG_COUNT1[4]=26
-TAG_COUNT1[5]=12
-TAG_COUNT1[6]=36
-
-cd ${TAG_DIR[1]} ; ## MFONP_DIR
-TAG_COUNT2[1]=`git tag -l "mfonp*\_[0-9]*[.][0-9][0-9]" | wc -l`
-cd ${TAG_DIR[2]} ; ## MFOWEB_DIR
-TAG_COUNT2[2]=`git tag -l "mfoweb*\_[0-9]*[.][0-9][0-9]" | wc -l`
-cd ${TAG_DIR[3]} ; ## MFOSQL_DIR
-TAG_COUNT2[3]=`git tag -l "mfosql*\_[0-9]*[.][0-9][0-9]" | wc -l`
-cd ${TAG_DIR[4]} ; ## MFODG_DIR
-TAG_COUNT2[4]=`git tag -l "mfodg*\_[0-9]*[.][0-9][0-9]" | wc -l`
-cd ${TAG_DIR[5]} ; ## MFORTS_DIR
-TAG_COUNT2[5]=`git tag -l "mforts*\_[0-9]*[.][0-9][0-9]" | wc -l`
-cd ${TAG_DIR[6]} ; ## MFORTS_DIR
-TAG_COUNT2[6]=`git tag -l "mfobuild*\_[0-9]*[.][0-9][0-9]" | wc -l`
-
-MFO_BUILD_TAG_NEWEST=`git tag -l | tail -n 1`
-}
+CONF_ITEM_LIST="mfobuild mfonp mfoweb mfosql mfodg mforts " ## mfaweb mfasql mftweb mftsql"
 
 PREVENT_FROM_DUPLE_EXEC ()
 {
@@ -50,106 +23,124 @@ SONAR_SCANNER_PID=`ps -ef | grep -v "grep" | grep "/app/sonarqube/sonar-scanner"
     fi;
 }
 
-TAG_DIFF_GET()
+CHECK_IF_PUSHED_TAG_ARRIVE ()
 {
-TAG_KEY[1]="mfonp"
-TAG_KEY[2]="mfoweb"
-TAG_KEY[3]="mfosql"
-TAG_KEY[4]="mfodg"
-TAG_KEY[5]="mforts"
-TAG_KEY[6]="mfobuild"
 UPDATER=0
-
-for i in 1 2 3 4 5 6
+for CONF_ITEM in $CONF_ITEM_LIST
 do
-        if [ ${TAG_COUNT2[$i]} != ${TAG_COUNT1[$i]} ]; then
-                STEP=0
-                DIFF_COUNT=`expr ${TAG_COUNT2[$i]} - ${TAG_COUNT1[$i]}`
-                PASS_COUNT=`expr ${TAG_COUNT2[$i]} - ${DIFF_COUNT}`
-            cd ${TAG_DIR[$i]}
-            echo "Here is '${TAG_KEY[$i]}' Part "
+    CONF_ITEM_GROUP=`expr substr $CONF_ITEM 1 3` 
+    cd ${MAIN_DIR}/${CONF_ITEM_GROUP}/${CONF_ITEM}.git
+    TAG_COUNT2=`git tag -l "${CONF_ITEM}\_[0-9]*[.][0-9][0-9]" | wc -l`
+    TAG_COUNT1=`cat /var/opt/gitlab/.mxctl/tag_checker.conf | grep ${CONF_ITEM} | awk -F "=" '{print $2}'`
+    if [ "${CONF_ITEM}" = "mfobuild" ]; then MFO_BUILD_TAG_NEWEST=`git tag -l | tail -n 1`; fi
+        
+    if [ ${TAG_COUNT2} != ${TAG_COUNT1} ]; then
+        STEP=0
+        DIFF_COUNT=`expr ${TAG_COUNT2} - ${TAG_COUNT1}`
+        PASS_COUNT=`expr ${TAG_COUNT2} - ${DIFF_COUNT}`
+        echo "Here is '${CONF_ITEM}' Part "
 
-            for TAG in `git tag -l "${TAG_KEY[$i]}*\_[0-9]*[.][0-9][0-9]"`
-                do
-                STEP=`expr $STEP + 1`
-                if [ ${PASS_COUNT} -lt ${STEP} ]; then
-                    EXTRACT_DEV_MENTION
-                    echo "insert into  mfo_tag_part values('${TAG}','${MFO_BUILD_TAG_NEWEST}','${QUERY_DEV_MENTION}');" >> insert_tag.sql
-                    UPDATER=`expr $UPDATER + 1`
-                    STATIC_ANALYSIS_SONARQUBE
-                    SEND_MAIL
-                else
-                    PREVIOUS_TAG=$TAG
-                fi
-            done
-
-            echo exit | sqlplus -silent git/git@DEVQA23 @insert_tag.sql
-            sleep 1
-            rm insert_tag.sql
-        fi
+        for TAG in `git tag -l "${CONF_ITEM}\_[0-9]*[.][0-9][0-9]"`
+        do
+            STEP=`expr $STEP + 1`
+            if [ ${PASS_COUNT} -lt ${STEP} ]; then
+                EXTRACT_DEV_MENTION $PREVIOUS_TAG $TAG 
+                echo "insert into mfo_tag_part values('${TAG}','${MFO_BUILD_TAG_NEWEST}');" >> insert_tag.sql
+                UPDATER=`expr $UPDATER + 1`
+                #STATIC_ANALYSIS_SONARQUBE $CONF_ITEM $TAG $CONF_ITEM_GROUP $MAIN_DIR
+                SEND_MAIL $CONF_ITEM $PREVIOUS_TAG $TAG $CONF_ITEM_GROUP
+            fi
+                PREVIOUS_TAG=$TAG
+        done
+        
+        echo exit | sqlplus -silent git/git@DEVQA23 @insert_tag.sql
+        sleep 1
+        rm -rf insert_tag.sql
+    fi
+    ATTACHMENT="TAG_COUNT1[$CONF_ITEM]=${TAG_COUNT2}\n$ATTACHMENT";
 done
 }
 
 EXTRACT_DEV_MENTION ()
 {
+unset DEV_MENTION
 IFS="
 "
 for STATEMENT in `git log ${PREVIOUS_TAG}..${TAG}`;
 do
-    HEAD_WORD=`echo $STATEMENT | awk '{print $1}'`;
-    FILTERED_HEAD_WORD=`echo $HEAD_WORD | grep -E "commit|Author:|Date:|Merge|Merge:"`
-    if [ -z  $FILTERED_HEAD_WORD ]&&[ "$HEAD_WORD" != "" ]; then
-        DEV_MENTION="$DEV_MENTION $STATEMENT\n"
-        STATEMENT=`echo $STATEMENT | sed -re 's:\x27:\x27\x27:g'`
-        echo $STATEMENT;
-        QUERY_DEV_MENTION="$QUERY_DEV_MENTION $STATEMENT"
-    fi;
-done;
-IFS=" "
+    case `echo $STATEMENT | awk '{print $1}'` in
+        commit)
+            if [ `echo $STATEMENT | grep -E "commit .{40}"` ]; 
+            then
+                NEXT_HASH_CODE=`echo $STATEMENT | awk '{print $2}'`;
+            else
+                COLLECT_STATEMENT
+            fi
+        ;;
+        Author:|Date:|Merge|Merge:)
+        ;;
+        *)
+            COLLECT_STATEMENT
+        ;;
+    esac
+done
+COMMIT_MENT_INSERT_QUERY
+unset IFS
+unset HASH_CODE
 }
 
+COLLECT_STATEMENT ()
+{
+    DEV_MENTION="$DEV_MENTION $STATEMENT\n"
+    STATEMENT=`echo $STATEMENT | sed -re 's:\x27:\x27\x27:g'`
+    if [ "${NEXT_HASH_CODE}" != "${HASH_CODE}" ]&&[ $HASH_CODE ]; 
+    then
+        COMMIT_MENT_INSERT_QUERY
+        unset QUERY_DEV_MENTION
+    fi
+    QUERY_DEV_MENTION="$QUERY_DEV_MENTION $STATEMENT"
+    HASH_CODE=$NEXT_HASH_CODE
+}
+
+COMMIT_MENT_INSERT_QUERY ()
+{
+    echo "insert into mfo_git_comment values('${TAG}','${HASH_CODE}','${QUERY_DEV_MENTION}');"
+    echo "insert into mfo_git_comment values('${TAG}','${HASH_CODE}','${QUERY_DEV_MENTION}');"  >> insert_tag.sql                              
+}
 
 STATIC_ANALYSIS_SONARQUBE ()
 {
-if [ "${TAG_KEY[$i]}" = "mfonp" ]||[ "${TAG_KEY[$i]}" = "mfoweb" ]||[ "${TAG_KEY[$i]}" = "mfodg" ]; then
-    cd /app/sonarqube/static_analysis_items/${TAG_KEY[$i]}
-    git fetch git@10.10.32.101:mfo/${TAG_KEY[$i]}.git --tag
+if [ "${CONF_ITEM}" = "mfonp" ]||[ "${CONF_ITEM}" = "mfoweb" ]||[ "${CONF_ITEM}" = "mfodg" ]; then
+    cd /app/sonarqube/static_analysis_items/${CONF_ITEM}
+    git fetch git@10.10.32.101:mfo/${CONF_ITEM}.git --tag
     git checkout $TAG
     sed -i s/sonar.projectVersion=.*/sonar.projectVersion=$TAG/g ./sonar-project.properties
     sonar-scanner
-    cd ${TAG_DIR[$i]}
-    pwd
+    cd ${MAIN_DIR}/${CONF_ITEM_GROUP}/${CONF_ITEM}.git
     SONAR_URL=" 3.SONAR QUBE URL : http://10.10.32.101:9000/ "
 fi
 }
 
 SEND_MAIL ()
 {
-    CONF_ITEM=`echo ${PREVIOUS_TAG} | awk -F "_" '{print $1}'`
-
-    ALL_RECEIVER="beaksh90@naver.com mookiang@ex-em.com bsa@ex-em.com cryingpcs@ex-em.com"
-    MFOSQL_WEB_RECEIVER="hwankb@ex-em.com daru87@ex-em.com kangjm103@ex-em.com wnsrl56@ex-em.com gayoon.huh@ex-em.com"
-    MFODG_RECEIVER="ezra@ex-em.com magyeon@ex-em.com"
-    MFORTS_RECEIVER="jeungwoo.we@ex-em.com jcwon@ex-em.com wonsik@ex-em.com"
-    MFONP_RECEIVER="uizu99@ex-em.com hwankb@ex-em.com "
+    mfo_ALL_RECEIVER="beaksh90@naver.com mookiang@ex-em.com bsa@ex-em.com cryingpcs@ex-em.com"
+    mfosql_RECEIVER="hwankb@ex-em.com daru87@ex-em.com kangjm103@ex-em.com wnsrl56@ex-em.com gayoon.huh@ex-em.com"
+    mfoweb_RECEIVER="hwankb@ex-em.com daru87@ex-em.com kangjm103@ex-em.com wnsrl56@ex-em.com gayoon.huh@ex-em.com"
+    mfodg_RECEIVER="ezra@ex-em.com magyeon@ex-em.com"
+    mforts_RECEIVER="jeungwoo.we@ex-em.com jcwon@ex-em.com wonsik@ex-em.com"
+    mfonp_RECEIVER="uizu99@ex-em.com hwankb@ex-em.com "
 
     GET_WEBPAGE_SCREENSHOT $CONF_ITEM $PREVIOUS_TAG $TAG
-
-    MAIL_TEXT $ALL_RECEIVER
     
-    if [ `echo ${TAG} | grep mfosql` ]||[ `echo ${TAG} | grep mfoweb` ]; then
-        MAIL_TEXT $MFOSQL_WEB_RECEIVER
-    elif [ `echo ${TAG} | grep mfodg` ]; then
-        MAIL_TEXT $MFODG_RECEIVER
-    elif [ `echo ${TAG} | grep mforts` ]; then
-                MAIL_TEXT $MFORTS_RECEIVER
-    elif [ `echo ${TAG} | grep mfonp` ]; then
-                MAIL_TEXT $MFONP_RECEIVER
-    fi
-
+    GROUP_CONF_ITEM=`echo ${CONF_ITEM_GROUP}_ALL_RECEIVER` 
+    EACH_CONF_ITEM=`echo ${CONF_ITEM}_RECEIVER`
+    
+    MAIL_TEXT ${!GROUP_CONF_ITEM} ${!EACH_CONF_ITEM}
+    
     rm -rf ./difference*.png
     rm -rf ./getpage.js
 }
+
 
 MAIL_TEXT ()
 {
@@ -214,21 +205,8 @@ phantomjs getpage.js
 UPDATE_THIS_FILE ()
 {
 if [ $UPDATER != 0 ]; then
-    cd $WORKING_DIR
-    i=0
-    for i in 6 5 4 3 2 1
-    do
-        ATTACHMENT="TAG_COUNT1[$i]=${TAG_COUNT2[$i]}\n$ATTACHMENT";
-        echo "TAG_COUNT1[$i]=${TAG_COUNT2[$i]}"
-    done
-        sed -e "15 a$ATTACHMENT" $0 > .mxctl2.sh;
-
-    sed -n '1,21p;29,$p' .mxctl2.sh > .mxctl.sh;
-    echo  "TAG COUNT VALUE UPDATE START ======================= ";
-    echo  -e "sleep 1\nmv .mxctl.sh $0\nrm -rf mxctlsaver.sh\nrm -rf .mxctl2.sh" >> mxctlsaver.sh
-    echo  "chmod 775 $0" >> mxctlsaver.sh
-    echo  "echo  TAG COUNT VALUE UPDATE FINISH ======================" >> mxctlsaver.sh
-    sh mxctlsaver.sh
+    echo -e "$ATTACHMENT"
+    echo -e "$ATTACHMENT" > var/opt/gitlab/.mxctl/tag_checker.conf 
 fi
 }
 
@@ -247,6 +225,5 @@ export NLS_LANG=AMERICAN_AMERICA.UTF8
 
 PREVENT_FROM_DUPLE_EXEC
 ORACLE_ENV_VAR
-TAG_COUNT
-TAG_DIFF_GET
+CHECK_IF_PUSHED_TAG_ARRIVE
 UPDATE_THIS_FILE

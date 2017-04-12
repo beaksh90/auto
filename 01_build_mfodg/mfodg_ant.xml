@@ -49,7 +49,7 @@
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="${build.dir}/${class.dir}"/>
-			<zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/bcprov-ext-jdk15on-150.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/bcprov-ext-jdk15on-150.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/exem-ext-crypto.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/postgresql-9.4-1201.jdbc4.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/tibero5-jdbc-14.jar"/>
@@ -57,6 +57,9 @@
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/xm_customize.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/xm_db_conn.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/xm_sql_parser.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/logback-classic-1.2.3.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/logback-core-1.2.3.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dglibrary.dir}/slf4j-api-1.7.22.jar"/>
         </jar>
 		<delete dir="${build.dir}/${class.dir}"/>
     </target>
