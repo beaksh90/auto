@@ -52,6 +52,6 @@ create table mfo_tag_part(tag_info varchar2(30),
 create table mfo_git_comment(tag_info varchar2(30),
              hash_code varchar2(40),
 			 dev_mention varchar2(4000),
-             constraint git_comment_uk unique(hash_code)
+             constraint git_comment_uk unique(tag_info,hash_code)
 			  );
 -- * release note 또는 bug fix report를 만들기 위한 개발자 멘트 수집용 테이블이다.
