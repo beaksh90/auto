@@ -11,7 +11,7 @@ cd ..
 set WORKING_DIR=%cd%\
 
 IF EXIST "%PROGRAMFILES(X86)%" (
-sc create "%SERVICE_NAME%" DisplayName= "Exem_%SERVICE_NAME%" start=auto  binPath="%WORKING_DIR%bin\mxg_obsd\win64\mxg_obsd_x64.exe -f %WORKING_DIR%conf\DG\common.conf -i 10 -D -OTHERD"
+sc create "%SERVICE_NAME%" DisplayName= "Exem_%SERVICE_NAME%" start= auto  binPath= "%WORKING_DIR%bin\mxg_obsd\win64\mxg_obsd_x64.exe -f %WORKING_DIR%conf\DG\common.conf -i 10 -D -OTHERD"
 )ELSE (
-sc create "%SERVICE_NAME%" DisplayName= "Exem_%SERVICE_NAME%" start=auto  binPath="%WORKING_DIR%bin\mxg_obsd\win32\mxg_obsd.exe -f %WORKING_DIR%conf\DG\common.conf -i 10 -D -OTHERD"
+sc create "%SERVICE_NAME%" DisplayName= "Exem_%SERVICE_NAME%" start= auto  binPath= "%WORKING_DIR%bin\mxg_obsd\win32\mxg_obsd.exe -f %WORKING_DIR%conf\DG\common.conf -i 10 -D -OTHERD"
 )
