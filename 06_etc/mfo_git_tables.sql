@@ -34,7 +34,7 @@ create table ipaddress (who varchar2(20),
              remark varchar2(4000),
              constraint uk_address unique(ipaddr,part)
              );
--- * IP Address 에 관한 테이블이며, Client에서 요청하였을 때, 설치파일 전달 할 때 참조한다.		
+-- * IP Address 에 관한 테이블이며, Client에서 요청하였을 때, 설치파일 전달 할 때 참조한다.
  
 create table requirer (who varchar2(20),
              part varchar2(30),
@@ -51,7 +51,40 @@ create table mfo_tag_part(tag_info varchar2(30),
 
 create table mfo_git_comment(tag_info varchar2(30),
              hash_code varchar2(40),
-			 dev_mention varchar2(4000),
+             dev_mention varchar2(4000),
              constraint git_comment_uk unique(tag_info,hash_code)
-			  );
+              );
 -- * release note 또는 bug fix report를 만들기 위한 개발자 멘트 수집용 테이블이다.
+
+create table mfo_report(p1 varchar2(30),
+             p2 varchar2(30),
+             req_tag varchar2(4000),
+             req_time date 
+             );
+-- * release note 또는 bug fix report를 만들 때, 요구조건을 저장하는 테이블이다.
+
+create or replace procedure update_report_req
+    (p1_var IN varchar2, 
+    p2_var IN varchar2, 
+    req_tag_var IN varchar2)
+is
+    req_tag_check mfo_report.req_tag%type ;
+begin
+    select count(*)
+    into req_tag_check
+    from mfo_report
+    where req_tag = 'r';
+        if  req_tag_check = 1 then
+            UPDATE mfo_report SET
+            p1 = p1_var,
+            p2 = p2_var,
+            req_time = sysdate;
+        else
+            INSERT into mfo_report (p1, p2, req_tag, req_time )
+            VALUES (p1_var,p2_var,req_tag_var,sysdate);
+	    
+        end if ;
+    commit;
+end ;
+/
+-- * release note 또는 bug fix report를 만들 때, 요구조건을 입력하는 프로시저이다..

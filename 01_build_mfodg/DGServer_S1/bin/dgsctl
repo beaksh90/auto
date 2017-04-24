@@ -135,7 +135,7 @@ REPO_IP=`cat ${MXG_HOME}/conf/DGServer.xml | grep database_ip | sed 's/database_
 
 REPO_PORT=`cat ${MXG_HOME}/conf/DGServer.xml | grep database_port | sed 's/database_port/*/g' | tr -d '</* >'`
 
-REPO_SID=`cat ${MXG_HOME}/conf/DGServer.xml | grep database_sid | sed 's/database_sid/*/g' | tr -d '</* >'`
+REPO_SID=`cat ${MXG_HOME}/conf/DGServer.xml | grep database_sid | sed 's/database_sid//g' | sed 's/service=//g' | sed 's/"false"//g' | sed 's/"true"//g' | sed 's/<!--.*.-->//g' | tr -d '</ >'`
 
 echo "\t\t\t\033[33m < DATAGATHER STATUS CHECK > \033[36m"
 echo "      COMP PART      STATUS  PID  SERVICE_PORT   REPO_INFO\033[0m"
