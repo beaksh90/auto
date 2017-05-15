@@ -62,6 +62,7 @@
         <db_stop_sms_repeat>5</db_stop_sms_repeat><!-- When an individual misses an alert that shows a dead DB, resend the alarm [ the option value ] times -->
         <db_stop_sms_interval>10</db_stop_sms_interval><!-- When an individual misses an alert that shows a dead DB, resend the alarm every [ the option value ] second -->
         <exa_use>false</exa_use>
+        <log_level>INFO</log_level><!--Write down on log files [ INFO) As usual, DEBUG) As Debug mode ]--> 
     </AdditionalOptions>
     <AlarmOptions>
         <alarm_only>false</alarm_only>
