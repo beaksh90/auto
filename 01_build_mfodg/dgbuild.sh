@@ -12,7 +12,7 @@ ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
 ## I Think that there are so tiny Changes of component, so I do hard coding.
 ## 변화가 많치 않은 형상항목들이라 하드코딩 처리하였고, 필요시 매뉴얼하게 변경함.
 DGSMS_TAG_VER="mfosms_170306.01"
-DGMAIL_TAG_VER="mfomail_161109.01"
+DGMAIL_TAG_VER="mfomail_170516.01"
 DGAPI_TAG_VER="mfoapi_170411.01"
 
 echo "================================================"
@@ -76,16 +76,16 @@ CP_DG_JAR()
 	cp -a $DGETC_DIR/PG_Backup $DGOUT_DIR/PG_Backup
 	cp -a $DG_FILE $DGOUT_DIR/DGServer_M/bin
 	cp -a $DG_FILE $DGOUT_DIR/DGServer_S1/bin
-	cp -a $SMS_FILE $DGOUT_DIR/DGServer_S1/svc/sms.jar
-	cp -a $MAIL_FILE $DGOUT_DIR/DGServer_S1/svc/mail.jar
-	cp -a $API_FILE $DGOUT_DIR/DGServer_S1/svc/api.jar
+	cp -v $SMS_FILE $DGOUT_DIR/DGServer_S1/svc/sms.jar
+	cp -v $MAIL_FILE $DGOUT_DIR/DGServer_S1/svc/mail.jar
+	cp -v $API_FILE $DGOUT_DIR/DGServer_S1/svc/api.jar
 
-	cp -a $DGSMS_DIR/sample_sms.unit $DGOUT_DIR/DGServer_S1/svc/sample_sms.unit
-	cp -a $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc/sms.xml
-	cp -a $DGMAIL_DIR/sample_mail.unit $DGOUT_DIR/DGServer_S1/svc/sample_mail.unit
-	cp -a $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc/mail.xml
-	cp -a $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc/sample_api.unit
-	cp -a $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc/api.xml
+	cp -v $DGSMS_DIR/sample_sms.unit $DGOUT_DIR/DGServer_S1/svc/sample_sms.unit
+	cp -v $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc/sms.xml
+	cp -v $DGMAIL_DIR/sample_mail.unit $DGOUT_DIR/DGServer_S1/svc/sample_mail.unit
+	cp -v $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc/mail.xml
+	cp -v $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc/sample_api.unit
+	cp -v $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc/api.xml
 }
 
 JAR_TO_EXE()
