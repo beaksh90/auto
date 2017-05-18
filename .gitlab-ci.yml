@@ -3,7 +3,7 @@ stages:
 - linux_package
 - send_file
 - setting_env
-- integration_testing
+- integration_test
 
 mfo_build_win:
   stage: build
@@ -53,7 +53,14 @@ devqa20_pg_new:
   - sh C:\cygwin64\home\Administrator\build_test.sh
   tags:
   - devqa20
-  
+
+testing_web_ui:
+  stage: integration_test
+  script:
+  - sh C:\Multi-Runner\mfotest\uitest.sh
+  tags:
+  - devqa20
+
 devqa22_pg_patch:
   stage: setting_env
   script:
