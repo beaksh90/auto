@@ -115,14 +115,14 @@ cd $PACKAGE_DIR
 case $REQ_TAG in
 	total)
 	## totalwopjs 는 INNOSETUP패키지 파일 2개중 PJS만 있는 것을 제외하고 만든다.
-		PJS_ONLY=`ls *ONLY_PJS*`
-		mv $PJS_ONLY  $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[PlatformJS]_[$PJS_DATE].exe
-		TOTAL_PACKAGE=`ls *MaxGauge*`
-		mv $TOTAL_PACKAGE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setup]_[$PJS_DATE].exe
-	;;
-	totalwopjs)
 	## FOR DEMO IN ORDER TO REDUCE PROCESS TIME UNTIL 2017.05.22
 	## mv -> cp  UNTIL 2017.05.22
+		PJS_ONLY=`ls *ONLY_PJS*`
+		cp $PJS_ONLY  $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[PlatformJS]_[$PJS_DATE].exe
+		TOTAL_PACKAGE=`ls *MaxGauge*`
+		cp $TOTAL_PACKAGE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setup]_[$PJS_DATE].exe
+	;;
+	totalwopjs)
 		TOTAL_PACKAGE=`ls *MaxGauge*`
 		cp $TOTAL_PACKAGE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setup]_[$PJS_DATE].exe
 	;;
