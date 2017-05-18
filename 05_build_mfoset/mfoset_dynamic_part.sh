@@ -119,7 +119,7 @@ case $REQ_TAG in
 	## mv -> cp  UNTIL 2017.05.22
 		PJS_ONLY=`ls *ONLY_PJS*`
 		cp $PJS_ONLY  $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[PlatformJS]_[$PJS_DATE].exe
-		TOTAL_PACKAGE=`ls *MaxGauge*`
+		TOTAL_PACKAGE=`ls *MaxGauge* | grep -v "ONLY_PJS"`
 		cp $TOTAL_PACKAGE $PACKAGE_DIR/$MFO_PACKAGE_VER/[MFO${PJS_BUILD_NUMBER}]_[Full_Setup]_[$PJS_DATE].exe
 	;;
 	totalwopjs)
