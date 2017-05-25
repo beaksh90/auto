@@ -59,8 +59,8 @@
         <log_max_size>10mb</log_max_size><!--  limits the size of a single logfile [ex) 10mb, Unit must always be written as well] -->
         <sysstat_abnormal_increase_factor>0</sysstat_abnormal_increase_factor><!-- When the value of certain statistics ascends significantly compared to former values(*option value), Gather will exclude the value [ex) 0 : unuse, only natural number] -->
         <target_connect_retry>10</target_connect_retry><!-- The trials that exceed the maximum number of connection or those that were made by wrong passwords -->
-        <db_stop_sms_repeat>5</db_stop_sms_repeat><!-- When an individual misses an alert that shows a dead DB, resend the alarm [ the option value ] times -->
-        <db_stop_sms_interval>10</db_stop_sms_interval><!-- When an individual misses an alert that shows a dead DB, resend the alarm every [ the option value ] second -->
+        <db_stop_sms_repeat>1</db_stop_sms_repeat><!-- When an individual misses an alert that shows a dead DB, resend the alarm [ the option value ] times -->
+        <db_stop_sms_interval>60</db_stop_sms_interval><!-- When an individual misses an alert that shows a dead DB, resend the alarm every [ the option value ] second -->
         <exa_use>false</exa_use>
         <log_level>INFO</log_level><!--Write down on log files [ INFO) As usual, DEBUG) As Debug mode ]--> 
     </AdditionalOptions>
