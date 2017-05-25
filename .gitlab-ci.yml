@@ -54,13 +54,6 @@ devqa20_pg_new:
   tags:
   - devqa20
 
-testing_web_ui:
-  stage: integration_test
-  script:
-  - sh C:\Multi-Runner\mfotest\uitest.sh
-  tags:
-  - devqa20
-
 devqa22_pg_patch:
   stage: setting_env
   script:
