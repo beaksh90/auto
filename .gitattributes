@@ -584,6 +584,10 @@
  06_etc/gitlab_server/tag_checker.sh  eol=lf
  06_etc/win_repo/build_test.sh  eol=lf
  06_etc/win_repo/chmod.bat  eol=lf
+ 06_etc/gitlab_server/jandi_noti.sh eol=lf
+ 06_etc/gitlab_server/.jandi/jandi_noti_cancel_or_failed.sh eol=lf
+ 06_etc/gitlab_server/.jandi/jandi_noti_end.sh eol=lf
+ 06_etc/gitlab_server/.jandi/jandi_noti_start.sh eol=lf 
  07_build_mfopg/pg94101/pgadmin3/install-pgadmin3.py.    eol=lf
  07_build_mfopg/pg94101/pgadmin3/pgAdmin[[:space:]]III/branding/Makefile.am.    eol=lf
  07_build_mfopg/pg94101/pgadmin3/pgAdmin[[:space:]]III/docs/en_US/_static/basic.css.    eol=lf

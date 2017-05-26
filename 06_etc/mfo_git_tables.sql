@@ -46,7 +46,7 @@ create table requirer (who varchar2(20),
 create table mfo_tag_part(tag_info varchar2(30),
              build_ref varchar2(30),
              constraint tag_part_uk unique(tag_info)
-			  );
+              );
 -- * 커스터마이징한 환경구성을 위해 태그를 저장하는 테이블이다.
 
 create table mfo_git_comment(tag_info varchar2(30),
@@ -73,18 +73,49 @@ begin
     select count(*)
     into req_tag_check
     from mfo_report
-    where req_tag = 'r';
+    where req_tag = req_tag_var;
         if  req_tag_check = 1 then
             UPDATE mfo_report SET
             p1 = p1_var,
             p2 = p2_var,
-            req_time = sysdate;
+            req_time = sysdate
+            where req_tag = req_tag_var;
         else
             INSERT into mfo_report (p1, p2, req_tag, req_time )
             VALUES (p1_var,p2_var,req_tag_var,sysdate);
-	    
         end if ;
     commit;
 end ;
 /
--- * release note 또는 bug fix report를 만들 때, 요구조건을 입력하는 프로시저이다..
+-- * release note 또는 bug fix report를 만들 때, 요구조건을 입력하는 프로시저이다.
+
+create or replace procedure update_dev_mention_view
+        (p1_var IN varchar2,p2_var IN varchar2)
+is
+        tag_cnt NUMBER(3);
+        dynamic_query varchar2(4000);
+begin
+        select count(*) into tag_cnt from mfo_git_comment
+        where tag_info between p1_var and p2_var and tag_info != p1_var;
+
+        if p1_var > p2_var then
+                execute immediate ('create or replace view mfo_jandi_noti as
+                select ''Version rollback'' as MSG from dual');
+        else
+                if tag_cnt > 10 then
+                        execute immediate ('create or replace view mfo_jandi_noti as
+                        select ''문자량이 너무 많아 제한합니다(2500).'' as MSG from dual');
+                else
+                        dynamic_query := 'create or replace view mfo_jandi_noti as 
+                                          select dev_mention || ''\t'' as dev_mention 
+                                          from mfo_git_comment
+                                          where tag_info 
+                                          between '''|| p1_var ||''' and '''|| p2_var ||''' and tag_info != '''|| p1_var ||'''';
+                        execute immediate dynamic_query;
+                end if;
+        end if;
+
+        commit;
+end;
+/
+-- * Jandi에 보여줄 개발자 멘트에 대한 뷰의 구문을 변경하는 프로시저이다.
