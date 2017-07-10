@@ -60,3 +60,10 @@ devqa22_pg_patch:
   - bash /home/gitlab-runner/build_test.sh
   tags:
   - devqa22
+
+devqa25_ora_target:
+  stage: setting_env
+  script:
+  - sh /home/gitlab-runner/build_test.sh
+  tags:
+  - devqa25
