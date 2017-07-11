@@ -2735,7 +2735,7 @@ Name: {userdesktop}\PlatformJS Restart; Filename: {app}\PlatformJS\bin\sc_restar
 ;Filename: {sys}\sc.exe; Parameters: \"create DGServer_OBS_S1 start= demand  binPath= \"\"{app}\DGServer_S1\bin\mxg_obsd.exe -f {app}\DGServer_S1\conf\DG\common.conf -i 10 -D -OTHERD\"\"\"; Flags: runhidden
 
 
-Filename: {app}\Database\pg94\bin\pg_ctl.exe; Parameters: register -N PostgreSQL -D {app}\Database\data\pg94; WorkingDir: {app}; StatusMsg: {cm:registrationPG}; Flags: runhidden
+Filename: {app}\Database\pg96\bin\pg_ctl.exe; Parameters: register -N PostgreSQL -D {app}\Database\data\pg96; WorkingDir: {app}; StatusMsg: {cm:registrationPG}; Flags: runhidden
 Filename: net; Check: procWaiting( ExpandConstant('{cm:startServicePG}') , 'start PostgreSQL' ); Flags: runhidden
 ;Filename: net; Description: {cm:selectInstall64}; Flags: runhidden nowait postinstall skipifsilent; WorkingDir: {app}\PlatformJS\bin
 ;Filename: {sys}\sc.exe; Parameters: \"config \"\"PostgreSQL\"\" DisplayName= \"\"Exem_PostgreSQL(5432)\"\"\"; Flags: runhidden
