@@ -100,11 +100,12 @@ TAG_VAILD_ISSUE=0
 for TAG_VER in $TAG
 do
 	CONF_ITEM=`echo $TAG_VER | awk -F "_" '{print $1}'`
+	CONF_GROUP=`echo $CONF_ITEM | cut -c 1-3`
 	cd ${MAIN_DIR}/${CONF_ITEM}
 	TAG_EXIST=`git tag -l | grep $TAG_VER | wc -l`
 	
 	if [ $TAG_EXIST = 0 ]; then
-	git fetch git@${GIT_IPADDR}:mfo/${CONF_ITEM}.git --tag
+	git fetch git@${GIT_IPADDR}:${CONF_GROUP}/${CONF_ITEM}.git --tag
 	TAG_EXIST=`git tag -l | grep $TAG_VER | wc -l`
 	
 		if [ $TAG_EXIST = 0 ]; then

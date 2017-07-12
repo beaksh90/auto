@@ -3,9 +3,8 @@
 ## Default source Directory
 
 DG_TAR_FILE_DIR="C:/Multi-Runner/mfodg/deploy/MFO/tar"
-PJS_FILE_DIR="C:/Multi-Runner/mfonp/deploy/MFO/zip"
+PJS_FILE_DIR="C:/Multi-Runner/unipjs/deploy/uni/zip"
 WEBSRC_DIR="C:/Multi-Runner/mfoweb"
-NPOUT_DIR="C:/Multi-Runner/mfonp/deploy/MFO"
 
 REQEUIRER_CHECK()
 {

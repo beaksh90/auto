@@ -11,7 +11,7 @@ FETCH_TAG_VER_DG ()
 
 FETCH_TAG_VER_NP ()
 {
-	cd $NPSRC_DIR
+	cd $MAIN_DIR/unipjs
 	git checkout $MFONP_TAG_VALUE
 }
 
@@ -37,8 +37,8 @@ cd $WEBSRC_DIR
 git fetch git@${GIT_IPADDR}:mfo/mfoweb.git --tag
 FETCH_TAG_VER_WEB
 
-cd $NPSRC_DIR
-git fetch git@${GIT_IPADDR}:mfo/mfonp.git --tag
+cd $MAIN_DIR/unipjs
+git fetch git@${GIT_IPADDR}:uni/unipjs.git --tag
 FETCH_TAG_VER_NP
 
 ### VALUE=1 require, 2 Compile&Build, 3 Send File to requirer, 0 Stand by
@@ -48,7 +48,7 @@ echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql
 sleep 1
 rm checkout_tag.sql
 
-sh $BUILD_DIR/02_build_mfonp/npbuild.sh;
+sh $BUILD_DIR/02_build_mfonp/unipjsbuild.sh;
 }
 
 DG_PART()
@@ -92,7 +92,7 @@ RENAME_NP_FOR_DEPLOY ()
 	## 아래 생성되는 디렉토리에 이번에 만든 패키지 및 각종 설치파일을 모아둠
 	
 	mkdir $PACKAGE_DIR/$MFO_PACKAGE_VER
-	cd $NPSRC_DIR/deploy/MFO/zip
+	cd $MAIN_DIR/unipjs/deploy/uni/zip
 	PJS_FILE=`ls PlatformJS*.zip`
 	PJS_BUILD_NUMBER=`cat $WEBSRC_DIR/common/VersionControl.js | grep "var BuildNumber" | awk -F "'" '{print $2}' | awk -F "." '{print $1"."$2"."$3}'`
 	PJS_DATE=`cat $WEBSRC_DIR/common/VersionControl.js | grep "var BuildNumber" | awk -F "'" '{print $2}' | awk -F "." '{print $4}'`

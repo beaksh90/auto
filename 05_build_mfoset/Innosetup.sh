@@ -7,7 +7,7 @@
 DATABASE_HOME="C:/Database"
 DGSERVER_M_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/DGServer_M"
 DGSERVER_S1_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/DGServer_S1"
-PLATFORMJS_HOME="C:/Multi-Runner/mfonp/deploy/MFO/PlatformJS"
+PLATFORMJS_HOME="C:/Multi-Runner/unipjs/deploy/uni/PlatformJS"
 XMPING_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/XmPing"
 PGBACKUP_HOME="C:/Multi-Runner/mfodg/deploy/MFO/tar/PG_Backup"
 
@@ -3149,7 +3149,7 @@ end;
 [Files]
 Source: C:\Multi-Runner\mfodg\deploy\MFO\tar\DGServer_M\*; DestDir: {app}\DGServer_M\; Flags:\"recursesubdirs\";
 Source: C:\Multi-Runner\mfodg\deploy\MFO\tar\DGServer_S1\*; DestDir: {app}\DGServer_S1\; Flags:\"recursesubdirs\";
-Source: C:\Multi-Runner\mfonp\deploy\MFO\PlatformJS\*; DestDir: {app}\PlatformJS\; Flags:\"recursesubdirs\";
+Source: C:\Multi-Runner\unipjs\deploy\uni\PlatformJS\*; DestDir: {app}\PlatformJS\; Flags:\"recursesubdirs\";
 Source: C:\Multi-Runner\mfodg\deploy\MFO\tar\XmPing\*; DestDir: {app}\XmPing\; Flags:\"recursesubdirs\";
 Source: C:\Multi-Runner\mfodg\deploy\MFO\tar\PG_Backup\*; DestDir: {app}\PG_Backup\; Flags:\"recursesubdirs\";
 Source: C:\Database\*; DestDir: {app}\Database\; Flags:\"recursesubdirs\"; " >> $ISS_FILE_DIR
@@ -3971,7 +3971,7 @@ begin
 end;
 
 [Files]
-Source: C:\Multi-Runner\mfonp\deploy\MFO\PlatformJS\*; DestDir: {app}\PlatformJS\; Flags:\"recursesubdirs\";	" >> $ISS_FILE_DIR
+Source: C:\Multi-Runner\unipjs\deploy\uni\PlatformJS\*; DestDir: {app}\PlatformJS\; Flags:\"recursesubdirs\";	" >> $ISS_FILE_DIR
 }
 
 REQUIRER_CHECK
