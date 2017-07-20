@@ -1,19 +1,21 @@
 ## Written by EXEM Co., Ltd. DEVQA BSH
 ## Last modified 2017.01.11
 ## Default source Directory
-NPSRC_DIR="C:/Multi-Runner/mfonp"
-NPOUT_DIR="C:/Multi-Runner/mfonp/deploy/MFO"
-PJS_FILE_DIR="C:/Multi-Runner/mfonp/deploy/MFO/PlatformJS"
-NP_SERVICE_DIR="C:/Multi-Runner/mfobuild/02_build_mfonp/np_service"
-NP_CONFIG_DIF="C:/Multi-Runner/mfobuild/02_build_mfonp/config"
-SET_NP_DIR="$NPOUT_DIR/PlatformJS"
+NPSRC_DIR="C:/Multi-Runner/unipjs"
+PJSOUT_DIR="C:/Multi-Runner/unipjs/deploy/uni"
+UNITPL_DIR="C:/Multi-Runner/unitpl"
+SET_NP_DIR="$PJSOUT_DIR/PlatformJS"
 
 WEBSRC_DIR="C:/Multi-Runner/mfoweb"
 WEBOUT_DIR="$SET_NP_DIR/svc/www/MAXGAUGE"
 SQLSRC_DIR="C:/Multi-Runner/mfosql"
 SQLOUT_DIR="$SET_NP_DIR/sql"
 
-ANT_BUILD_SCRIPT_DIR="C:\Multi-Runner\mfonp\platformjs"
+ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/unipjs/"
+## I Think that there are so tiny Changes of component
+## 변화가 많치 않은 형상항목이라 하드코딩 처리하였고, 필요시 매뉴얼하게 변경함.
+UNITPL_TAG_VER="unitpl_170718.01"
+
 
 echo "===================================================="
 echo "JAVA PlatformJS Compile & BUILD & Packaging Start..!"
@@ -21,22 +23,58 @@ echo "===================================================="
 
 CLEAN_NP_FILES ()
 {
-	rm -rf $NPOUT_DIR
+	rm -rf $PJSOUT_DIR
+}
+
+GIT_CHECKOUT_UNITPL()
+{
+cd $UNITPL_DIR
+
+	TAG_EXIST=`git tag -l | grep $UNITPL_TAG_VER | wc -l`
+	
+	if [ $TAG_EXIST = 0 ]; then
+		git fetch git@${GIT_IPADDR}:uni/${UNITPL_TAG_VER}.git --tag
+		TAG_EXIST=`git tag -l | grep $UNITPL_TAG_VER | wc -l`
+	
+		if [ $TAG_EXIST = 0 ]; then
+		TAG_VAILD_ISSUE=`expr $TAG_VAILD_ISSUE + 1`; 
+		echo
+		echo " $UNITPL_TAG_VER can not be checkouted"; 
+		fi
+	else
+		echo " $UNITPL_TAG_VER is available"; 
+	fi
+
+git checkout $UNITPL_TAG_VER
 }
 
 EXECUTE_ANT_SCRIPT()
 {
 	cd $ANT_BUILD_SCRIPT_DIR
-	ant -buildfile build_MFO.xml
+	ant -buildfile build_uni.xml
 }
 
 MV_NP_FILES()
 {
-	#configuration.bat파일로 막 생성된 np경로 추적함.
-	cd $NPOUT_DIR
-	DIR=`find ./ -name configuration.bat`
-	NP_FILES_DIR=`dirname $DIR`
-	mv $NP_FILES_DIR  $SET_NP_DIR
+	# jar 두개만 옮기는 식으로 변경함.
+	cd $PJSOUT_DIR
+	CONFIGURE_JAR=`find ./ -name platformjs_configuration.jar `
+	PJS_JAR=`find ./ -name exem_platformjs.jar`
+	cp -a ${UNITPL_DIR} ${SET_NP_DIR}
+	rm -rf ${SET_NP_DIR}/.gitattributes
+	rm -rf $SET_NP_DIR/.git
+	mv $CONFIGURE_JAR  $SET_NP_DIR/app
+	mv $PJS_JAR  $SET_NP_DIR/svc/www/WEB-INF/lib
+
+
+	CONFIGURE_SH=$SET_NP_DIR/configuration.sh
+	CONFIGURE_BAT=$SET_NP_DIR/configuration.bat
+	CONFIGURE_CHANGE=$SET_NP_DIR/configuration.txt
+	CONF_ITEM_GROUP="MFO"
+	sed -e 's/MFJ/'${CONF_ITEM_GROUP}'/g' $CONFIGURE_SH > ${CONFIGURE_CHANGE}
+	mv ${CONFIGURE_CHANGE} $CONFIGURE_SH
+	sed -e 's/MFJ/'${CONF_ITEM_GROUP}'/g' $CONFIGURE_BAT > ${CONFIGURE_CHANGE}
+	mv ${CONFIGURE_CHANGE} $CONFIGURE_BAT
 }
 
 INSERT_TAG_VALUE_TO_PJSCTL ()
@@ -58,14 +96,12 @@ INSERT_TAG_VALUE_TO_PJSCTL ()
 	MFOSQL_TAG_VALUE=`echo $TAG | awk '{print $3}'`
 	PJSCTL_TEMPLETE=$SET_NP_DIR/config/template/pjsctl_linux
 	PJSCTL_TEMPLETE_SED=$SET_NP_DIR/config/template/pjsctl_linux_sed
-	sed -e 's/MFONP\ will_support_as_of_2016.11/MFONP\ '$MFONP_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
+	sed -e 's/MFONP\ will_support_as_of_2016.11/UNIPJS\ '$MFONP_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
 	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
-	sed -e 's/MFOWEB\ will_support_as_of_2016.11/MFOWEB\ '$MFOWEB_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
+	sed -e 's/__PRODUCT__WEB\ will_support_as_of_2016.11/__PRODUCT__WEB\ '$MFOWEB_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
 	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
-	sed -e 's/MFOSQL\ will_support_as_of_2016.11/MFOSQL\ '$MFOSQL_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
+	sed -e 's/__PRODUCT__SQL\ will_support_as_of_2016.11/__PRODUCT__SQL\ '$MFOSQL_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
 	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
-	
-
 }
 
 EXECUTE_CONFIGURATION ()
@@ -145,15 +181,16 @@ JAVASCRIPT_COMPRESS()
 MAKE_PJS_ZIP_FILE ()
 {
 	BUILD_NUMBER=`cat ${WEBSRC_DIR}/common/VersionControl.js | grep "var BuildNumber" | awk -F "'" '{print $2}'`
-	cd $NPOUT_DIR/PlatformJS
+	cd $PJSOUT_DIR/PlatformJS
 	7z.exe a PlatformJS_${BUILD_NUMBER}.zip -x!*.zip
 	PJS_FILE=`ls PlatformJS*.zip`
-	mkdir -p $NPOUT_DIR/zip
-	mv $SET_NP_DIR/$PJS_FILE $NPOUT_DIR/zip/
+	mkdir -p $PJSOUT_DIR/zip
+	mv $SET_NP_DIR/$PJS_FILE $PJSOUT_DIR/zip/
 }
 
 ## JAVA PlatformJS
 	CLEAN_NP_FILES
+	GIT_CHECKOUT_UNITPL
 	EXECUTE_ANT_SCRIPT
 	MV_NP_FILES
 	INSERT_TAG_VALUE_TO_PJSCTL
@@ -163,7 +200,7 @@ MAKE_PJS_ZIP_FILE ()
 ## JAVA SCRIPT 
 	CP_WEB
 	## FOR DEMO IN ORDER TO REDUCE PROCESS TIME UNTIL 2017.05.22
-	JAVASCRIPT_COMPRESS
+	#JAVASCRIPT_COMPRESS
 ## Packaging 
 	MAKE_PJS_ZIP_FILE
 

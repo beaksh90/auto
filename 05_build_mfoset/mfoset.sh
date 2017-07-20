@@ -313,8 +313,8 @@ REQUIRER_CHECK
 GET_IPADDRESS_GIT_SERVER
 FETCH_TOTAL_VER_INFO
 TAG_VALUE_VAILD_CHECK
-sh $BUILD_DIR/05_build_mfoset/mfoset_dynamic_part.sh;
 ## AS of 170125 Dynamic Part was seperated in the 'mfoset_dynamic_part'
 ## AS of 170719 Revert changes of 170125.
+# sh $BUILD_DIR/05_build_mfoset/mfoset_dynamic_part.sh;
 BUILD_AS_REQ_ORDER
 # CHECKOUT_MASTER_MFOBUILD
