@@ -3,7 +3,11 @@
 ## Default source Directory
 
 DG_TAR_FILE_DIR="C:/Multi-Runner/mfodg/deploy/MFO/tar"
+if [ $UNIPJS_TAG_VALUE ]; then
 PJS_FILE_DIR="C:/Multi-Runner/unipjs/deploy/uni/zip"
+else
+PJS_FILE_DIR="C:/Multi-Runner/mfonp/deploy/mfo/zip"
+fi 
 WEBSRC_DIR="C:/Multi-Runner/mfoweb"
 
 REQEUIRER_CHECK()

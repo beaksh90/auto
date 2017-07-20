@@ -72,12 +72,15 @@ CHECKOUT_MASTER_MFOBUILD()
 
 RECOVER_CONFLICT_FILE()
 {
-	git checkout ${BUILD_DIR}/05_build_mfoset/mfoset_dynamic_part.sh
-	git checkout ${BUILD_DIR}/05_build_mfoset/mfoset.set
+	git checkout ${BUILD_DIR}/05_build_mfoset/mfoset.sh
+	if [ -f "${BUILD_DIR}/05_build_mfoset/mfoset_dynamic_part.sh" ]; then
+		rm ${BUILD_DIR}/05_build_mfoset/mfoset_dynamic_part.sh
+	fi
 }
 
 GET_IPADDRESS_GIT_SERVER
 MFOBUILD_PART
 sh $BUILD_DIR/05_build_mfoset/mfoset.sh;
 ## AS of 170719 , 'mfoset.sh , mfoset_dynamic_part.sh => mfoset.sh'
+RECOVER_CONFLICT_FILE
 CHECKOUT_MASTER_MFOBUILD
