@@ -8,7 +8,9 @@ stages:
 mfo_build_win:
   stage: build
   script:
-  - sh C:\Multi-Runner\mfobuild\05_build_mfoset\mfobuild.sh
+  - cat C:\Multi-Runner\mfobuild\05_build_mfoset\mfobuild.sh > C:\Multi-Runner\mfobuild\05_build_mfoset\temp.sh
+  - sh C:\Multi-Runner\mfobuild\05_build_mfoset\temp.sh
+  - rm C:\Multi-Runner\mfobuild\05_build_mfoset\temp.sh
   tags:
   - mfototal_win
   

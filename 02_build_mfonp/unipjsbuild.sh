@@ -1,15 +1,15 @@
 ## Written by EXEM Co., Ltd. DEVQA BSH
 ## Last modified 2017.01.11
 ## Default source Directory
-NPSRC_DIR="C:/Multi-Runner/unipjs"
+PJSSRC_DIR="C:/Multi-Runner/unipjs"
 PJSOUT_DIR="C:/Multi-Runner/unipjs/deploy/uni"
 UNITPL_DIR="C:/Multi-Runner/unitpl"
-SET_NP_DIR="$PJSOUT_DIR/PlatformJS"
+SET_PJS_DIR="$PJSOUT_DIR/PlatformJS"
 
 WEBSRC_DIR="C:/Multi-Runner/mfoweb"
-WEBOUT_DIR="$SET_NP_DIR/svc/www/MAXGAUGE"
+WEBOUT_DIR="$SET_PJS_DIR/svc/www/MAXGAUGE"
 SQLSRC_DIR="C:/Multi-Runner/mfosql"
-SQLOUT_DIR="$SET_NP_DIR/sql"
+SQLOUT_DIR="$SET_PJS_DIR/sql"
 
 ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/unipjs/"
 ## I Think that there are so tiny Changes of component
@@ -60,16 +60,16 @@ MV_NP_FILES()
 	cd $PJSOUT_DIR
 	CONFIGURE_JAR=`find ./ -name platformjs_configuration.jar `
 	PJS_JAR=`find ./ -name exem_platformjs.jar`
-	cp -a ${UNITPL_DIR} ${SET_NP_DIR}
-	rm -rf ${SET_NP_DIR}/.gitattributes
-	rm -rf $SET_NP_DIR/.git
-	mv $CONFIGURE_JAR  $SET_NP_DIR/app
-	mv $PJS_JAR  $SET_NP_DIR/svc/www/WEB-INF/lib
+	cp -a ${UNITPL_DIR} ${SET_PJS_DIR}
+	rm -rf ${SET_PJS_DIR}/.gitattributes
+	rm -rf $SET_PJS_DIR/.git
+	mv $CONFIGURE_JAR  $SET_PJS_DIR/app
+	mv $PJS_JAR  $SET_PJS_DIR/svc/www/WEB-INF/lib
 
 
-	CONFIGURE_SH=$SET_NP_DIR/configuration.sh
-	CONFIGURE_BAT=$SET_NP_DIR/configuration.bat
-	CONFIGURE_CHANGE=$SET_NP_DIR/configuration.txt
+	CONFIGURE_SH=$SET_PJS_DIR/configuration.sh
+	CONFIGURE_BAT=$SET_PJS_DIR/configuration.bat
+	CONFIGURE_CHANGE=$SET_PJS_DIR/configuration.txt
 	CONF_ITEM_GROUP="MFO"
 	sed -e 's/MFJ/'${CONF_ITEM_GROUP}'/g' $CONFIGURE_SH > ${CONFIGURE_CHANGE}
 	mv ${CONFIGURE_CHANGE} $CONFIGURE_SH
@@ -94,8 +94,8 @@ INSERT_TAG_VALUE_TO_PJSCTL ()
 	MFONP_TAG_VALUE=`echo $TAG | awk '{print $1}'`
 	MFOWEB_TAG_VALUE=`echo $TAG | awk '{print $2}'`
 	MFOSQL_TAG_VALUE=`echo $TAG | awk '{print $3}'`
-	PJSCTL_TEMPLETE=$SET_NP_DIR/config/template/pjsctl_linux
-	PJSCTL_TEMPLETE_SED=$SET_NP_DIR/config/template/pjsctl_linux_sed
+	PJSCTL_TEMPLETE=$SET_PJS_DIR/config/template/pjsctl_linux
+	PJSCTL_TEMPLETE_SED=$SET_PJS_DIR/config/template/pjsctl_linux_sed
 	sed -e 's/MFONP\ will_support_as_of_2016.11/UNIPJS\ '$MFONP_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
 	mv ${PJSCTL_TEMPLETE_SED} $PJSCTL_TEMPLETE
 	sed -e 's/__PRODUCT__WEB\ will_support_as_of_2016.11/__PRODUCT__WEB\ '$MFOWEB_TAG_VALUE'/g' $PJSCTL_TEMPLETE > ${PJSCTL_TEMPLETE_SED}
@@ -107,8 +107,8 @@ INSERT_TAG_VALUE_TO_PJSCTL ()
 EXECUTE_CONFIGURATION ()
 {
 	## 2017.02.10 configuration 실행하여 생성하는 것으로 로직을 변경함
-	cd $SET_NP_DIR
-	echo -e  "1\n\n\n\n\n\n\n\n\n\n\n1\n\n0\n\n\n" | sh $SET_NP_DIR/configuration.bat
+	cd $SET_PJS_DIR
+	echo -e  "1\n\n\n\n\n\n\n\n\n\n\n1\n\n0\n\n\n" | sh $SET_PJS_DIR/configuration.bat
 }
 
 CP_SQL()
@@ -185,7 +185,7 @@ MAKE_PJS_ZIP_FILE ()
 	7z.exe a PlatformJS_${BUILD_NUMBER}.zip -x!*.zip
 	PJS_FILE=`ls PlatformJS*.zip`
 	mkdir -p $PJSOUT_DIR/zip
-	mv $SET_NP_DIR/$PJS_FILE $PJSOUT_DIR/zip/
+	mv $SET_PJS_DIR/$PJS_FILE $PJSOUT_DIR/zip/
 }
 
 ## JAVA PlatformJS
@@ -200,7 +200,7 @@ MAKE_PJS_ZIP_FILE ()
 ## JAVA SCRIPT 
 	CP_WEB
 	## FOR DEMO IN ORDER TO REDUCE PROCESS TIME UNTIL 2017.05.22
-	#JAVASCRIPT_COMPRESS
+	JAVASCRIPT_COMPRESS
 ## Packaging 
 	MAKE_PJS_ZIP_FILE
 

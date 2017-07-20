@@ -67,7 +67,7 @@ CHECKOUT_MASTER_MFOBUILD()
 {
 	cd $BUILD_DIR
 	sh $KEEP_EMPTY_SCRIPT_DIR/recoverkeep.sh
-	git checkout master -f
+	git checkout master
 }
 
 RECOVER_CONFLICT_FILE()
