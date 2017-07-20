@@ -3,11 +3,7 @@
 ## Default source Directory
 
 DG_TAR_FILE_DIR="C:/Multi-Runner/mfodg/deploy/MFO/tar"
-if [ $UNIPJS_TAG_VALUE ]; then
-PJS_FILE_DIR="C:/Multi-Runner/unipjs/deploy/uni/zip"
-else
-PJS_FILE_DIR="C:/Multi-Runner/mfonp/deploy/mfo/zip"
-fi 
+
 WEBSRC_DIR="C:/Multi-Runner/mfoweb"
 PACK_DIR="C:/Multi-Runner/package"
 
@@ -42,6 +38,30 @@ GET_IPADDRESS_REPO_OR_TARGET ()
 	sleep 1
 	rm checkout_tag.sql
 	echo "REPO OR TARGET SERVER IPADDRESS = [ $REPO_OR_TARGER_IPADDR ] "
+}
+
+FETCH_TAG_VER_PJS ()
+{
+	COMP_TAG="MFONP_TAG"
+	## Here are choices of COMP_TAGs. 
+	## MFOSQL_TAG, MFOWEB_TAG, MFODG_TAG, MFONP_TAG
+	## MFOPG_TAG, MFORTS_TAG, MFOBUILD_TAG 
+		
+	echo "
+	SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF;
+	select $COMP_TAG from mfo_tag t join runner_stat r
+	on t.MFO_RELEASE_VER = r.TOTAL_VER
+	where r.RUN_COMP='mfototal_win';" > checkout_tag.sql
+
+	PJS_VER=`echo exit | sqlplus -silent git/git@DEVQA23 @checkout_tag.sql`
+	sleep 1
+	rm checkout_tag.sql
+	PJS_VER=`echo $PJS_VER | cut -c 1-3`
+	if [ "$PJS_VER" = "uni" ]; then
+	PJS_FILE_DIR="C:/Multi-Runner/unipjs/deploy/uni/zip"
+	elif  [ "$PJS_VER" = "mfo" ]; then
+	PJS_FILE_DIR="C:/Multi-Runner/mfonp/deploy/mfo/zip"
+	fi 
 }
 
 DG_FILE_SEND()
@@ -183,6 +203,7 @@ rm insert_tag.sql
 }
 
 REQEUIRER_CHECK
+FETCH_TAG_VER_PJS
 GET_IPADDRESS_REPO_OR_TARGET
 SENDING_VALUE
 SEND_FILE_TO_REQUIRER
