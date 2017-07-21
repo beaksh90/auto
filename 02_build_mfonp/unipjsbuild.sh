@@ -14,7 +14,7 @@ SQLOUT_DIR="$SET_PJS_DIR/sql"
 ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/unipjs/"
 ## I Think that there are so tiny Changes of component
 ## 변화가 많치 않은 형상항목이라 하드코딩 처리하였고, 필요시 매뉴얼하게 변경함.
-UNITPL_TAG_VER="unitpl_170720.01"
+UNITPL_TAG_VER="unitpl_170721.01"
 
 
 echo "===================================================="
@@ -33,11 +33,10 @@ cd $UNITPL_DIR
 	TAG_EXIST=`git tag -l | grep $UNITPL_TAG_VER | wc -l`
 	
 	if [ $TAG_EXIST = 0 ]; then
-		git fetch git@${GIT_IPADDR}:uni/${UNITPL_TAG_VER}.git --tag
+		git fetch git@${GIT_IPADDR}:uni/unitpl.git --tag
 		TAG_EXIST=`git tag -l | grep $UNITPL_TAG_VER | wc -l`
 	
 		if [ $TAG_EXIST = 0 ]; then
-		TAG_VAILD_ISSUE=`expr $TAG_VAILD_ISSUE + 1`; 
 		echo
 		echo " $UNITPL_TAG_VER can not be checkouted"; 
 		fi
