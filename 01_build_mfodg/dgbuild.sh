@@ -74,6 +74,7 @@ CP_DG_JAR()
 	cp -a $DGETC_DIR/DGServer_S1 $DGOUT_DIR/DGServer_S1
 	cp -a $DGETC_DIR/XmPing $DGOUT_DIR/XmPing
 	cp -a $DGETC_DIR/PG_Backup $DGOUT_DIR/PG_Backup
+	cp -a $DGETC_DIR/PG_Age $DGOUT_DIR/PG_Age
 	cp -a $DG_FILE $DGOUT_DIR/DGServer_M/bin
 	cp -a $DG_FILE $DGOUT_DIR/DGServer_S1/bin
 	cp -v $SMS_FILE $DGOUT_DIR/DGServer_S1/svc/sms.jar
@@ -158,6 +159,7 @@ MAKE_TAR()
 	mv $DGOUT_DIR/DGServer_S1 $DGOUT_DIR/tar/DGServer_S1
 	mv $DGOUT_DIR/XmPing $DGOUT_DIR/tar/XmPing
 	mv $DGOUT_DIR/PG_Backup $DGOUT_DIR/tar/PG_Backup
+	mv $DGOUT_DIR/PG_Age $DGOUT_DIR/tar/PG_Age
 	cd $DGOUT_DIR/tar
 	cp -v $DGOUT_DIR/tar/DGServer_S1/bin/mxg_obsd/win64/mxg_obsd_x64.exe  $DGOUT_DIR/tar/DGServer_S1/bin/mxg_obsd.exe
 	cp -v $DGOUT_DIR/tar/DGServer_M/bin/mxg_obsd/win64/mxg_obsd_x64.exe  $DGOUT_DIR/tar/DGServer_M/bin/mxg_obsd.exe
