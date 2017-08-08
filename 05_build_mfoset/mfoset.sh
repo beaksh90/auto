@@ -177,6 +177,9 @@ git fetch git@${GIT_IPADDR}:mfo/mfomail.git --tag
 cd $MAIN_DIR/mfoapi
 git fetch git@${GIT_IPADDR}:mfo/mfoapi.git --tag
 
+cd $MAIN_DIR/mfotcp
+git fetch git@${GIT_IPADDR}:mfo/mfotcp.git --tag
+
 cd $DGSRC_DIR
 git fetch git@${GIT_IPADDR}:mfo/mfodg.git --tag
 FETCH_TAG_VER_DG

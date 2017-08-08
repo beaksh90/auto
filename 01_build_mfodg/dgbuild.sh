@@ -5,6 +5,7 @@ DGSRC_DIR="C:/Multi-Runner/mfodg"
 DGSMS_DIR="C:/Multi-Runner/mfosms"
 DGMAIL_DIR="C:/Multi-Runner/mfomail"
 DGAPI_DIR="C:/Multi-Runner/mfoapi"
+DGTCP_DIR="C:/Multi-Runner/mfotcp"
 DGOUT_DIR="C:/Multi-Runner/mfodg/deploy/mfo"
 DGETC_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
 ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
@@ -14,12 +15,13 @@ ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/mfobuild/01_build_mfodg"
 DGSMS_TAG_VER="mfosms_170306.01"
 DGMAIL_TAG_VER="mfomail_170516.01"
 DGAPI_TAG_VER="mfoapi_170411.01"
+DGTCP_TAG_VER="mfotcp_170808.01"
 
 echo "================================================"
 echo "Data Gather Compile & BUILD & Packaging Start..!"
 echo "================================================"
 
-GIT_CHECKOUT_SMS_MAIL_API()
+GIT_CHECKOUT_SMS_MAIL_API_TCP()
 {
 cd $DGSMS_DIR
 git checkout $DGSMS_TAG_VER
@@ -27,6 +29,8 @@ cd $DGMAIL_DIR
 git checkout $DGMAIL_TAG_VER
 cd $DGAPI_DIR
 git checkout $DGAPI_TAG_VER
+cd $DGTCP_DIR
+git checkout $DGTCP_TAG_VER
 }
 
 CLEAN_DG_FILES ()
@@ -41,6 +45,7 @@ EXECUTE_ANT_SCRIPT()
 	ant -buildfile mfosms_ant.xml
 	ant -buildfile mfomail_ant.xml
 	ant -buildfile mfoapi_ant.xml
+	ant -buildfile mfotcp_ant.xml
 }
 
 VERSION_CHECK()
@@ -55,6 +60,7 @@ VERSION_CHECK()
 	SMS_FILE=`find -type f -name sample_sms.jar`
 	MAIL_FILE=`find -type f -name sample_mail.jar`
 	API_FILE=`find -type f -name sample_api.jar`
+	TCP_FILE=`find -type f -name sample_tcp.jar`
 	RUNABLE_DG_JAR_VER=`java -jar $DG_FILE -version`
 	export RUNABLE_DG_JAR_VER;
 	# Don't know why Do not like below 2 cmd, a not matched error occur.
@@ -80,6 +86,7 @@ CP_DG_JAR()
 	cp -v $SMS_FILE $DGOUT_DIR/DGServer_S1/svc/sms.jar
 	cp -v $MAIL_FILE $DGOUT_DIR/DGServer_S1/svc/mail.jar
 	cp -v $API_FILE $DGOUT_DIR/DGServer_S1/svc/sample_api.jar
+	cp -v $TCP_FILE $DGOUT_DIR/DGServer_S1/svc/sample_tcp.jar
 
 	cp -v $DGSMS_DIR/sample_sms.unit $DGOUT_DIR/DGServer_S1/svc/sample_sms.unit
 	cp -v $DGSMS_DIR/sample_sms.xml $DGOUT_DIR/DGServer_S1/svc/sms.xml
@@ -87,6 +94,8 @@ CP_DG_JAR()
 	cp -v $DGMAIL_DIR/sample_mail.xml $DGOUT_DIR/DGServer_S1/svc/mail.xml
 	cp -v $DGAPI_DIR/sample_api.unit $DGOUT_DIR/DGServer_S1/svc/sample_api.unit
 	cp -v $DGAPI_DIR/sample_api.xml $DGOUT_DIR/DGServer_S1/svc/sample_api.xml
+	cp -v $DGTCP_DIR/sample_tcp.unit $DGOUT_DIR/DGServer_S1/svc/sample_tcp.unit
+	cp -v $DGTCP_DIR/sample_tcp.xml $DGOUT_DIR/DGServer_S1/svc/sample_tcp.xml
 }
 
 JAR_TO_EXE()
@@ -168,7 +177,7 @@ MAKE_TAR()
 
 ### Data Gather BUILD & Packaging Logic
 	CLEAN_DG_FILES
-	GIT_CHECKOUT_SMS_MAIL_API
+	GIT_CHECKOUT_SMS_MAIL_API_TCP
 	EXECUTE_ANT_SCRIPT
 	VERSION_CHECK
 if [ "$ERROR" != "1" ]; then
