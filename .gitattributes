@@ -22,6 +22,7 @@
  01_build_mfodg/DGServer_S1/conf/DGServer.xml  eol=lf
  01_build_mfodg/DGServer_S1/conf/mail.xml  eol=lf
  01_build_mfodg/DGServer_S1/conf/sms.xml  eol=lf
+ 01_build_mfodg/DGServer_S1/svc/sms_test.sh  eol=lf
  01_build_mfodg/XmPing/ReadMe.txt  eol=lf
  01_build_mfodg/PG_Backup/.pg_backup_linux.sh  eol=lf
  01_build_mfodg/PG_Backup/pg_backup_linux.sh  eol=lf
