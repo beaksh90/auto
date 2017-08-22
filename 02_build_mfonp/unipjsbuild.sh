@@ -14,7 +14,7 @@ SQLOUT_DIR="$SET_PJS_DIR/sql"
 ANT_BUILD_SCRIPT_DIR="C:/Multi-Runner/unipjs/"
 ## I Think that there are so tiny Changes of component
 ## 변화가 많치 않은 형상항목이라 하드코딩 처리하였고, 필요시 매뉴얼하게 변경함.
-UNITPL_TAG_VER="unitpl_170801.02"
+UNITPL_TAG_VER="unitpl_170822.01"
 
 
 echo "===================================================="
