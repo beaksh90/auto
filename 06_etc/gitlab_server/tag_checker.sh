@@ -7,7 +7,7 @@
 MAIN_DIR="/var/opt/gitlab/git-data/repositories"
 WORKING_DIR=`pwd`
 sh /root/.bash_profile
-CONF_ITEM_LIST="mfobuild mfonp mfoweb mfosql mfodg mforts mfaweb mfasql mftweb mftsql mfddg mfdbuild unipjs mfdweb mfdsql"
+CONF_ITEM_LIST="mfobuild mfonp mfoweb mfosql mfodg mforts mfaweb mfasql mftweb mftsql mfddg mfdbuild unipjs unitpl mfdweb mfdsql"
 
 PREVENT_FROM_DUPLE_EXEC ()
 {
@@ -30,7 +30,7 @@ for CONF_ITEM in $CONF_ITEM_LIST
 do
     CONF_ITEM_GROUP=`expr substr $CONF_ITEM 1 3` 
     cd ${MAIN_DIR}/${CONF_ITEM_GROUP}/${CONF_ITEM}.git
-    TAG_COUNT2=`git tag -l "${CONF_ITEM}\_[0-9]*[.][0-9][0-9]" | wc -l`
+    TAG_COUNT2=`git tag -l | grep -E "${CONF_ITEM}\_[0-9]{6}[\.][0-9]{2}" | wc -l`
     TAG_COUNT1=`cat /var/opt/gitlab/.mxctl/tag_checker.conf | grep ${CONF_ITEM} | awk -F "=" '{print $2}'`
     if [ "${CONF_ITEM}" = "mfobuild" ]; then MFO_BUILD_TAG_NEWEST=`git tag -l | tail -n 1`; fi
         
@@ -40,11 +40,11 @@ do
         PASS_COUNT=`expr ${TAG_COUNT2} - ${DIFF_COUNT}`
         echo "Here is '${CONF_ITEM}' Part "
 
-        for TAG in `git tag -l "${CONF_ITEM}\_[0-9]*[.][0-9][0-9]"`
+        for TAG in `git tag -l | grep -E "${CONF_ITEM}\_[0-9]{6}[\.][0-9]{2}"`
         do
             STEP=`expr $STEP + 1`
             if [ ${PASS_COUNT} -lt ${STEP} ]; then
-        echo "set define off;" >> insert_tag.sql
+                echo "set define off;" >> insert_tag.sql
                 EXTRACT_DEV_MENTION $PREVIOUS_TAG $TAG 
                 echo "insert into mfo_tag_part values('${TAG}','${MFO_BUILD_TAG_NEWEST}');" >> insert_tag.sql
                 UPDATER=`expr $UPDATER + 1`
@@ -115,6 +115,7 @@ TREAT_JANDI_STATEMENT ()
             PRE_JANDI_STATEMENT=`echo $PRE_JANDI_STATEMENT | sed -re 's:\x5C\x29:\x27\x5C\x5C\x29\x27:g'` # ESCAPE   (  -> '//('
             PRE_JANDI_STATEMENT=`echo $PRE_JANDI_STATEMENT | sed -re 's:\x5C\x09:\x20:g'`                 # REMOVE   \t -> (space)
             PRE_JANDI_STATEMENT=`echo $PRE_JANDI_STATEMENT | sed -re 's:\x5C\x22::g'`                     # REMOVE   "
+            MAKE_REDMINE_HYPERLINK
 
             if [ "${NEXT_HASH_CODE}" != "${HASH_CODE}" ]&&[ ${HASH_CODE} ];
             then
@@ -122,6 +123,25 @@ TREAT_JANDI_STATEMENT ()
             fi
             JANDI_DEV_MENTION="$JANDI_DEV_MENTION $PRE_JANDI_STATEMENT \n"
     fi
+}
+
+MAKE_REDMINE_HYPERLINK()
+{
+if [ `echo $PRE_JANDI_STATEMENT | grep -E "#[0-9]{3,6}"` ];
+then
+        unset IFS
+        for FIND_NUM in $PRE_JANDI_STATEMENT
+        do
+                if [ `echo $FIND_NUM | grep -E "#[0-9]{3,5}"` ]; then
+                REDMINE_NUM=`echo $FIND_NUM | grep -E "#[0-9]{3,5}" | tr -d "#"`
+                fi
+        done
+        PRE_JANDI_STATEMENT=`echo $PRE_JANDI_STATEMENT | sed -re 's@'#$REDMINE_NUM'@['#$REDMINE_NUM'](http://115.178.73.20:32798/issues/'$REDMINE_NUM')@g'`
+        PRE_JANDI_STATEMENT="     $PRE_JANDI_STATEMENT"
+        echo $PRE_JANDI_STATEMENT
+IFS="
+"
+fi
 }
 
 # origin : https://wh.jandi.com/connect-api/webhook/11671944/f8ae192012daed50247b8c2a221f62f3
@@ -142,9 +162,9 @@ curl \
 -X POST ${API_KEY} \
 -H \"Accept: application/vnd.tosslab.jandi-v2+json\" \
 -H \"Content-Type: application/json\" \
---data-binary '{\"body\":\"TAG [${TAG}](http://10.10.32.101/${CONF_ITEM_GROUP}/${CONF_ITEM}/tags/${TAG}) is just pushed.\n:)\",\"connectColor\":\"#99CCFF\",\"connectInfo\":[
-{\"title\":\"${TAG}  vs  ${PREVIOUS_TAG}\n[[ Check difference from previous one ]](http://10.10.32.101/${CONF_ITEM_GROUP}/${CONF_ITEM}/compare/${PREVIOUS_TAG}...${TAG}?view=parallel)\"},
-{\"title\":\"Comment of the developer : \",\"description\":\"${JANDI_DEV_MENTION}\"}
+--data-binary '{\"body\":\"TAG [${TAG}](http://10.10.32.101/${CONF_ITEM_GROUP}/${CONF_ITEM}/tags/${TAG}) has been pushed.\n:)\",\"connectColor\":\"#99CCFF\",\"connectInfo\":[
+{\"title\":\"${TAG}  vs  ${PREVIOUS_TAG}\n[[ Compare the difference ]](http://10.10.32.101/${CONF_ITEM_GROUP}/${CONF_ITEM}/compare/${PREVIOUS_TAG}...${TAG}?view=parallel)\"},
+{\"title\":\"Developer comments: \",\"description\":\"${JANDI_DEV_MENTION}\"}
 ${SONAR_URL} ${BRANCH_INFO}]}'" > jandi_api.sh
 
 sh jandi_api.sh
@@ -178,7 +198,7 @@ case ${CONF_ITEM} in
     mfonp|mfoweb|mfodg|unipjs|mfddg|mfdweb)
 
     cd /app/sonarqube/static_analysis_items/${CONF_ITEM}
-    git fetch git@10.10.32.101:mfo/${CONF_ITEM}.git --tag
+    git fetch git@10.10.32.101:${CONF_ITEM_GROUP}/${CONF_ITEM}.git --tag
     git checkout $TAG
     sed -i s/sonar.projectVersion=.*/sonar.projectVersion=$TAG/g ./sonar-project.properties
     sonar-scanner
@@ -193,7 +213,7 @@ esac
 ATTACH_SONAR_URL ()
 {
 . /app/sonarqube/static_analysis_items/${CONF_ITEM}/.scannerwork/report-task.txt
-for WATING in `seq 1  600`
+for WAITING in `seq 1  300`
 do
         SONAR_STATUS=`curl --silent -u admin:admin ${ceTaskUrl} | jq .task.status | tr -d '"'`
         sleep 1
@@ -213,8 +233,8 @@ DEPT=`echo $SONAR_METRIC | awk '{print $9}' | cut -c 1-3`
 
 SONAR_LINK="(http://10.10.32.101:9000/dashboard/index/${CONF_ITEM_GROUP}:${CONF_ITEM})"
 
-SONAR_URL=" ,{\"title\":\"Sonar Qube ( metrics on new code ) :\",\"description\":\"     New Bugs :\t\t\t\t[${BUGS}]${SONAR_LINK}\n
-     New Vulnerabilities :\t\t[${VUL}]${SONAR_LINK}\n     Technical Dept Ratio :\t[${DEPT}]${SONAR_LINK} % \"} "
+SONAR_URL=" ,{\"title\":\"Sonar Qube Analysis on New Code :\",\"description\":\"     Bugs :\t\t\t\t\t[${BUGS}]${SONAR_LINK}\n
+     Vulnerabilities :\t\t\t[${VUL}]${SONAR_LINK}\n     Technical Dept Ratio :\t[${DEPT}]${SONAR_LINK} % \"} "
 }
 
 UPDATE_THIS_FILE ()
