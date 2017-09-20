@@ -51,6 +51,7 @@
         <partition_create_from>0</partition_create_from><!-- 0 means 00:00 AM -->
         <partition_drop_from>3</partition_drop_from><!-- 3 means 03:00 AM -->
         <partition_drop_to>8</partition_drop_to><!-- When failed, Gather will retry to drop partitions until 08:00 AM -->
-        <log_level>INFO</log_level><!--Write down on log files [ INFO) As usual, DEBUG) As Debug mode ]-->   
+        <log_level>INFO</log_level><!--Write down on log files [ INFO) As usual, DEBUG) As Debug mode ]-->
+        <use_unlogged_table>false</use_unlogged_table><!--Create partitioned table with unlogged option in the PostgreSQL [Existing tables are not altered] -->
     </AdditionalOptions>
 </DataGather>
