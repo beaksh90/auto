@@ -1,0 +1,27 @@
+<XmSMS>
+	<SMS_DB encrypt="false">
+		<sms_database_type>postgres</sms_database_type>
+		<sms_database_ip>127.0.0.1</sms_database_ip>
+		<sms_database_port>5432</sms_database_port>
+		<sms_database_sid>MFO</sms_database_sid>
+		<sms_database_user>postgres</sms_database_user>
+		<sms_database_password>postgres</sms_database_password>
+		<sms_database_query_timeout>0</sms_database_query_timeout>
+		<bind_max_length>80</bind_max_length>
+	</SMS_DB>
+	
+	<DEFAULT level="N">
+		<SMS_INSERT_QUERY>
+			INSERT INTO pushalert ( alertname, serverid, alertlevel, alerttime, alerttype, alertvalue )
+			VALUES ( ? , ? , ? , ? , '0' , ? )
+		</SMS_INSERT_QUERY>
+		
+		<SMS_SET_BIND_VALUE>
+			<b1>p$resource_name$</b1>
+			<b2>p$server_id$</b2>
+			<b3>p$level$</b3>
+			<b4>p$server_time$</b4>
+			<b5>p$value$</b5>
+		</SMS_SET_BIND_VALUE>
+	</DEFAULT>
+</XmSMS>
